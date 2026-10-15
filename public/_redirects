@@ -5,3 +5,6 @@
 /en/         /en   301
 /imprint     /en/impressum    301
 /privacy     /en/datenschutz  301
+
+# ARD manifest well-known alias (200 = rewrite, not redirect)
+/.well-known/ai-catalog.json  /ai-catalog.json  200

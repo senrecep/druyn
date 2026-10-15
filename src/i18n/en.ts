@@ -9,7 +9,7 @@ export const en = {
     tagline: "Plan → Execute → Forecast",
     title: "Druyn | Project planning with an automatic time forecast",
     description:
-      "Plan projects visually as a process diagram, book working hours directly on tasks and get a realistic time forecast that respects dependencies, deadlines and team capacity. Deterministic, no black-box AI.",
+      "Druyn plans projects visually as a process diagram, books hours directly on tasks and computes a deterministic time forecast. No black-box AI.",
     ogTitle: "Druyn | Project planning should not be rocket science",
     ogDescription:
       "Automatically computes a realistic time forecast that respects dependencies, deadlines and team capacity.",
@@ -38,7 +38,7 @@ export const en = {
     scaleValue: "1 : 1",
     phaseValue: "Lighthouse phase",
     releaseValue: "3 months · CHF 0",
-    revisionValue: "2026 · v0.9",
+    revisionValue: "v0.9",
     sheetsLabel: "Sheet",
   },
   sheets: {
@@ -134,7 +134,7 @@ export const en = {
       "Druyn is the first planning tool that lets me keep an overview even across several projects. The computed workload is surprisingly close to reality. Thanks to Druyn I can focus on what matters.",
     quoteName: "Silvan M.",
     quoteRole: "Timber construction engineer",
-    featuresHeadline: "Features",
+    featuresHeadline: "Druyn features",
     revisionLabel: "Rev.",
     features: [
       {
@@ -154,7 +154,7 @@ export const en = {
         text: "Reuse proven project structures again and again. You never forget a project phase and never reinvent the wheel. Create new projects directly from quotes or task lists.",
       },
     ],
-    faqHeadline: "Questions",
+    faqHeadline: "Frequently asked questions about Druyn",
     faq: [
       {
         q: "Does Druyn replace project managers?",
@@ -175,7 +175,7 @@ export const en = {
     ],
   },
   pricing: {
-    headline: "Lighthouse phase, limited participation",
+    headline: "Druyn pricing: lighthouse phase with limited participation",
     lead: "Find out for three months, free of charge, how Druyn simplifies your project routine, alone or as a team.",
     posLabel: "Pos.",
     itemLabel: "Item",

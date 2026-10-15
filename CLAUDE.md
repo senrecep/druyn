@@ -8,7 +8,7 @@ Static marketing site for Druyn (project planning with a deterministic forecast)
 - **Never invent claims.** No customer logos, user counts, benchmarks, certifications or extra testimonials. Prices and the demo numbers come from the dictionaries and must match the app.
 - **Keep it static.** No client framework, no analytics, no cookies. The only script is `src/scripts/sheets.ts`; the page must work with it removed and with `prefers-reduced-motion`.
 - **Stay in the visual world.** The site is a drawing set: bordered sheets, a title block (Plankopf), dimension chains, one red stamp per sheet as the primary action, mono labels, self-drawing line work. Reuse the components in `src/components` instead of adding generic cards, gradients or icon tiles.
-- **SEO/GEO is part of every page.** Each page passes `title`, `description` and `path` to `Base.astro`; hreflang, canonical, Open Graph and JSON-LD come from there. Keep `public/llms.txt` in sync when positioning or pricing changes.
+- **SEO/GEO is part of every page.** Each page passes `title`, `description` and `path` to `Base.astro`; hreflang, canonical, Open Graph and JSON-LD come from there. Keep `public/llms.txt` in sync when positioning or pricing changes. Bump `contentUpdated` in `src/lib/site.ts` whenever content changes: it feeds the visible date in the title block, `dateModified` and the sitemap `lastmod`. Headings name the product ("Druyn Funktionen", not "Funktionen"); meta descriptions stay under 160 characters; the first paragraph after the H1 names Druyn.
 - Code, comments, commits and docs are in English. Commit messages follow conventional commits (`feat:`, `fix:`, `docs:`, `chore:`).
 
 ## Commands

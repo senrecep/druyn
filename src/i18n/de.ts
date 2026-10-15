@@ -9,7 +9,7 @@ export const de = {
     tagline: "Planung → Ausführung → Prognose",
     title: "Druyn | Projektplanung mit automatischer Zeitprognose",
     description:
-      "Plane Projekte visuell als Prozessdiagramm, buche Arbeitsstunden direkt auf Aufgaben und erhalte eine realistische Zeitprognose, die Abhängigkeiten, Fristen und Teamkapazitäten respektiert. Deterministisch, keine Black-Box-KI.",
+      "Druyn plant Projekte visuell als Prozessdiagramm, bucht Stunden direkt auf Aufgaben und berechnet eine deterministische Zeitprognose. Keine Black-Box-KI.",
     ogTitle: "Druyn | Projektplanung muss keine Raketenwissenschaft sein",
     ogDescription:
       "Berechnet automatisch eine realistische Zeitprognose, die Abhängigkeiten, Fristen und Teamkapazitäten respektiert.",
@@ -38,7 +38,7 @@ export const de = {
     scaleValue: "1 : 1",
     phaseValue: "Leuchtturmphase",
     releaseValue: "3 Monate · 0 CHF",
-    revisionValue: "2026 · v0.9",
+    revisionValue: "v0.9",
     sheetsLabel: "Blatt",
   },
   sheets: {
@@ -135,7 +135,7 @@ export const de = {
       "Druyn ist das erste Planungstool, bei dem ich auch bei mehreren Projekten den Überblick behalte. Die berechnete Auslastung ist überraschend realitätsnah. Dank Druyn kann ich mich auf das Wesentliche konzentrieren.",
     quoteName: "Silvan M.",
     quoteRole: "Holzbauingenieur",
-    featuresHeadline: "Funktionen",
+    featuresHeadline: "Druyn Funktionen",
     revisionLabel: "Rev.",
     features: [
       {
@@ -155,7 +155,7 @@ export const de = {
         text: "Nutze bewährte Projektstrukturen immer wieder. So vergisst du keine Projektphasen und musst das Rad nicht neu erfinden. Erzeuge neue Projekte direkt aus Offerten oder Aufgabenlisten.",
       },
     ],
-    faqHeadline: "Fragen",
+    faqHeadline: "Häufige Fragen zu Druyn",
     faq: [
       {
         q: "Ersetzt Druyn die Projektleitung?",
@@ -176,7 +176,7 @@ export const de = {
     ],
   },
   pricing: {
-    headline: "Leuchtturmphase, begrenzte Teilnahme",
+    headline: "Druyn Preise: Leuchtturmphase mit begrenzter Teilnahme",
     lead: "Finde drei Monate lang kostenlos heraus, wie Druyn deinen Projektalltag vereinfacht, allein oder im Team.",
     posLabel: "Pos.",
     itemLabel: "Bezeichnung",

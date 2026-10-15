@@ -1,4 +1,5 @@
 import { localePath, t, type Locale } from "@/i18n";
+import { contentUpdated } from "@/lib/site";
 
 /** JSON-LD for the landing page: the product, its offers and the FAQ. Every value comes from the dictionary. */
 export function landingJsonLd(locale: Locale, site: URL | undefined): Record<string, unknown>[] {
@@ -18,6 +19,8 @@ export function landingJsonLd(locale: Locale, site: URL | undefined): Record<str
     inLanguage: dict.htmlLang,
     description: dict.site.description,
     screenshot: new URL(`/og-${locale}.png`, base).href,
+    image: new URL(`/og-${locale}.png`, base).href,
+    dateModified: contentUpdated,
     featureList: dict.audience.features.map((f) => f.title),
     publisher: { "@id": new URL("/#organization", base).href },
     offers: dict.pricing.plans.map((plan) => ({

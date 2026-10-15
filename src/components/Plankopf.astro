@@ -1,5 +1,6 @@
 ---
 import { t, type Locale } from "@/i18n";
+import { contentUpdated, formatDate } from "@/lib/site";
 
 /**
  * The title block of the drawing set.
@@ -59,7 +60,9 @@ const cell = blue ? "border-white/60" : "border-ink/50";
       </div>
       <div class="px-3 py-2">
         <dt class="label mb-1 opacity-75">{p.revision}</dt>
-        <dd class="figure">{p.revisionValue}</dd>
+        <dd class="figure">
+          <time datetime={contentUpdated}>{formatDate(contentUpdated, locale)}</time> · {p.revisionValue}
+        </dd>
       </div>
       </dl>
     </div>

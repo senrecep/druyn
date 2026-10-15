@@ -3,6 +3,7 @@ import "@/styles/global.css";
 import archivoWdth from "@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url";
 import b612Mono from "@fontsource/b612-mono/files/b612-mono-latin-400-normal.woff2?url";
 import { alternates, localePath, t, type Locale } from "@/i18n";
+import { contentPublished, contentUpdated } from "@/lib/site";
 
 interface Props {
   locale: Locale;
@@ -31,6 +32,12 @@ const organization = {
   url: site.href,
   logo: new URL("/favicon.svg", site).href,
   email: dict.footer.email,
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: dict.footer.email,
+    contactType: "customer support",
+    availableLanguage: ["de", "en"],
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: "Murmattstrasse 9",
@@ -48,7 +55,21 @@ const website = {
   inLanguage: [dict.htmlLang],
   publisher: { "@id": organization["@id"] },
 };
-const ld = [organization, website, ...jsonLd];
+const webpage = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${canonical.href}#webpage`,
+  url: canonical.href,
+  name: title,
+  description,
+  inLanguage: dict.htmlLang,
+  isPartOf: { "@id": website["@id"] },
+  about: { "@id": organization["@id"] },
+  datePublished: contentPublished,
+  dateModified: contentUpdated,
+  primaryImageOfPage: ogImage.href,
+};
+const ld = [organization, website, webpage, ...jsonLd];
 ---
 
 <!doctype html>
@@ -63,7 +84,7 @@ const ld = [organization, website, ...jsonLd];
     <link rel="alternate" hreflang="de" href={new URL(alt.de, site).href} />
     <link rel="alternate" hreflang="en" href={new URL(alt.en, site).href} />
     <link rel="alternate" hreflang="x-default" href={new URL(alt.de, site).href} />
-    {noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow, max-image-preview:large" />}
+    {noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />}
     <meta name="theme-color" content="#1d3e8c" />
     <link rel="preload" href={archivoWdth} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={b612Mono} as="font" type="font/woff2" crossorigin />

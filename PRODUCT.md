@@ -12,9 +12,9 @@ Astro 7 + Tailwind CSS 4 (latest at build time), TypeScript, Bun, static output.
 
 ## Users
 
-1. **Project leads** who plan and coordinate several projects at once and need a realistic timeline without rebuilding the plan every time reality drifts.
-2. **Engineers and developers** (the confirmed proof is a timber-construction engineer; demo data is architecture and civil/timber construction) who need structured sequences and clear priorities.
-3. **Small teams** that work on shared projects and want to stay in sync without micromanagement.
+1. Project leads who plan and coordinate several projects at once and need a realistic timeline without rebuilding the plan every time reality drifts.
+2. Engineers and developers (the confirmed proof is a timber-construction engineer; demo data is architecture and civil/timber construction) who need structured sequences and clear priorities.
+3. Small teams that work on shared projects and want to stay in sync without micromanagement.
 
 They work in German-speaking Switzerland (CH, also DE/AT/LI billing). They evaluate on a laptop at a desk, mostly during a workday. Access is currently invite-only ("Leuchtturmphase").
 
@@ -24,11 +24,11 @@ Druyn is a web app for visual project planning with an automatic, deterministic 
 
 ## Positioning
 
-"Schliesse den Kreis zwischen Planung und Realität." Classic tools produce rigid plans that stop meaning anything once something changes; Druyn keeps plan and reality in one loop: **Planung → Ausführung → Prognose**. The forecast is a deterministic optimisation algorithm combined with the team's collective intelligence. Explicitly: Druyn does not replace people and is not a black-box AI. Minimalist, "Gamification statt Micromanaging / Overengineering".
+"Schliesse den Kreis zwischen Planung und Realität." Classic tools produce rigid plans that stop meaning anything once something changes; Druyn keeps plan and reality in one loop: Planung → Ausführung → Prognose. The forecast is a deterministic optimisation algorithm combined with the team's collective intelligence. Explicitly: Druyn does not replace people and is not a black-box AI. Minimalist, "Gamification statt Micromanaging / Overengineering".
 
 ## Operating Context
 
-- Three app views: **Planung** (hierarchical process diagram with breadcrumbs; task cards with assigned roles and booked/planned hours), **Ausführung** (week calendar where hours are booked on tasks; task list with progress bars; notes), **Prognose** (Gantt by role with milestones, plus "Freie Kapazitäten" per role per week in %).
+- Three app views: Planung (hierarchical process diagram with breadcrumbs; task cards with assigned roles and booked/planned hours), Ausführung (week calendar where hours are booked on tasks; task list with progress bars; notes), Prognose (Gantt by role with milestones, plus "Freie Kapazitäten" per role per week in %).
 - Resources have hours per week, efficiency %, multiplier; absences; roles Betrachter / Editor / Administrator.
 - Templates: reuse proven project structures; create projects from offers or task lists; CSV / table import with column mapping; export/import drafts; demo project.
 - Pricing (confirmed on current site, CHF): free 90-day trial · Einzelbenutzer 5 CHF per user / month · Team 30 CHF / month (max 15 members). App shows "2 Benutzer · 15 Ressourcen" and "15 Benutzer · 15 Ressourcen" respectively.
@@ -45,7 +45,7 @@ Druyn is a web app for visual project planning with an automatic, deterministic 
 
 ## Brand Commitments
 
-- Name: **Druyn** (capital D). Logo: a tree with a Y-shaped orange/brown trunk and green rounded blocks as leaves (`reference/druyn.com/images/icon.svg`); the blocks echo task cards in a hierarchy.
+- Name: Druyn (capital D). Logo: a tree with a Y-shaped orange/brown trunk and green rounded blocks as leaves (`reference/druyn.com/images/icon.svg`); the blocks echo task cards in a hierarchy.
 - Existing accent green `#8dd35f`; product UI uses a warm grey ground (`#E4E1DE`) with pastel rose / green / purple / yellow / blue task colours. These are product truth (screenshots), not a mandated site palette.
 - Voice: direct, informal "du", plain German, no hype, engineering honesty ("keine Black-Box-KI").
 

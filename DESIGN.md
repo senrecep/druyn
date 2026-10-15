@@ -158,7 +158,7 @@ Two materials carry the whole world. Blueprint-blue cover sheets with white line
 Motion is the act of drawing. Line work draws itself once on reveal, labels ink in afterwards, and the pinned title block counts sheets as the reader scrolls. Nothing fades, slides or bounces. Under reduced motion the whole set is simply already drawn.
 
 **Key Characteristics:**
-- Bordered sheets with a double frame line and A–D / 1–6 zone marks on every section
+- Bordered sheets with a double frame line and zone marks (A to D, 1 to 6) on every section
 - Two grounds only: blueprint blue with white ink, or white with near-black ink
 - Dimension red reserved for figures and the one stamp per sheet
 - Archivo condensed (width 78) for display, Archivo normal for body, B612 Mono for every label, figure and title-block cell
@@ -223,7 +223,7 @@ A drafting palette: one blue ground, one white ground, one ink, one red, and a c
 
 ## Layout
 
-The page body is blueprint blue. Each sheet is a section with a 24px margin on all sides (the frame token), so adjacent sheets are separated by a 24px blue gap and the first sheet shows a 24px blue frame around the cover. The sheet has a 2px outer border and a second 1px inner border inset 8px, in the sheet's ink at 100% and 40% (white at 100% and 50% on blue). Zone letters A–D sit in a 20px column down the left edge, zone numbers 1–6 in a 20px row across the top, both only from md and at 70% opacity. The cover and the auth/legal sheets fill the viewport minus the frame (`100svh - 48px`); the closing sheet is at least 70svh.
+The page body is blueprint blue. Each sheet is a section with a 24px margin on all sides (the frame token), so adjacent sheets are separated by a 24px blue gap and the first sheet shows a 24px blue frame around the cover. The sheet has a 2px outer border and a second 1px inner border inset 8px, in the sheet's ink at 100% and 40% (white at 100% and 50% on blue). Zone letters A to D sit in a 20px column down the left edge, zone numbers 1 to 6 in a 20px row across the top, both only from md and at 70% opacity. The cover and the auth/legal sheets fill the viewport minus the frame (`100svh - 48px`); the closing sheet is at least 70svh.
 
 Sheet padding is the sheet-pad token, `clamp(1.25rem, 4vw, 3.75rem)`, plus 12px horizontal and 8px top from md to clear the zone marks. Inside a sheet the rhythm is: heading, then lead at 24px to 28px, then blocks at 40px, with a dimension chain as the section rule at 64px (96px from md). Two-column sheet grids use asymmetric fractions (11/9, 3/2, 2/3, 5/7) with 64px column gaps and 40px row gaps, collapsing to one column under lg.
 
@@ -258,7 +258,7 @@ The primary action is an approval stamp: a block of mono caps with a second hair
 
 ### Sheet
 - **Frame:** 24px margin all round, 2px border in the sheet's ink, inner 1px border inset 8px at reduced opacity.
-- **Zone marks:** A–D down the left (20px column), 1–6 across the top (20px row), label grammar at 70% opacity, md and up only, aria-hidden.
+- **Zone marks:** A to D down the left (20px column), 1 to 6 across the top (20px row), label grammar at 70% opacity, md and up only, aria-hidden.
 - **Tones:** white (Sheet White, Ink) and blue (Blueprint, White Ink); blue sheets swap selection and focus colours to white.
 - **Internal padding:** the sheet-pad token, extended from md to clear the zone marks.
 
@@ -267,7 +267,7 @@ The primary action is an approval stamp: a block of mono caps with a second hair
 - **Strip:** the pinned one-line version: three cells (DRUYN bold, "Blatt n/6" with a live figure, current sheet name truncated), 2px top border full-width under md, 2px all round and 416px wide from md, pinned 24px from the bottom-right. Hidden on the cover; slides in over 420ms with the draw ease and 320ms opacity as sheet 2 enters; static under reduced motion.
 
 ### DimensionChain
-- A 20px-tall presentational rule: 1px end ticks, 1px line each side, the caption in label grammar set into the gap. Tones: ink, white, dimension. Used as the hero's "1 PLANSATZ · 6 BLATT" chain, as the section rule between sheet halves, and for A–C detail ranges.
+- A 20px-tall presentational rule: 1px end ticks, 1px line each side, the caption in label grammar set into the gap. Tones: ink, white, dimension. Used as the hero's "1 PLANSATZ · 6 BLATT" chain, as the section rule between sheet halves, and for the detail range A to C.
 
 ### Detail (callout)
 - **Header:** a 48px ring (1.5px Ink) with the letter in mono bold, a 40px leader line, then the title in Title grammar at 1.75rem (2.25rem at md).

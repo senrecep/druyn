@@ -44,7 +44,7 @@ export const de = {
   sheets: {
     cover: "Übersicht",
     problem: "Plan und Realität",
-    details: "Details A–C",
+    details: "Details A, B, C",
     audience: "Anwendung",
     pricing: "Stückliste",
     close: "Freigabe",
@@ -70,7 +70,7 @@ export const de = {
       { name: "Vorprojekt Architektur", role: "ARC", booked: 0, planned: 36 },
       { name: "Behördeneingabe", role: "ARC", booked: 0, planned: 20 },
     ],
-    weeks: "KW 30 – KW 41",
+    weeks: "KW 30 bis 41",
     hours: "h",
     done: "erledigt",
     today: "heute",

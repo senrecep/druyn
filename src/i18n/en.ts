@@ -44,7 +44,7 @@ export const en = {
   sheets: {
     cover: "Overview",
     problem: "Plan and reality",
-    details: "Details A–C",
+    details: "Details A, B, C",
     audience: "Application",
     pricing: "Parts list",
     close: "Approval",
@@ -69,7 +69,7 @@ export const en = {
       { name: "Preliminary design", role: "ARC", booked: 0, planned: 36 },
       { name: "Permit submission", role: "ARC", booked: 0, planned: 20 },
     ],
-    weeks: "Wk 30 – Wk 41",
+    weeks: "Wk 30 to 41",
     hours: "h",
     done: "done",
     today: "today",
@@ -87,7 +87,7 @@ export const en = {
     honest1: "Druyn does not replace people.",
     honest2: "And Druyn is not a black-box AI.",
     honest3:
-      "Instead, the platform combines deterministic optimisation algorithms with the collective intelligence of your team. That is what real planning certainty looks like.",
+      "Instead, the platform combines deterministic optimisation algorithms with the collective intelligence of your team. This creates real planning certainty.",
     loop: ["Planning", "Execution", "Forecast"] as [string, string, string],
     formula: "f(plan, actuals, capacity) = forecast",
     notesLabel: "Notes",

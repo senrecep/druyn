@@ -30,7 +30,7 @@ const sumPlanned = tasks.reduce((s, t) => s + t.planned, 0);
     data-draw
     viewBox="0 0 640 540"
     role="img"
-    aria-labelledby="loop-drawing-title"
+    aria-label={`${dict.hero.drawingTitle}: ${dict.hero.drawingCaption}`}
     class="h-auto w-full"
     fill="none"
     stroke="currentColor"
@@ -38,7 +38,6 @@ const sumPlanned = tasks.reduce((s, t) => s + t.planned, 0);
     stroke-linecap="square"
     font-family="var(--font-mono)"
   >
-    <title id="loop-drawing-title">{dict.hero.drawingTitle}: {dict.hero.drawingCaption}</title>
 
     {
       boxes.map((b) => (

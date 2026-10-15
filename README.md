@@ -52,6 +52,7 @@ One-time setup:
 1. Create the Pages project (first deploy creates it): `bunx wrangler login`, then `bun run deploy`.
 2. In the Cloudflare dashboard, Pages → druyn → Custom domains, add `druyn.com` and `www.druyn.com`. The zone must be on Cloudflare; add a redirect rule for `www` → apex.
 3. Set the build environment variable `SITE_URL` only if the site is served from a different host than `https://druyn.com` (it controls canonical URLs, hreflang and the sitemap).
+4. Cloudflare's default Node is too old for Astro 7; `.node-version` pins Node 24 and the Git-integrated project also sets `NODE_VERSION=24`.
 
 Every later release:
 
@@ -60,7 +61,7 @@ bun run deploy           # production (main)
 bun run deploy:preview   # preview branch deployment
 ```
 
-Optional Git integration: connect the GitHub repository in Cloudflare Pages with build command `bun run build` and output directory `dist`; then every push to `main` deploys automatically.
+Git integration (current setup): the GitHub repository is connected in Cloudflare Pages with build command `bun run build` and output directory `dist`; every push to `main` deploys to production, every other branch gets a preview URL.
 
 `public/_headers` ships a strict Content-Security-Policy and long cache lifetimes for hashed assets; `public/_redirects` carries legacy paths.
 

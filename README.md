@@ -47,27 +47,37 @@ The auth pages (`/login`, `/signup`, `/forgot-password`) are design deliverables
 
 ## Deploying to Cloudflare Pages
 
-One-time setup:
+The site is deployed by Cloudflare Pages from this GitHub repository. Every push to `main` builds and publishes production; every other branch gets its own preview URL. Nothing runs on your machine.
 
-1. Create the Pages project (first deploy creates it): `bunx wrangler login`, then `bun run deploy`.
-2. In the Cloudflare dashboard, Pages → druyn → Custom domains, add `druyn.com` and `www.druyn.com`. The zone must be on Cloudflare; add a redirect rule for `www` → apex.
-3. Set the build environment variable `SITE_URL` only if the site is served from a different host than `https://druyn.com` (it controls canonical URLs, hreflang and the sitemap).
-4. Cloudflare's default Node is too old for Astro 7; `.node-version` pins Node 24 and the Git-integrated project also sets `NODE_VERSION=24`.
+### Connect the repository (one time)
 
-Every later release:
+1. Cloudflare dashboard: Workers & Pages, then Create application, then Pages, then "Import an existing Git repository".
+2. Choose GitHub and authorise the Cloudflare Workers and Pages app for this repository. If the repository is not in the list, open github.com/settings/installations, pick the Cloudflare app, and add the repository under "Repository access".
+3. Project settings:
+   - Production branch: `main`
+   - Framework preset: Astro (or none)
+   - Build command: `bun run build`
+   - Build output directory: `dist`
+4. Environment variables (both Production and Preview):
+   - `NODE_VERSION` = `24`. Cloudflare's default Node is older than Astro 7 requires. The repository also carries a `.node-version` file with the same value.
+   - `SITE_URL` = the public origin the build is served from, for example `https://druyn.com`. It sets canonical URLs, hreflang, the sitemap, Open Graph image URLs and robots.txt. Leave it unset only if the site really runs at `https://druyn.com`.
+5. Save and deploy. The first build takes about two minutes; later builds start automatically on every push.
 
-```sh
-bun run deploy           # production (main)
-bun run deploy:preview   # preview branch deployment
-```
+### Custom domain
 
-Git integration (current setup): the GitHub repository is connected in Cloudflare Pages with build command `bun run build` and output directory `dist`; every push to `main` deploys to production, every other branch gets a preview URL.
+1. Pages project, Custom domains, "Set up a custom domain", enter `druyn.com` and again for `www.druyn.com`. The zone must be on Cloudflare; Pages creates the DNS records and the certificate.
+2. Add a redirect rule on the zone so `www.druyn.com` sends visitors to `https://druyn.com`.
+3. Set `SITE_URL` to `https://druyn.com` (or remove it) and trigger one redeploy so canonical URLs and the sitemap point at the final domain.
 
-`public/_headers` ships a strict Content-Security-Policy and long cache lifetimes for hashed assets; `public/_redirects` carries legacy paths.
+### Things that bite
 
-### GitHub Pages fallback
+- Do not add a `wrangler.toml` or `wrangler.jsonc` to the repository. When one exists, Pages reads build settings from it and ignores the environment variables set in the dashboard.
+- `public/_headers` ships a strict Content-Security-Policy with no inline scripts. Astro is configured (`vite.build.assetsInlineLimit: 0`) to keep scripts as files; keep it that way or the page script is blocked.
+- `public/_redirects` carries legacy paths. `dist/404.html` gives unknown URLs a real 404 status.
 
-The output is plain static files, so `dist/` can also be published with GitHub Pages (upload `dist/` with `actions/upload-pages-artifact`). Headers and redirects from `public/_headers` and `public/_redirects` are Cloudflare-only.
+### Manual deploy without Git (alternative)
+
+`bunx wrangler login`, then `bun run deploy` uploads `dist/` directly to a Pages project named `druyn`. A project created this way cannot be switched to Git integration later, so prefer the Git setup above.
 
 ## Progressive web app
 

@@ -1,41 +1,26 @@
 # Druyn
 
-> Druyn is a web application for visual project planning with an automatic, deterministic time forecast. Teams plan projects hierarchically as a process diagram, book working hours directly on tasks, and get a forecast that continuously respects dependencies, deadlines and team capacity. Made in Ennetmoos, Switzerland. German first, English version in preparation.
+> Druyn is a web application for visual project planning with an automatic, deterministic time forecast. Teams plan projects hierarchically as a process diagram, book working hours directly on tasks, and get a forecast that continuously respects dependencies, deadlines and team capacity. Made in Ennetmoos, Switzerland. German first; an English version of the app is in preparation.
 
-## What Druyn does
+Key facts: the forecast is deterministic (the same inputs always give the same result), Druyn is not a black-box AI and does not replace people. Three views: Planung (planning as a process diagram), Ausführung (booking hours on tasks in a weekly calendar), Prognose (schedule per role with milestones and free capacity in percent). Access is by invitation during the lighthouse phase.
 
-- Planung (planning): plan projects visually like a process diagram; group projects and tasks hierarchically (phases down to tasks); estimate effort, set deadlines, assign resources.
-- Ausführung (execution): book working hours directly on tasks in a weekly calendar; the plan stays in line with reality automatically.
-- Prognose (forecast): a deterministic optimisation algorithm computes a realistic time forecast per role, with milestones and free capacity per week in percent.
-- Templates: reuse proven project structures; create projects from quotes or task lists; CSV / table import.
-- Roles: viewer, editor, administrator. Resources have hours per week, efficiency and multiplier; absences are supported.
+## Pages
 
-## Positioning
+- [Home (German)](https://druyn.com/): Product overview, how it works, audience, features, FAQ and pricing.
+- [Home (English)](https://druyn.com/en): The same overview in English.
+- [Imprint](https://druyn.com/impressum): Company address and contact.
+- [Privacy](https://druyn.com/datenschutz): Privacy policy of the website.
 
-- "Schliesse den Kreis zwischen Planung und Realität": classic tools produce rigid plans that lose meaning once something changes; Druyn keeps plan and reality in one loop.
-- Druyn does not replace people and is not a black-box AI. The same inputs always produce the same forecast.
-- Minimalist by design: gamification instead of micromanaging or over-engineering.
+## Product
 
-## Who it is for
+- [Application](https://app.druyn.com/): The Druyn app (login for invited organisations).
+- [Request access](mailto:druynapp@gmail.com?subject=Interesse%20an%20Leuchtturmphase): Email to join the lighthouse phase.
 
-Project leads coordinating several projects at once, engineers and developers who need structured sequences and clear priorities, and small teams that want to stay in sync. Demo content and the first customers come from architecture and timber / civil construction.
+## Pricing
 
-## Pricing (CHF, lighthouse phase)
+- [Pricing (CHF)](https://druyn.com/#preise): Free 90-day trial; single user CHF 5 per user per month; team plan CHF 30 per month for up to 15 members.
 
-- Free 90-day trial.
-- Single user: CHF 5 per user per month.
-- Team plan: CHF 30 per month, up to 15 members.
-- Access is currently by invitation during the lighthouse phase.
+## Optional
 
-## Links
-
-- Website (German): https://druyn.com/
-- Website (English): https://druyn.com/en
-- Application: https://app.druyn.com/
-- Contact: druynapp@gmail.com
-- Imprint: https://druyn.com/impressum
-- Privacy: https://druyn.com/datenschutz
-
-## Company
-
-Druyn, Murmattstrasse 9, 6372 Ennetmoos, Switzerland.
+- [Sitemap](https://druyn.com/sitemap-index.xml): All indexable pages.
+- [Company](https://druyn.com/impressum): Druyn, Murmattstrasse 9, 6372 Ennetmoos, Switzerland.

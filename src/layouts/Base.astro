@@ -1,5 +1,7 @@
 ---
 import "@/styles/global.css";
+import archivoWdth from "@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url";
+import b612Mono from "@fontsource/b612-mono/files/b612-mono-latin-400-normal.woff2?url";
 import { alternates, localePath, t, type Locale } from "@/i18n";
 
 interface Props {
@@ -63,6 +65,8 @@ const ld = [organization, website, ...jsonLd];
     <link rel="alternate" hreflang="x-default" href={new URL(alt.de, site).href} />
     {noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow, max-image-preview:large" />}
     <meta name="theme-color" content="#1d3e8c" />
+    <link rel="preload" href={archivoWdth} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={b612Mono} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />

@@ -166,19 +166,19 @@ const legalPath = (p: string) => localePath(locale, p);
     </table>
 
     <h2 class="display mt-16 text-[clamp(1.75rem,3vw,2.5rem)] md:mt-24">{dict.audience.faqHeadline}</h2>
-    <dl class="mt-6 grid grid-cols-1 gap-x-16 lg:grid-cols-2">
+    <div class="mt-6 grid grid-cols-1 gap-x-16 lg:grid-cols-2">
       {
         dict.audience.faq.map((f) => (
           <details class="faq group border-b border-ink first:border-t lg:nth-[2]:border-t">
             <summary class="flex cursor-pointer list-none items-baseline justify-between gap-6 py-5 [&::-webkit-details-marker]:hidden">
-              <dt class="display-wide text-[1.25rem] md:text-[1.375rem]">{f.q}</dt>
+              <h3 class="display-wide text-[1.25rem] md:text-[1.375rem]">{f.q}</h3>
               <span aria-hidden="true" class="figure shrink-0 text-xl transition-transform group-open:rotate-45">+</span>
             </summary>
-            <dd class="max-w-[62ch] pb-6 text-[1.0625rem] leading-relaxed text-ink-soft">{f.a}</dd>
+            <p class="max-w-[62ch] pb-6 text-[1.0625rem] leading-relaxed text-ink-soft">{f.a}</p>
           </details>
         ))
       }
-    </dl>
+    </div>
   </Sheet>
 
   <!-- Blatt 5: parts list (pricing) -->

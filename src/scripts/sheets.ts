@@ -8,10 +8,11 @@ function prepareDrawings(): void {
   if (reduceMotion) return;
   const drawings = document.querySelectorAll<SVGSVGElement>("svg[data-draw]");
   for (const svg of drawings) {
-    const paths = svg.querySelectorAll<SVGGeometryElement>(".draw");
+    const paths = Array.from(svg.querySelectorAll<SVGGeometryElement>(".draw"));
+    // Read every length first, then write styles, so layout is computed once.
+    const lengths = paths.map((path) => Math.ceil(path.getTotalLength()));
     paths.forEach((path, index) => {
-      const length = Math.ceil(path.getTotalLength());
-      path.style.setProperty("--len", String(length));
+      path.style.setProperty("--len", String(lengths[index]));
       path.style.setProperty("--delay", `${index * 60}ms`);
     });
     svg.classList.add("draw-ready");

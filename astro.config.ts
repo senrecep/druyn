@@ -9,7 +9,7 @@ export default defineConfig({
   site,
   output: "static",
   trailingSlash: "never",
-  build: { format: "file" },
+  build: { format: "file", inlineStylesheets: "always" },
   i18n: {
     defaultLocale: "de",
     locales: ["de", "en"],
@@ -22,5 +22,9 @@ export default defineConfig({
       filter: (page) => !/\/(login|signup|forgot-password)$/.test(page),
     }),
   ],
-  vite: { plugins: [tailwindcss()] },
+  vite: {
+    plugins: [tailwindcss()],
+    // Keep scripts as external files: the CSP in public/_headers allows no inline scripts.
+    build: { assetsInlineLimit: 0 },
+  },
 });

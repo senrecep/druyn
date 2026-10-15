@@ -2,9 +2,9 @@
    Hashed assets (/_astro/*) are immutable: cache-first.
    Pages: network-first with a cached copy as fallback, then the offline sheet.
    Bump VERSION when the offline page or the precache list changes. */
-const VERSION = "druyn-v1";
+const VERSION = "druyn-v2";
 const OFFLINE_URL = "/offline";
-const PRECACHE = [OFFLINE_URL, "/favicon.svg", "/manifest.webmanifest"];
+const PRECACHE = ["/", "/en", OFFLINE_URL, "/favicon.svg", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

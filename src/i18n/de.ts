@@ -73,6 +73,7 @@ export const de = {
     weeks: "KW 30 bis 41",
     hours: "h",
     done: "erledigt",
+    booked: "gebucht",
     today: "heute",
   },
   problem: {

@@ -14,10 +14,10 @@ const { locale, class: className = "" } = Astro.props;
 const dict = t(locale);
 const tasks = dict.demo.tasks;
 
-const W = 200;
+const W = 244;
 const H = 104;
 const left = tasks.slice(0, 3).map((task, i) => ({ ...task, x: 20, y: 48 + i * 156 }));
-const right = tasks.slice(3, 5).map((task, i) => ({ ...task, x: 330, y: 126 + i * 180 }));
+const right = tasks.slice(3, 5).map((task, i) => ({ ...task, x: 356, y: 126 + i * 180 }));
 const boxes = [...left, ...right];
 const barW = 100;
 const fmt = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(2).replace(/0$/, ""));
@@ -28,7 +28,7 @@ const sumPlanned = tasks.reduce((s, t) => s + t.planned, 0);
 <figure class={className}>
   <svg
     data-draw
-    viewBox="0 0 590 540"
+    viewBox="0 0 640 540"
     role="img"
     aria-labelledby="loop-drawing-title"
     class="h-auto w-full"
@@ -45,7 +45,7 @@ const sumPlanned = tasks.reduce((s, t) => s + t.planned, 0);
         <g>
           <rect class="draw" x={b.x} y={b.y} width={W} height={H} />
           <text class="fill-in" x={b.x + 10} y={b.y + 24} font-size="12" fill="currentColor" stroke="none" font-weight="700">
-            {b.name.length > (b.booked >= b.planned ? 20 : 24) ? `${b.name.slice(0, b.booked >= b.planned ? 19 : 23)}…` : b.name}
+            {b.name.length > 30 ? `${b.name.slice(0, 29)}…` : b.name}
           </text>
           <text class="fill-in" x={b.x + 10} y={b.y + 46} font-size="10.5" fill="currentColor" stroke="none" opacity="0.75">
             {dict.plankopf.projectValue}
@@ -59,35 +59,35 @@ const sumPlanned = tasks.reduce((s, t) => s + t.planned, 0);
             {fmt(b.booked)}/{b.planned} {dict.demo.hours}
           </text>
           {b.booked >= b.planned && (
-            <path class="draw" d={`M${b.x + W - 24} ${b.y + 18} l5 5 l10 -10`} stroke-width="2" />
+            <path class="draw" d={`M${b.x + W - 26} ${b.y + 40} l5 5 l10 -10`} stroke-width="2" />
           )}
         </g>
       ))
     }
 
     <!-- dependencies: three left tasks join a bus, then split to the two right tasks -->
-    <path class="draw" d={`M${20 + W} ${48 + H / 2} H280`} />
-    <path class="draw" d={`M${20 + W} ${48 + 156 + H / 2} H280`} />
-    <path class="draw" d={`M${20 + W} ${48 + 312 + H / 2} H280`} />
-    <path class="draw" d={`M280 ${48 + H / 2} V${48 + 312 + H / 2}`} />
-    <path class="draw" d={`M280 ${126 + H / 2} H330`} />
-    <path class="draw" d={`M280 ${306 + H / 2} H330`} />
-    <path class="draw" d={`M322 ${126 + H / 2 - 5} l8 5 l-8 5`} />
-    <path class="draw" d={`M322 ${306 + H / 2 - 5} l8 5 l-8 5`} />
+    <path class="draw" d={`M${20 + W} ${48 + H / 2} H310`} />
+    <path class="draw" d={`M${20 + W} ${48 + 156 + H / 2} H310`} />
+    <path class="draw" d={`M${20 + W} ${48 + 312 + H / 2} H310`} />
+    <path class="draw" d={`M310 ${48 + H / 2} V${48 + 312 + H / 2}`} />
+    <path class="draw" d={`M310 ${126 + H / 2} H356`} />
+    <path class="draw" d={`M310 ${306 + H / 2} H356`} />
+    <path class="draw" d={`M348 ${126 + H / 2 - 5} l8 5 l-8 5`} />
+    <path class="draw" d={`M348 ${306 + H / 2 - 5} l8 5 l-8 5`} />
 
     <!-- dimension chains in red: total hours across the first column, calendar weeks down the right -->
     <g class="text-dimension" stroke="#d7261e">
-      <path class="draw" d="M20 28 V18 M220 28 V18 M20 23 H220" />
-      <text class="fill-in" x="120" y="14" font-size="12" fill="#d7261e" stroke="none" text-anchor="middle">
-        {fmt(sumBooked)}/{sumPlanned} {dict.demo.hours}
+      <path class="draw" d="M20 28 V18 M264 28 V18 M20 23 H264" />
+      <text class="fill-in" x="142" y="14" font-size="12" fill="#d7261e" stroke="none" text-anchor="middle">
+        {fmt(sumBooked)}/{sumPlanned} {dict.demo.hours} {dict.demo.booked}
       </text>
-      <path class="draw" d="M556 126 H568 M556 410 H568 M562 126 V410" />
-      <text class="fill-in" transform="translate(580 268) rotate(90)" font-size="12" fill="#d7261e" stroke="none" text-anchor="middle">
+      <path class="draw" d="M608 126 H620 M608 410 H620 M614 126 V410" />
+      <text class="fill-in" transform="translate(632 268) rotate(90)" font-size="12" fill="#d7261e" stroke="none" text-anchor="middle">
         {dict.demo.weeks}
       </text>
       <!-- today flag on the bus -->
-      <path class="draw" d="M280 470 V525 M280 470 h26 l-6 8 l6 8 h-26" />
-      <text class="fill-in" x="312" y="483" font-size="12" fill="#d7261e" stroke="none">{dict.demo.today}</text>
+      <path class="draw" d="M310 470 V525 M310 470 h26 l-6 8 l6 8 h-26" />
+      <text class="fill-in" x="342" y="483" font-size="12" fill="#d7261e" stroke="none">{dict.demo.today}</text>
     </g>
   </svg>
   <figcaption class="label mt-3 max-w-[30rem] opacity-85">{dict.hero.drawingTitle} · {dict.hero.drawingCaption}</figcaption>

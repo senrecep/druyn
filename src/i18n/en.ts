@@ -72,6 +72,7 @@ export const en = {
     weeks: "Wk 30 to 41",
     hours: "h",
     done: "done",
+    booked: "booked",
     today: "today",
   },
   problem: {

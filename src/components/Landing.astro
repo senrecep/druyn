@@ -26,14 +26,14 @@ const legalPath = (p: string) => localePath(locale, p);
 
 <main id="main">
   <!-- Blatt 1: blueprint cover -->
-  <Sheet number={1} name={dict.sheets.cover} tone="blue" id="top" class="flex min-h-[calc(100svh-2*var(--frame))] flex-col">
+  <Sheet number={1} name={dict.sheets.cover} tone="blue" id="top" grow class="flex min-h-[calc(100svh-2*var(--frame))] flex-col">
     <Nav locale={locale} path="/" tone="blue" />
 
-    <div class="mt-8 grid flex-1 grid-cols-1 gap-x-12 gap-y-12 lg:mt-10 lg:grid-cols-[minmax(0,11fr)_minmax(0,9fr)] xl:gap-x-16">
+    <div class="mt-8 grid flex-1 grid-cols-1 gap-x-12 gap-y-12 lg:mt-10 lg:grid-cols-[minmax(0,11fr)_minmax(0,9fr)] lg:content-center xl:gap-x-16">
       <div class="flex flex-col lg:pb-6">
-        <h1 class="display text-[clamp(2.125rem,6vw,5.25rem)] [hyphens:auto]">{dict.hero.headline}</h1>
+        <h1 class="display max-w-[9.5em] text-[clamp(2.125rem,6vw,6rem)] [hyphens:auto]">{dict.hero.headline}</h1>
         <DimensionChain label={dict.hero.chain} tone="white" class="mt-5 max-w-[40rem]" />
-        <p class="mt-6 max-w-[34rem] text-[1.125rem] leading-[1.5] text-white-ink-soft md:text-[1.25rem]">{dict.hero.lead}</p>
+        <p class="mt-6 max-w-[34rem] text-[1.125rem] leading-[1.5] text-white-ink-soft md:text-[1.25rem] 3xl:text-[1.375rem]">{dict.hero.lead}</p>
         <p class="label mt-4 text-white/85">{dict.hero.access}</p>
         <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-5">
           <Stamp href={ctaHref}>{dict.hero.cta}</Stamp>
@@ -44,7 +44,7 @@ const legalPath = (p: string) => localePath(locale, p);
       </div>
 
       <div class="flex flex-col gap-8 lg:items-end">
-        <LoopDrawing locale={locale} class="w-full max-w-[30rem] lg:max-w-[23rem] min-[1400px]:max-w-[30rem]" />
+        <LoopDrawing locale={locale} class="hero-drawing w-full" />
         <Plankopf locale={locale} variant="block" sheet={1} tone="blue" class="mt-auto lg:max-w-[34rem]" />
       </div>
     </div>
@@ -225,7 +225,7 @@ const legalPath = (p: string) => localePath(locale, p);
   </Sheet>
 
   <!-- Blatt 6: approval / close -->
-  <Sheet number={6} name={dict.sheets.close} tone="blue" id="kontakt" class="flex min-h-[70svh] flex-col">
+  <Sheet number={6} name={dict.sheets.close} tone="blue" id="kontakt" grow class="flex min-h-[70svh] flex-col">
     <div class="flex flex-1 flex-col justify-center py-10">
       <h2 class="display max-w-[16ch] text-[clamp(2.5rem,5.6vw,5rem)]">{dict.close.headline}</h2>
       <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">

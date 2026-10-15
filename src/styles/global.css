@@ -20,6 +20,11 @@
   --color-white-ink-soft: #c9d3ec;
 
   --ease-draw: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Wide-screen steps; the hero drawing and copy grow with them. */
+  --breakpoint-2xl: 1400px;
+  --breakpoint-3xl: 1800px;
+  --breakpoint-4xl: 2300px;
 }
 
 @layer base {
@@ -31,6 +36,13 @@
   }
   @media (prefers-reduced-motion: reduce) {
     :root { scroll-behavior: auto; }
+  }
+  /* Large monitors: scale every rem-based measure with the screen instead of leaving the sheet empty. */
+  @media (min-width: 1800px) {
+    :root { font-size: 17.5px; --sheet-pad: 4.5rem; }
+  }
+  @media (min-width: 2300px) {
+    :root { font-size: 19.5px; --sheet-pad: 5.5rem; }
   }
 
   html { background: var(--color-blueprint); }
@@ -88,6 +100,13 @@
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
 }
+
+/* The cover drawing grows with the screen; the steps keep the title block above the fold. */
+.hero-drawing { max-width: 30rem; }
+@media (width >= 64rem) { .hero-drawing { max-width: 23rem; } }
+@media (width >= 1400px) { .hero-drawing { max-width: 30rem; } }
+@media (width >= 1800px) { .hero-drawing { max-width: 36rem; } }
+@media (width >= 2300px) { .hero-drawing { max-width: 42rem; } }
 
 /* Self-drawing line work. `.draw` paths get their dash length from the script;
    until then they are fully visible (no hidden-on-load regression). */

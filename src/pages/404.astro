@@ -1,0 +1,33 @@
+---
+import Plankopf from "@/components/Plankopf.astro";
+import Sheet from "@/components/Sheet.astro";
+import Base from "@/layouts/Base.astro";
+import { t } from "@/i18n";
+
+// Cloudflare Pages serves dist/404.html with a real 404 status. Bilingual on purpose.
+const dict = t("de");
+---
+
+<Base locale="de" path="/404" title="Seite nicht gefunden | Druyn" description="Diese Seite gibt es nicht." noindex>
+  <main id="main">
+    <Sheet number={1} name="404" tone="white" grow class="flex min-h-[calc(100svh-2*var(--frame))] flex-col">
+      <div class="flex flex-1 flex-col justify-center py-10">
+        <p class="label opacity-70">Druyn · {dict.nav.drawing}</p>
+        <h1 class="display mt-6 max-w-[18ch] text-[clamp(2.25rem,5.6vw,4.5rem)]">Blatt nicht gefunden.</h1>
+        <p class="mt-6 max-w-[48ch] text-[1.125rem] leading-relaxed text-ink-soft">
+          Diese Adresse gehört zu keinem Blatt des Plansatzes. Vielleicht wurde die Seite verschoben oder der Link ist unvollständig.
+        </p>
+        <p class="mt-3 max-w-[48ch] font-mono text-sm text-ink-soft" lang="en">
+          This address does not belong to any sheet of the drawing set. The page may have moved or the link is incomplete.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3 font-mono text-sm">
+          <a href="/" class="label border-b border-ink pb-1 text-ink no-underline">← druyn.com</a>
+          <a href="/en" class="label border-b border-ink pb-1 text-ink no-underline" hreflang="en" lang="en">English</a>
+        </div>
+      </div>
+      <div class="mt-10 flex justify-end">
+        <Plankopf locale="de" variant="block" sheet={1} total={1} name="404" tone="white" class="lg:max-w-[36rem]" />
+      </div>
+    </Sheet>
+  </main>
+</Base>

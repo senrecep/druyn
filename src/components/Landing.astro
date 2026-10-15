@@ -126,44 +126,50 @@ const legalPath = (p: string) => localePath(locale, p);
       </ol>
     </div>
 
-    <figure class="mt-16 max-w-[56rem] md:mt-24">
-      <blockquote class="display-wide text-[clamp(1.5rem,3vw,2.375rem)] leading-[1.15]">
+    <figure class="mt-16 grid grid-cols-1 gap-x-16 gap-y-6 md:mt-24 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+      <figcaption class="flex items-start gap-4 lg:pt-2">
+        <span class="mt-3 h-px w-10 shrink-0 bg-ink"></span>
+        <span class="font-mono text-sm leading-relaxed"><strong>{dict.audience.quoteName}</strong><br />{dict.audience.quoteRole}</span>
+      </figcaption>
+      <blockquote class="display-wide text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.15]">
         «{dict.audience.quote}»
       </blockquote>
-      <figcaption class="mt-5 flex items-center gap-4">
-        <span class="h-px w-10 bg-ink"></span>
-        <span class="font-mono text-sm"><strong>{dict.audience.quoteName}</strong>, {dict.audience.quoteRole}</span>
-      </figcaption>
     </figure>
 
     <DimensionChain label={dict.audience.featuresHeadline} class="mt-16 md:mt-24" />
 
     <h2 class="sr-only">{dict.audience.featuresHeadline}</h2>
-    <ol class="mt-8 grid grid-cols-1 border border-ink md:grid-cols-2">
-      {
-        dict.audience.features.map((f, i) => (
-          <li
-            class:list={[
-              "border-ink p-6 md:p-8",
-              i % 2 === 0 ? "md:border-r" : "",
-              i < dict.audience.features.length - 2 ? "border-b" : i === dict.audience.features.length - 2 ? "border-b md:border-b-0" : "",
-            ]}
-          >
-            <p class="label mb-4 opacity-60">
-              {dict.audience.revisionLabel} {String.fromCharCode(65 + i)}
-            </p>
-            <h3 class="display-wide text-[1.5rem] md:text-[1.75rem]">{f.title}</h3>
-            <p class="mt-3 max-w-[48ch] text-[1.0625rem] leading-relaxed text-ink-soft">{f.text}</p>
-          </li>
-        ))
-      }
-    </ol>
+    <table class="mt-8 w-full border-collapse border-y-2 border-ink text-left">
+      <thead>
+        <tr class="label border-b border-ink text-ink/70">
+          <th scope="col" class="w-14 py-3 pr-4 font-normal">{dict.audience.revisionLabel}</th>
+          <th scope="col" class="py-3 pr-4 font-normal">{dict.audience.featuresHeadline}</th>
+          <th scope="col" class="hidden py-3 font-normal md:table-cell"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-ink">
+        {
+          dict.audience.features.map((f, i) => (
+            <tr class="align-top">
+              <td class="figure py-5 pr-4 text-sm opacity-60 md:py-6">{String.fromCharCode(65 + i)}</td>
+              <td class="py-5 pr-6 md:w-[22rem] md:py-6">
+                <h3 class="display-wide text-[1.375rem] md:text-[1.625rem]">{f.title}</h3>
+                <p class="mt-2 max-w-[48ch] text-[1.0625rem] leading-relaxed text-ink-soft md:hidden">{f.text}</p>
+              </td>
+              <td class="hidden py-5 md:table-cell md:py-6">
+                <p class="max-w-[62ch] text-[1.0625rem] leading-relaxed text-ink-soft">{f.text}</p>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
 
     <h2 class="display mt-16 text-[clamp(1.75rem,3vw,2.5rem)] md:mt-24">{dict.audience.faqHeadline}</h2>
-    <dl class="mt-6 max-w-[56rem] divide-y divide-ink border-y border-ink">
+    <dl class="mt-6 grid grid-cols-1 gap-x-16 lg:grid-cols-2">
       {
         dict.audience.faq.map((f) => (
-          <details class="faq group">
+          <details class="faq group border-b border-ink first:border-t lg:nth-[2]:border-t">
             <summary class="flex cursor-pointer list-none items-baseline justify-between gap-6 py-5 [&::-webkit-details-marker]:hidden">
               <dt class="display-wide text-[1.25rem] md:text-[1.375rem]">{f.q}</dt>
               <span aria-hidden="true" class="figure shrink-0 text-xl transition-transform group-open:rotate-45">+</span>

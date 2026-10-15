@@ -47,7 +47,8 @@ const widths = side ? [480, 768, 1000, 1400] : [480, 768, 1200, 1600];
       )
     }
   </div>
-  <div class:list={[side ? "mt-6 lg:mt-0" : ""]}>
+  <div class:list={[side ? "mt-6 lg:mt-0" : "relative"]}>
+    {!side && <span aria-hidden="true" class="absolute -top-4 left-6 h-4 w-px bg-ink"></span>}
     <div class="border border-ink bg-[#E4E1DE] p-1.5 md:p-2">
       <Image src={image} alt={alt} widths={widths} sizes={sizes} format="webp" quality={82} class="block h-auto w-full" loading="lazy" />
     </div>

@@ -27,10 +27,10 @@ const cell = blue ? "border-white/60" : "border-ink/50";
 {
   variant === "block" ? (
     <dl
-      class:list={["plankopf grid w-full grid-cols-3 border-[1.5px] font-mono text-[0.6875rem] leading-tight", blue ? "border-white" : "border-ink", className]}
+      class:list={["plankopf grid w-full grid-cols-2 border-[1.5px] font-mono text-[0.6875rem] leading-tight [overflow-wrap:anywhere] sm:grid-cols-3", blue ? "border-white" : "border-ink", className]}
       aria-label="Plankopf"
     >
-      <div class:list={["col-span-3 flex flex-wrap items-baseline justify-between gap-x-4 border-b px-3 py-2.5", cell]}>
+      <div class:list={["col-span-2 flex flex-wrap items-baseline justify-between gap-x-4 border-b px-3 py-2.5 sm:col-span-3", cell]}>
         <span class="text-[0.9375rem] font-bold tracking-[0.08em] uppercase">Druyn</span>
         <span class="tracking-[0.08em] opacity-85">{dict.site.tagline}</span>
       </div>
@@ -44,15 +44,15 @@ const cell = blue ? "border-white/60" : "border-ink/50";
           {sheet} / {total} · {sheetName}
         </dd>
       </div>
-      <div class:list={["border-b px-3 py-2", cell]}>
+      <div class:list={["border-r border-b px-3 py-2 sm:border-r-0", cell]}>
         <dt class="label mb-1 opacity-60">{p.scale}</dt>
         <dd class="figure">{p.scaleValue}</dd>
       </div>
-      <div class:list={["border-r px-3 py-2", cell]}>
+      <div class:list={["border-b px-3 py-2 sm:border-r sm:border-b-0", cell]}>
         <dt class="label mb-1 opacity-60">{p.phase}</dt>
         <dd>{p.phaseValue}</dd>
       </div>
-      <div class:list={["border-r px-3 py-2", cell]}>
+      <div class:list={["border-r border-b px-3 py-2 sm:border-b-0", cell]}>
         <dt class="label mb-1 opacity-60">{p.release}</dt>
         <dd class="figure">{p.releaseValue}</dd>
       </div>

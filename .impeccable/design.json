@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-15T00:00:00Z",
+  "title": "Design System: Druyn Werkplan",
+  "extensions": {
+    "colorMeta": {
+      "blueprint": { "role": "primary", "displayName": "Blueprint Blue", "canonical": "#1d3e8c", "tonalRamp": ["oklch(18% 0.09 265)", "oklch(26% 0.12 265)", "oklch(36% 0.14 265)", "oklch(46% 0.15 265)", "oklch(56% 0.15 265)", "oklch(68% 0.12 265)", "oklch(82% 0.07 265)", "oklch(95% 0.02 265)"] },
+      "blueprint-deep": { "role": "primary", "displayName": "Blueprint Deep", "canonical": "#16307a", "tonalRamp": ["oklch(15% 0.09 265)", "oklch(24% 0.12 265)", "oklch(32% 0.14 265)", "oklch(42% 0.15 265)", "oklch(54% 0.15 265)", "oklch(66% 0.12 265)", "oklch(80% 0.07 265)", "oklch(94% 0.02 265)"] },
+      "dimension": { "role": "secondary", "displayName": "Dimension Red", "canonical": "#d7261e", "tonalRamp": ["oklch(18% 0.08 28)", "oklch(30% 0.14 28)", "oklch(42% 0.18 28)", "oklch(55% 0.21 28)", "oklch(64% 0.2 28)", "oklch(74% 0.14 28)", "oklch(86% 0.07 28)", "oklch(95% 0.03 28)"] },
+      "dimension-pressed": { "role": "secondary", "displayName": "Dimension Pressed", "canonical": "#c21f17", "tonalRamp": ["oklch(16% 0.08 28)", "oklch(28% 0.14 28)", "oklch(40% 0.18 28)", "oklch(51% 0.21 28)", "oklch(62% 0.2 28)", "oklch(72% 0.14 28)", "oklch(85% 0.07 28)", "oklch(95% 0.03 28)"] },
+      "chalk": { "role": "tertiary", "displayName": "Chalk Blue", "canonical": "#2b5fd9", "tonalRamp": ["oklch(18% 0.1 265)", "oklch(30% 0.15 265)", "oklch(42% 0.19 265)", "oklch(53% 0.2 265)", "oklch(63% 0.17 265)", "oklch(73% 0.12 265)", "oklch(85% 0.07 265)", "oklch(95% 0.02 265)"] },
+      "sheet": { "role": "neutral", "displayName": "Sheet White", "canonical": "#ffffff", "tonalRamp": ["oklch(15% 0 0)", "oklch(30% 0 0)", "oklch(45% 0 0)", "oklch(60% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(93% 0 0)", "oklch(100% 0 0)"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#141414", "tonalRamp": ["oklch(15% 0 0)", "oklch(25% 0 0)", "oklch(38% 0 0)", "oklch(50% 0 0)", "oklch(64% 0 0)", "oklch(77% 0 0)", "oklch(88% 0 0)", "oklch(95% 0 0)"] },
+      "ink-soft": { "role": "neutral", "displayName": "Ink Soft", "canonical": "#4a4a4a", "tonalRamp": ["oklch(15% 0 0)", "oklch(25% 0 0)", "oklch(38% 0 0)", "oklch(50% 0 0)", "oklch(64% 0 0)", "oklch(77% 0 0)", "oklch(88% 0 0)", "oklch(95% 0 0)"] },
+      "line": { "role": "neutral", "displayName": "Line", "canonical": "#b9b9b9", "tonalRamp": ["oklch(15% 0 0)", "oklch(30% 0 0)", "oklch(45% 0 0)", "oklch(60% 0 0)", "oklch(72% 0 0)", "oklch(80% 0 0)", "oklch(88% 0 0)", "oklch(95% 0 0)"] },
+      "line-soft": { "role": "neutral", "displayName": "Line Soft", "canonical": "#e3e3e3", "tonalRamp": ["oklch(15% 0 0)", "oklch(30% 0 0)", "oklch(45% 0 0)", "oklch(60% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(91% 0 0)", "oklch(96% 0 0)"] },
+      "white-ink": { "role": "neutral", "displayName": "White Ink", "canonical": "#ffffff", "tonalRamp": ["oklch(15% 0 0)", "oklch(30% 0 0)", "oklch(45% 0 0)", "oklch(60% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(93% 0 0)", "oklch(100% 0 0)"] },
+      "white-ink-soft": { "role": "neutral", "displayName": "White Ink Soft", "canonical": "#c9d3ec", "tonalRamp": ["oklch(18% 0.03 265)", "oklch(30% 0.04 265)", "oklch(44% 0.05 265)", "oklch(58% 0.05 265)", "oklch(70% 0.05 265)", "oklch(80% 0.04 265)", "oklch(87% 0.03 265)", "oklch(95% 0.01 265)"] },
+      "product-ground": { "role": "neutral", "displayName": "Product Ground", "canonical": "#e4e1de", "tonalRamp": ["oklch(18% 0.005 70)", "oklch(30% 0.005 70)", "oklch(45% 0.005 70)", "oklch(60% 0.005 70)", "oklch(72% 0.005 70)", "oklch(84% 0.005 70)", "oklch(91% 0.005 70)", "oklch(96% 0.004 70)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Cover headline only; Archivo width 78, balanced, hyphenated." },
+      "headline": { "displayName": "Headline", "purpose": "Sheet headings on content, pricing and closing sheets." },
+      "title": { "displayName": "Title", "purpose": "Row titles in revision tables, lists, FAQ questions, detail titles, legal subheadings; Archivo width 100 at 650." },
+      "lead": { "displayName": "Lead", "purpose": "First paragraph under a sheet heading, capped at 52ch to 60ch." },
+      "body": { "displayName": "Body", "purpose": "Reading copy in soft ink, 48ch to 62ch." },
+      "label": { "displayName": "Label", "purpose": "B612 Mono caps: zone marks, title-block keys, table headers, nav, dimension captions, detail captions." },
+      "figure": { "displayName": "Figure", "purpose": "B612 Mono tabular numbers in text, title-block values, revision letters, field text." },
+      "figure-display": { "displayName": "Figure Display", "purpose": "The pricing figure only." }
+    },
+    "shadows": [
+      { "name": "stamp-bloom", "value": "0 8px 24px -12px rgba(215,38,30,0.9)", "purpose": "Under the red fill stamp only, so it reads as freshly inked." },
+      { "name": "strip-shade", "value": "0 -10px 30px -20px rgba(0,0,0,0.5)", "purpose": "Under the pinned title-block strip only, separating it from the sheet it floats over." }
+    ],
+    "motion": [
+      { "name": "ease-draw", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Exponential ease-out for all drawing and strip motion." },
+      { "name": "draw-stroke", "value": "stroke-dashoffset 1100ms var(--ease-draw), stagger 60ms per path", "purpose": "Line work draws itself once when its SVG is 25% in view." },
+      { "name": "draw-fill", "value": "opacity 500ms var(--ease-draw), delay path-delay + 700ms", "purpose": "Text and fills ink in after their path has drawn." },
+      { "name": "strip-reveal", "value": "transform 420ms var(--ease-draw), opacity 320ms ease-out", "purpose": "The pinned strip slides up from translateY(120%) as sheet 2 enters; hidden on the cover." },
+      { "name": "stamp-lift", "value": "transform, box-shadow, background-color 200ms ease-out; hover translateY(-2px)", "purpose": "Stamp hover under motion-safe; active returns to rest." },
+      { "name": "faq-plus", "value": "transform (rotate 45deg) default transition", "purpose": "The figure plus turns into a cross when a FAQ row opens." },
+      { "name": "reduced-motion", "value": "all drawings fully visible, strip transition none, scroll-behavior auto", "purpose": "Under prefers-reduced-motion the set is already drawn." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "min-1400", "value": "1400px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Stamp (fill)",
+      "kind": "button",
+      "refersTo": "stamp-fill",
+      "description": "The one primary action per sheet, drawn as an approval stamp in dimension red with an inner hairline.",
+      "html": "<a href=\"#\" class=\"ds-stamp ds-stamp-fill\">Interesse anmelden</a>",
+      "css": ".ds-stamp { position: relative; isolation: isolate; display: inline-flex; min-height: 56px; align-items: center; justify-content: center; padding: 0 28px; font-family: 'B612 Mono', 'DejaVu Sans Mono', ui-monospace, monospace; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 0; transition: transform 200ms ease-out, box-shadow 200ms ease-out, background-color 200ms ease-out; } .ds-stamp::after { content: ''; position: absolute; inset: 4px; border: 1px solid currentColor; opacity: 0.55; pointer-events: none; } .ds-stamp-fill { background: #d7261e; color: #fff; box-shadow: 0 8px 24px -12px rgba(215,38,30,0.9); } .ds-stamp-fill:hover { background: #c21f17; transform: translateY(-2px); } .ds-stamp-fill:active { transform: translateY(0); } .ds-stamp:focus-visible { outline: 2px solid #d7261e; outline-offset: 3px; }"
+    },
+    {
+      "name": "Stamp (outline)",
+      "kind": "button",
+      "refersTo": "stamp-outline",
+      "description": "The secondary stamp on white sheets; inverts to ink on hover.",
+      "html": "<a href=\"#\" class=\"ds-stamp ds-stamp-outline\">Anmelden</a>",
+      "css": ".ds-stamp { position: relative; isolation: isolate; display: inline-flex; min-height: 56px; align-items: center; justify-content: center; padding: 0 28px; font-family: 'B612 Mono', 'DejaVu Sans Mono', ui-monospace, monospace; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 0; transition: transform 200ms ease-out, background-color 200ms ease-out, color 200ms ease-out; } .ds-stamp::after { content: ''; position: absolute; inset: 4px; border: 1px solid currentColor; opacity: 0.55; pointer-events: none; } .ds-stamp-outline { background: transparent; color: #141414; border: 2px solid #141414; } .ds-stamp-outline:hover { background: #141414; color: #fff; transform: translateY(-2px); } .ds-stamp-outline:active { transform: translateY(0); } .ds-stamp:focus-visible { outline: 2px solid #d7261e; outline-offset: 3px; }"
+    },
+    {
+      "name": "Stamp (outline, blue sheet)",
+      "kind": "button",
+      "refersTo": "stamp-outline-white",
+      "description": "The secondary stamp on blueprint sheets; inverts to white on blueprint on hover.",
+      "html": "<div style=\"background:#1d3e8c;padding:24px\"><a href=\"#\" class=\"ds-stamp ds-stamp-outline-white\">Anmelden</a></div>",
+      "css": ".ds-stamp { position: relative; isolation: isolate; display: inline-flex; min-height: 56px; align-items: center; justify-content: center; padding: 0 28px; font-family: 'B612 Mono', 'DejaVu Sans Mono', ui-monospace, monospace; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 0; transition: transform 200ms ease-out, background-color 200ms ease-out, color 200ms ease-out; } .ds-stamp::after { content: ''; position: absolute; inset: 4px; border: 1px solid currentColor; opacity: 0.55; pointer-events: none; } .ds-stamp-outline-white { background: transparent; color: #fff; border: 2px solid #fff; } .ds-stamp-outline-white:hover { background: #fff; color: #1d3e8c; transform: translateY(-2px); } .ds-stamp-outline-white:active { transform: translateY(0); } .ds-stamp-outline-white:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "A labelled input in the sheet's hairline grammar; focus thickens the border to dimension red.",
+      "html": "<div class=\"ds-field\"><div class=\"ds-field-row\"><label for=\"ds-email\" class=\"ds-label\">E-Mail</label><a href=\"#\" class=\"ds-field-aside\">Passwort vergessen?</a></div><input id=\"ds-email\" type=\"email\" class=\"ds-input\" placeholder=\"name@firma.ch\"></div>",
+      "css": ".ds-field { max-width: 28rem; } .ds-field-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; } .ds-label { font-family: 'B612 Mono', 'DejaVu Sans Mono', ui-monospace, monospace; font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.2; color: #141414; } .ds-field-aside { font-family: 'B612 Mono', ui-monospace, monospace; font-size: 0.75rem; color: #2b5fd9; text-underline-offset: 0.2em; text-decoration-thickness: 1px; } .ds-input { margin-top: 8px; display: block; width: 100%; height: 48px; border: 1px solid #141414; border-radius: 0; background: #fff; padding: 0 12px; font-family: 'B612 Mono', ui-monospace, monospace; font-size: 0.9375rem; color: #141414; caret-color: #d7261e; } .ds-input::placeholder { color: rgba(20,20,20,0.4); } .ds-input:focus { outline: none; border: 2px solid #d7261e; }"
+    },
+    {
+      "name": "Navigation (drawing header)",
+      "kind": "nav",
+      "refersTo": "nav-login",
+      "description": "The drawing header on a blueprint cover: mono caps mark left, anchor links and a bordered login block right.",
+      "html": "<header class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-mark\">Druyn<span class=\"ds-nav-mark-sub\"> · Werkplan</span></a><nav class=\"ds-nav-links\"><a href=\"#\" class=\"ds-nav-link\">Planung</a><a href=\"#\" class=\"ds-nav-link\">Ausführung</a><a href=\"#\" class=\"ds-nav-link\">Prognose</a><a href=\"#\" class=\"ds-nav-link\">Preise</a><a href=\"#\" class=\"ds-nav-link\">EN</a><a href=\"#\" class=\"ds-nav-login\">Anmelden</a></nav></header>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: #1d3e8c; color: #fff; padding: 24px; font-family: 'B612 Mono', 'DejaVu Sans Mono', ui-monospace, monospace; } .ds-nav-mark { font-size: 0.875rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; text-decoration: none; } .ds-nav-mark-sub { opacity: 0.6; } .ds-nav-links { display: flex; align-items: center; gap: 28px; } .ds-nav-link { font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.2; padding: 8px 0; color: rgba(255,255,255,0.85); text-decoration: none; text-underline-offset: 0.2em; text-decoration-thickness: 1px; } .ds-nav-link:hover { color: #fff; text-decoration: underline; } .ds-nav-login { font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.2; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.7); color: #fff; text-decoration: none; transition: background-color 150ms, color 150ms; } .ds-nav-login:hover { background: #fff; color: #1d3e8c; } .ds-nav a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Sheet (white, with zone marks)",
+      "kind": "card",
+      "refersTo": "sheet-white",
+      "description": "The container for every section: double frame line, zone letters and numbers, content inside the sheet pad.",
+      "html": "<div class=\"ds-ground\"><section class=\"ds-sheet\"><div class=\"ds-sheet-inner\"></div><ol class=\"ds-zones-rows\"><li>A</li><li>B</li><li>C</li><li>D</li></ol><ol class=\"ds-zones-cols\"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ol><div class=\"ds-sheet-body\"><h2 class=\"ds-headline\">Plan und Realität</h2><p class=\"ds-lead\">Ein Plan, der stehen bleibt, wenn sich etwas ändert, ist kein Plan.</p></div></section></div>",
+      "css": ".ds-ground { background: #1d3e8c; padding: 24px; } .ds-sheet { position: relative; border: 2px solid #141414; background: #fff; color: #141414; min-height: 320px; } .ds-sheet-inner { position: absolute; inset: 8px; border: 1px solid rgba(20,20,20,0.4); pointer-events: none; } .ds-zones-rows, .ds-zones-cols { position: absolute; margin: 0; padding: 0; list-style: none; display: flex; opacity: 0.7; font-family: 'B612 Mono', ui-monospace, monospace; font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; pointer-events: none; } .ds-zones-rows { top: 0; bottom: 0; left: 0; width: 20px; flex-direction: column; } .ds-zones-rows li { flex: 1; display: flex; align-items: center; justify-content: center; } .ds-zones-cols { top: 0; left: 0; right: 0; height: 20px; } .ds-zones-cols li { flex: 1; display: flex; align-items: center; justify-content: center; } .ds-sheet-body { position: relative; padding: calc(clamp(1.25rem, 4vw, 3.75rem) + 8px) calc(clamp(1.25rem, 4vw, 3.75rem) + 12px) clamp(1.25rem, 4vw, 3.75rem); } .ds-headline { margin: 0; font-family: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif; font-stretch: 78%; font-weight: 700; letter-spacing: -0.02em; line-height: 0.96; font-size: clamp(2.25rem, 4.4vw, 3.75rem); text-wrap: balance; } .ds-lead { margin: 28px 0 0; max-width: 60ch; font-family: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 1.125rem; line-height: 1.625; color: #4a4a4a; }"
+    },
+    {
+      "name": "Plankopf (title block)",
+      "kind": "custom",
+      "refersTo": "sheet-blue",
+      "description": "The title-block grid set into the cover: header row, then six labelled cells in mono.",
+      "html": "<div class=\"ds-ground\"><dl class=\"ds-plankopf\"><div class=\"ds-pk-head\"><span class=\"ds-pk-brand\">Druyn</span><span class=\"ds-pk-tag\">Planung → Ausführung → Prognose</span></div><div class=\"ds-pk-cell\"><dt>Projekt</dt><dd>9257 Holzfussbrücke Naturpark</dd></div><div class=\"ds-pk-cell\"><dt>Blatt</dt><dd class=\"ds-figure\">1 / 6 · Übersicht</dd></div><div class=\"ds-pk-cell\"><dt>Massstab</dt><dd class=\"ds-figure\">1 : 1</dd></div><div class=\"ds-pk-cell\"><dt>Phase</dt><dd>Leuchtturmphase</dd></div><div class=\"ds-pk-cell\"><dt>Freigabe</dt><dd class=\"ds-figure\">3 Monate · 0 CHF</dd></div><div class=\"ds-pk-cell\"><dt>Stand</dt><dd class=\"ds-figure\">2026 · v0.9</dd></div></dl></div>",
+      "css": ".ds-ground { background: #1d3e8c; padding: 24px; } .ds-plankopf { margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; max-width: 34rem; border: 1.5px solid #fff; color: #fff; font-family: 'B612 Mono', 'DejaVu Sans Mono', ui-monospace, monospace; font-size: 0.6875rem; line-height: 1.25; overflow-wrap: anywhere; } .ds-pk-head { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 16px; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.6); } .ds-pk-brand { font-size: 0.9375rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; } .ds-pk-tag { letter-spacing: 0.08em; opacity: 0.85; } .ds-pk-cell { padding: 8px 12px; border-right: 1px solid rgba(255,255,255,0.6); border-bottom: 1px solid rgba(255,255,255,0.6); } .ds-pk-cell:nth-child(3n+1) { border-right: 0; } .ds-pk-cell:nth-child(n+5) { border-bottom: 0; } .ds-pk-cell dt { margin: 0 0 4px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; } .ds-pk-cell dd { margin: 0; } .ds-figure { font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Plankopf strip (pinned)",
+      "kind": "custom",
+      "refersTo": "plankopf-strip",
+      "description": "The pinned one-line title block that counts sheets as the reader scrolls.",
+      "html": "<div class=\"ds-strip\"><span class=\"ds-strip-cell ds-strip-brand\">Druyn</span><span class=\"ds-strip-cell\">Blatt <span class=\"ds-figure\">3</span>/6</span><span class=\"ds-strip-cell ds-strip-name\">Details A–C</span></div>",
+      "css": ".ds-strip { display: flex; align-items: stretch; width: 416px; max-width: 100%; border: 2px solid #141414; background: #fff; color: #141414; font-family: 'B612 Mono', 'DejaVu Sans Mono', ui-monospace, monospace; font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; box-shadow: 0 -10px 30px -20px rgba(0,0,0,0.5); } .ds-strip-cell { display: flex; align-items: center; gap: 4px; padding: 10px 12px; border-right: 1px solid rgba(20,20,20,0.5); } .ds-strip-brand { font-weight: 700; } .ds-strip-name { flex: 1; min-width: 0; border-right: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .ds-figure { font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "DimensionChain",
+      "kind": "custom",
+      "refersTo": "sheet-white",
+      "description": "A measured rule with end ticks and the caption set into the line; the section rule of the system.",
+      "html": "<div class=\"ds-dim\"><span class=\"ds-dim-tick ds-dim-tick-l\"></span><span class=\"ds-dim-line\"></span><span class=\"ds-dim-label\">1 Plansatz · 6 Blatt</span><span class=\"ds-dim-line\"></span><span class=\"ds-dim-tick ds-dim-tick-r\"></span></div>",
+      "css": ".ds-dim { position: relative; display: flex; height: 20px; align-items: center; color: #141414; max-width: 40rem; } .ds-dim-tick { position: absolute; top: 0; bottom: 0; width: 1px; background: currentColor; } .ds-dim-tick-l { left: 0; } .ds-dim-tick-r { right: 0; } .ds-dim-line { flex: 1; height: 1px; background: currentColor; } .ds-dim-label { padding: 0 8px; white-space: nowrap; font-family: 'B612 Mono', 'DejaVu Sans Mono', ui-monospace, monospace; font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.2; }"
+    },
+    {
+      "name": "Detail header (bubble and leader)",
+      "kind": "custom",
+      "refersTo": "sheet-white",
+      "description": "The lettered bubble, leader line and title that open every detail callout.",
+      "html": "<article class=\"ds-detail\"><header class=\"ds-detail-head\"><span class=\"ds-detail-bubble\">B</span><span class=\"ds-detail-leader\"></span><h3 class=\"ds-detail-title\">Ausführung</h3></header><p class=\"ds-detail-caption\">Detail B · Wochenkalender, Stundenbuchung, Notizen</p><p class=\"ds-detail-text\">Buche Arbeitsstunden mühelos direkt auf Aufgaben und behalte die Planung automatisch im Einklang mit der Realität.</p></article>",
+      "css": ".ds-detail { color: #141414; font-family: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif; } .ds-detail-head { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; } .ds-detail-bubble { display: flex; width: 48px; height: 48px; flex-shrink: 0; align-items: center; justify-content: center; border: 1.5px solid #141414; border-radius: 9999px; font-family: 'B612 Mono', ui-monospace, monospace; font-size: 1.125rem; font-weight: 700; } .ds-detail-leader { width: 40px; height: 1px; flex-shrink: 0; background: #141414; } .ds-detail-title { margin: 0; font-stretch: 100%; font-weight: 650; letter-spacing: -0.015em; line-height: 1; font-size: 2.25rem; } .ds-detail-caption { margin: 24px 0 0; font-family: 'B612 Mono', ui-monospace, monospace; font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.2; opacity: 0.6; } .ds-detail-text { margin: 12px 0 0; max-width: 48ch; font-size: 1.0625rem; line-height: 1.625; color: #4a4a4a; }"
+    },
+    {
+      "name": "Revision table row",
+      "kind": "custom",
+      "refersTo": "sheet-white",
+      "description": "Lists are revision rows: a figure letter, a title, a description, hairline rules top and bottom.",
+      "html": "<table class=\"ds-rev\"><thead><tr><th>Rev.</th><th>Funktionen</th><th></th></tr></thead><tbody><tr><td class=\"ds-figure\">A</td><td><h3 class=\"ds-rev-title\">Vorlagen</h3></td><td><p class=\"ds-rev-text\">Bewährte Projektstrukturen wiederverwenden statt jedes Mal neu zeichnen.</p></td></tr><tr><td class=\"ds-figure\">B</td><td><h3 class=\"ds-rev-title\">Import</h3></td><td><p class=\"ds-rev-text\">CSV und Tabellen mit Spaltenzuordnung einlesen.</p></td></tr></tbody></table>",
+      "css": ".ds-rev { width: 100%; border-collapse: collapse; border-top: 2px solid #141414; border-bottom: 2px solid #141414; text-align: left; color: #141414; font-family: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif; } .ds-rev th { padding: 12px 16px 12px 0; border-bottom: 1px solid #141414; font-family: 'B612 Mono', ui-monospace, monospace; font-size: 0.6875rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(20,20,20,0.7); } .ds-rev th:first-child { width: 56px; } .ds-rev tbody tr + tr td { border-top: 1px solid #141414; } .ds-rev td { padding: 24px 24px 24px 0; vertical-align: top; } .ds-figure { font-family: 'B612 Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; font-size: 0.875rem; opacity: 0.6; padding-right: 16px; } .ds-rev-title { margin: 0; width: 22rem; max-width: 100%; font-stretch: 100%; font-weight: 650; letter-spacing: -0.015em; line-height: 1.05; font-size: 1.625rem; } .ds-rev-text { margin: 0; max-width: 62ch; font-size: 1.0625rem; line-height: 1.625; color: #4a4a4a; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Werkplan",
+    "overview": "The site is a Swiss timber shop-drawing set. Every section is a numbered, bordered sheet with zone letters down the edge and zone numbers across the top, and a title block (the Plankopf) sits in the corner of the cover. The product's loop, Planung, Ausführung, Prognose, is drawn as the engineering drawing it is, with real demo hours and calendar weeks set as dimensions. Nothing is decorated; everything is drawn.\n\nTwo materials carry the whole world. Blueprint-blue cover sheets with white line work open the set, hold the pricing parts list, and close it. Drafting-white sheets with near-black hairline ink carry the content between them. Red appears only where a draughtsperson would ink it: measured figures, deviation chains, and the single approval stamp that is the page's one primary action. Density is high but calm: mono caps labels at eleven pixels, hairline rules, tables instead of cards, revision rows instead of feature tiles.\n\nMotion is the act of drawing. Line work draws itself once on reveal, labels ink in afterwards, and the pinned title block counts sheets as the reader scrolls. Nothing fades, slides or bounces. Under reduced motion the whole set is simply already drawn.",
+    "keyCharacteristics": [
+      "Bordered sheets with a double frame line and A–D / 1–6 zone marks on every section",
+      "Two grounds only: blueprint blue with white ink, or white with near-black ink",
+      "Dimension red reserved for figures and the one stamp per sheet",
+      "Archivo condensed (width 78) for display, Archivo normal for body, B612 Mono for every label, figure and title-block cell",
+      "Square corners, hairline borders, no shadows on surfaces, no gradients",
+      "Lists are tables, revision rows and dimension chains, never cards"
+    ],
+    "rules": [
+      { "name": "The Two Grounds Rule", "body": "A surface is either blueprint blue with white ink or sheet white with near-black ink. There is no third ground, no tint, no gradient, and no panel of a different colour set on a sheet.", "section": "colors" },
+      { "name": "The One Stamp Rule", "body": "Each sheet carries at most one red-filled stamp. Every other action on that sheet is an outline stamp, a bordered mono link, or an underlined mono label.", "section": "colors" },
+      { "name": "The Red Is Measured Rule", "body": "Red marks a measured figure, a deviation, a focus, an error or the approval stamp. It is never used for emphasis, headings, icons or decoration.", "section": "colors" },
+      { "name": "The Opacity Not Grey Rule", "body": "Secondary text on a sheet is the sheet's own ink at reduced opacity, never a third grey.", "section": "colors" },
+      { "name": "The Mono Is Metadata Rule", "body": "Anything a draughtsperson would letter by hand on a plan, labels, dimensions, sheet numbers, revision letters, the title block, the navigation, is set in B612 Mono. Reading copy is never mono; mono is never used for a paragraph longer than a note.", "section": "typography" },
+      { "name": "The Width Axis Rule", "body": "Headlines use Archivo's width axis at 78, titles and body at 100. Weight does not substitute for width; a heading is condensed, not simply heavier.", "section": "typography" },
+      { "name": "The Drawn Depth Rule", "body": "If something needs to read as in front of something else, draw a line around it or a leader to it. Shadows are reserved for the stamp and the pinned strip.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do put every new section inside a Sheet with its zone marks and give it a number and a name so the pinned strip can count it.",
+      "Do keep one red-filled stamp per sheet and draw every other action as an outline stamp or an underlined mono label.",
+      "Do set labels, figures, table headers, title-block cells and navigation in B612 Mono at 0.6875rem with 0.1em tracking, uppercase.",
+      "Do use headings at Archivo width 78 and body at width 100; the width axis, not weight, separates them.",
+      "Do make secondary text the sheet's own ink at reduced opacity.",
+      "Do draw new diagrams as inline SVG with currentColor 1.5px strokes, data-draw on the root and .draw / .fill-in on the parts, so they inherit the draw-on-reveal grammar and the reduced-motion fallback.",
+      "Do present a set of items as a revision table, a numbered list with hairline rules, or a dimension-chained pair of columns.",
+      "Do keep the screenshot mat at Product Ground and the window at a 1px Ink border; it is the only place the product's own colours appear."
+    ],
+    "donts": [
+      "Don't add cards, tiles, pills or panels of a third ground colour on a sheet; the sheet is the container.",
+      "Don't use gradients, tints or any colour between Blueprint and White, or between Sheet White and Ink.",
+      "Don't add icon tiles, glyph icons or illustrative imagery; the only mark is the Druyn tree in the header, and the only pictures are the three product screenshots.",
+      "Don't signal state with a hue; use a drawn mark (check, flag, rotated plus, thickened border).",
+      "Don't use red for emphasis, headings or decoration; it belongs to measured figures, the stamp, focus, caret, selection and errors.",
+      "Don't round corners except the 48px detail bubble, and don't put a shadow on any surface other than the stamp's bloom and the pinned strip's shade.",
+      "Don't fade or slide content into view; the only motion is line work drawing itself, labels inking in, and the strip sliding into its corner.",
+      "Don't set reading copy in mono or stretch it beyond 62ch."
+    ]
+  }
+}

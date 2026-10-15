@@ -1,0 +1,13 @@
+---
+import Landing from "@/components/Landing.astro";
+import Base from "@/layouts/Base.astro";
+import { landingJsonLd } from "@/lib/seo";
+import { t } from "@/i18n";
+
+const locale = "en";
+const dict = t(locale);
+---
+
+<Base locale={locale} path="/" title={dict.site.title} description={dict.site.description} jsonLd={landingJsonLd(locale, Astro.site)}>
+  <Landing locale={locale} />
+</Base>

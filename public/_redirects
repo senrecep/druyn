@@ -1,0 +1,7 @@
+# Cloudflare Pages redirects (https://developers.cloudflare.com/pages/configuration/redirects/)
+# The www host is handled by a Cloudflare redirect rule on the zone; these cover legacy paths.
+
+/index.html  /     301
+/en/         /en   301
+/imprint     /en/impressum    301
+/privacy     /en/datenschutz  301

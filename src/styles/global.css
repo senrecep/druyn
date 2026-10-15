@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "@fontsource-variable/archivo/wdth.css";
+@import "@fontsource/b612-mono/400.css";
+@import "@fontsource/b612-mono/700.css";
+
+@theme {
+  --font-sans: "Archivo Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "B612 Mono", "DejaVu Sans Mono", ui-monospace, monospace;
+
+  --color-blueprint: #1d3e8c;
+  --color-blueprint-deep: #16307a;
+  --color-sheet: #ffffff;
+  --color-ink: #141414;
+  --color-ink-soft: #4a4a4a;
+  --color-line: #b9b9b9;
+  --color-line-soft: #e3e3e3;
+  --color-dimension: #d7261e;
+  --color-chalk: #2b5fd9;
+  --color-spruce: #ddb97a;
+  --color-white-ink: #ffffff;
+  --color-white-ink-soft: #c9d3ec;
+
+  --ease-draw: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --frame: 1.5rem;
+    --sheet-pad: clamp(1.25rem, 4vw, 3.75rem);
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :root { scroll-behavior: auto; }
+  }
+
+  html { background: var(--color-blueprint); }
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: var(--color-sheet);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "tnum" 1;
+  }
+
+  ::selection { background: var(--color-dimension); color: #fff; }
+  .sheet-blue ::selection { background: #fff; color: var(--color-blueprint); }
+
+  :focus-visible {
+    outline: 2px solid var(--color-dimension);
+    outline-offset: 3px;
+  }
+  .sheet-blue :focus-visible { outline-color: #fff; }
+
+  * { scrollbar-color: var(--color-ink) var(--color-line-soft); scrollbar-width: thin; }
+
+  a { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+
+  input, select, textarea { caret-color: var(--color-dimension); }
+
+  strong { font-weight: 650; }
+}
+
+@utility display {
+  font-family: var(--font-sans);
+  font-stretch: 78%;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.96;
+  text-wrap: balance;
+}
+@utility display-wide {
+  font-family: var(--font-sans);
+  font-stretch: 100%;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+@utility figure {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Self-drawing line work. `.draw` paths get their dash length from the script;
+   until then they are fully visible (no hidden-on-load regression). */
+@media (prefers-reduced-motion: no-preference) {
+  .draw-ready .draw {
+    stroke-dasharray: var(--len) var(--len);
+    stroke-dashoffset: var(--len);
+  }
+  .draw-ready.is-drawn .draw {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1100ms var(--ease-draw);
+    transition-delay: var(--delay, 0ms);
+  }
+  .draw-ready .fill-in { opacity: 0; }
+  .draw-ready.is-drawn .fill-in {
+    opacity: 1;
+    transition: opacity 500ms var(--ease-draw);
+    transition-delay: calc(var(--delay, 0ms) + 700ms);
+  }
+}

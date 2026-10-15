@@ -1,0 +1,66 @@
+---
+import { alternates, appUrl, localePath, t, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+  /** Route path without locale prefix, used for the language switch. */
+  path: string;
+  tone?: "blue" | "white";
+}
+const { locale, path, tone = "blue" } = Astro.props;
+const dict = t(locale);
+const other: Locale = locale === "de" ? "en" : "de";
+const switchHref = alternates(path)[other];
+const home = localePath(locale, "/");
+const blue = tone === "blue";
+
+const links = [
+  { href: `${home === "/" ? "" : home}#detail-a`, label: dict.nav.planning },
+  { href: `${home === "/" ? "" : home}#detail-b`, label: dict.nav.execution },
+  { href: `${home === "/" ? "" : home}#detail-c`, label: dict.nav.forecast },
+  { href: `${home === "/" ? "" : home}#preise`, label: dict.nav.pricing },
+];
+const linkClass = blue
+  ? "label py-2 text-white/85 hover:text-white hover:underline"
+  : "label py-2 text-ink/80 hover:text-ink hover:underline";
+---
+
+<header class="relative z-20 flex items-center justify-between gap-6">
+  <a href={home} class="flex items-center gap-3 no-underline" aria-label="Druyn">
+    <img src="/favicon.svg" alt="" width="28" height="28" class="h-7 w-7" />
+    <span class="font-mono text-sm font-bold tracking-[0.14em] uppercase">
+      Druyn<span class="hidden opacity-60 sm:inline"> · {dict.nav.drawing}</span>
+    </span>
+  </a>
+
+  <nav aria-label="Hauptnavigation" class="hidden items-center gap-7 lg:flex">
+    {links.map((l) => <a href={l.href} class={linkClass}>{l.label}</a>)}
+    <a href={switchHref} hreflang={other} lang={other} class={linkClass} title={dict.nav.languageSwitch}>
+      {dict.nav.languageSwitchShort}
+    </a>
+    <a
+      href={`${appUrl}/login`}
+      class:list={[
+        "label border px-4 py-3 no-underline transition-colors",
+        blue ? "border-white/70 text-white hover:bg-white hover:text-blueprint" : "border-ink text-ink hover:bg-ink hover:text-white",
+      ]}>{dict.nav.login}</a
+    >
+  </nav>
+
+  <details class="group relative lg:hidden">
+    <summary class:list={["label cursor-pointer list-none border px-4 py-3", blue ? "border-white/70" : "border-ink"]}>
+      {dict.nav.menu}
+    </summary>
+    <nav
+      aria-label="Hauptnavigation"
+      class:list={[
+        "absolute top-full right-0 z-30 mt-2 flex w-64 flex-col border-2 p-5",
+        blue ? "border-white bg-blueprint text-white" : "border-ink bg-sheet text-ink",
+      ]}
+    >
+      {links.map((l) => <a href={l.href} class={linkClass}>{l.label}</a>)}
+      <a href={`${appUrl}/login`} class={linkClass}>{dict.nav.login}</a>
+      <a href={switchHref} hreflang={other} lang={other} class={linkClass}>{dict.nav.languageSwitch}</a>
+    </nav>
+  </details>
+</header>

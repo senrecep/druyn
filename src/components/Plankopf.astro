@@ -1,0 +1,94 @@
+---
+import { t, type Locale } from "@/i18n";
+
+/**
+ * The title block of the drawing set.
+ * "block": the full grid, set into the cover sheet.
+ * "strip": the pinned one-line version that counts sheets while scrolling.
+ */
+interface Props {
+  locale: Locale;
+  variant?: "block" | "strip";
+  sheet?: number;
+  total?: number;
+  /** Override the sheet-name cell (auth/legal pages). */
+  name?: string;
+  tone?: "blue" | "white";
+  class?: string;
+}
+const { locale, variant = "block", sheet = 1, total = 6, name, tone = "blue", class: className = "" } = Astro.props;
+const dict = t(locale);
+const p = dict.plankopf;
+const sheetName = name ?? dict.sheets.cover;
+const blue = tone === "blue";
+const cell = blue ? "border-white/60" : "border-ink/50";
+---
+
+{
+  variant === "block" ? (
+    <dl
+      class:list={["plankopf grid w-full grid-cols-3 border-[1.5px] font-mono text-[0.6875rem] leading-tight", blue ? "border-white" : "border-ink", className]}
+      aria-label="Plankopf"
+    >
+      <div class:list={["col-span-3 flex flex-wrap items-baseline justify-between gap-x-4 border-b px-3 py-2.5", cell]}>
+        <span class="text-[0.9375rem] font-bold tracking-[0.08em] uppercase">Druyn</span>
+        <span class="tracking-[0.08em] opacity-85">{dict.site.tagline}</span>
+      </div>
+      <div class:list={["border-r border-b px-3 py-2", cell]}>
+        <dt class="label mb-1 opacity-60">{p.project}</dt>
+        <dd>{p.projectValue}</dd>
+      </div>
+      <div class:list={["border-r border-b px-3 py-2", cell]}>
+        <dt class="label mb-1 opacity-60">{p.sheet}</dt>
+        <dd class="figure">
+          {sheet} / {total} · {sheetName}
+        </dd>
+      </div>
+      <div class:list={["border-b px-3 py-2", cell]}>
+        <dt class="label mb-1 opacity-60">{p.scale}</dt>
+        <dd class="figure">{p.scaleValue}</dd>
+      </div>
+      <div class:list={["border-r px-3 py-2", cell]}>
+        <dt class="label mb-1 opacity-60">{p.phase}</dt>
+        <dd>{p.phaseValue}</dd>
+      </div>
+      <div class:list={["border-r px-3 py-2", cell]}>
+        <dt class="label mb-1 opacity-60">{p.release}</dt>
+        <dd class="figure">{p.releaseValue}</dd>
+      </div>
+      <div class="px-3 py-2">
+        <dt class="label mb-1 opacity-60">{p.revision}</dt>
+        <dd class="figure">{p.revisionValue}</dd>
+      </div>
+    </dl>
+  ) : (
+    <div
+      data-plankopf-strip
+      aria-hidden="true"
+      class="plankopf-strip is-hidden fixed right-0 bottom-0 left-0 z-40 flex items-stretch border-t-2 border-ink bg-sheet font-mono text-[0.6875rem] tracking-[0.1em] text-ink uppercase shadow-[0_-10px_30px_-20px_rgba(0,0,0,0.5)] md:right-[var(--frame)] md:bottom-[var(--frame)] md:left-auto md:w-[26rem] md:border-2"
+    >
+      <span class="flex items-center border-r border-ink/50 px-3 py-2.5 font-bold">Druyn</span>
+      <span class="flex items-center gap-1 border-r border-ink/50 px-3 py-2.5">
+        {p.sheetsLabel} <span class="figure" data-sheet-number>{sheet}</span>/{total}
+      </span>
+      <span class="flex min-w-0 flex-1 items-center truncate px-3 py-2.5" data-sheet-name>{sheetName}</span>
+    </div>
+  )
+}
+
+<style>
+  .plankopf-strip {
+    transition:
+      transform 420ms var(--ease-draw),
+      opacity 320ms ease-out;
+  }
+  .plankopf-strip.is-hidden {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .plankopf-strip {
+      transition: none;
+    }
+  }
+</style>

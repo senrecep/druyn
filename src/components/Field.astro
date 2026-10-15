@@ -1,0 +1,30 @@
+---
+/** A labelled input drawn in the sheet's hairline grammar. */
+interface Props {
+  id: string;
+  name: string;
+  label: string;
+  type?: "email" | "password" | "text";
+  autocomplete?: string;
+  required?: boolean;
+  /** Optional link rendered on the label row (e.g. "Passwort vergessen?"). */
+  aside?: { href: string; label: string };
+}
+const { id, name, label, type = "text", autocomplete, required = true, aside } = Astro.props;
+---
+
+<div class="field">
+  <div class="flex items-baseline justify-between gap-4">
+    <label for={id} class="label">{label}</label>
+    {aside && <a href={aside.href} class="font-mono text-xs text-chalk">{aside.label}</a>}
+  </div>
+  <input
+    id={id}
+    name={name}
+    type={type}
+    autocomplete={autocomplete}
+    required={required}
+    maxlength="130"
+    class="mt-2 block h-12 w-full border border-ink bg-sheet px-3 font-mono text-[0.9375rem] text-ink placeholder:text-ink/40 focus:border-2 focus:border-dimension focus:outline-none"
+  />
+</div>

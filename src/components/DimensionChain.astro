@@ -1,0 +1,18 @@
+---
+/** A measured rule: end ticks, a line, and the figure set into the line. */
+interface Props {
+  label: string;
+  tone?: "ink" | "white" | "dimension";
+  class?: string;
+}
+const { label, tone = "ink", class: className = "" } = Astro.props;
+const color = tone === "white" ? "text-white" : tone === "dimension" ? "text-dimension" : "text-ink";
+---
+
+<div class:list={["relative flex h-5 items-center", color, className]} role="presentation">
+  <span class="absolute top-0 bottom-0 left-0 w-px bg-current"></span>
+  <span class="h-px flex-1 bg-current"></span>
+  <span class="label px-2 whitespace-nowrap">{label}</span>
+  <span class="h-px flex-1 bg-current"></span>
+  <span class="absolute top-0 right-0 bottom-0 w-px bg-current"></span>
+</div>

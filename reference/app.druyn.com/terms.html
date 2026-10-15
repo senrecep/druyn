@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<!-- Bugfix: Gap after scrollbar overflow:hidden; -->
+<html lang="de" data-theme="light" style="overflow:hidden;">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- make responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Druyn</title>
+
+    <!-- Imports -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@ygoe/msgpack/msgpack.min.js"></script><!-- @ygoe/msgpack -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@latest/dist/svg.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/css/all.min.css">
+
+    <!-- Data tables -->
+    <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator_bulma.min.css" rel="stylesheet"><!--link href="/dist/css/tabulator_bulma.min.css" rel="stylesheet"--> 
+    <script defer type="text/javascript" src="https://unpkg.com/tabulator-tables@6.4.0/dist/js/tabulator.min.js"></script>
+    <!--http://tabulator.info/docs/5.2/install-->
+
+    <!-- Text editor style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown.min.css">
+
+    <!-- App styles -->
+     <link rel="stylesheet" href="css/main.css">
+
+    <!-- Sortable lists -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/images/icon.svg">
+    <!--link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png"-->
+</head>
+
+<body>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- PAGE LOADER -->
+<div id="loader"></div>
+
+<div class="is-hidden" id="app_shell">
+    <!--------------------------------------------------------------------------------------------------------------------->
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <!-- LOGO -->
+            <a class="navbar-item is-arrowless">
+                <img src="/images/icon.svg" width="28" height="28">
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+
+                <!-- Project and work flow -->
+                <a class="navbar-item main" id='configurator'>
+                    <span class="icon-text">
+                        <span class="icon"><i class="fas fa-project-diagram" aria-hidden="true"></i></span>
+                        <span>Planung</span>
+                    </span>
+                </a>
+
+                <!-- Execution -->
+                <a class="navbar-item main" id='executor'>
+                    <span class="icon-text">
+                        <span class="icon"><i class="fas fa-tasks" aria-hidden="true"></i></span>
+                        <span>Ausführung</span>
+                    </span>
+                </a>
+
+                <!-- Prediction -->
+                <a class="navbar-item main" id='predictor'>
+                    <span class="icon-text">
+                        <span class="icon"><i class="fas fa-chart-gantt" aria-hidden="true"></i></span>
+                        <span>Prognose</span>
+                    </span>
+                </a>
+
+                <!-- Ressourcen / resources -->
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        <span class="tag is-primary is-hidden" id="selected_resource">
+                            <button class="delete is-small" id="deselect_resource"></button>
+                        </span>
+                    </a>
+
+                    <div class="navbar-dropdown" id="resources_dropdown">
+                        <a class="navbar-item main" id='calendar'>
+                            <span class="icon-text is-block">
+                                <span class="icon"><i class="fas fa-calendar" aria-hidden="true"></i></span>
+                                <span>Absenzen</span>
+                            </span>
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item main" id='resources'>
+                            <span class="icon-text is-block">
+                                <span class="icon"><i class="fas fa-industry" aria-hidden="true"></i></span>
+                                <span>Alle Ressourcen</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item" id="navbar_account_status"></div>
+                <div class="navbar-item">
+                    <div class="field has-addons">
+                        <p class="control">
+                            <button class="button is-small is-dark" id="zoom_in">
+                                <span class="icon"><i class="fas fa-search-plus" aria-hidden="true"></i></span>
+                            </button>
+                        </p>
+                        <p class="control">
+                            <button class="button is-small is-dark" id="zoom_out">
+                                <span class="icon"><i class="fas fa-search-minus" aria-hidden="true"></i></span>
+                            </button>
+                        </p>
+                        <p class="control">
+                            <button class="button is-small is-dark" id="zoom_normal">
+                                <span class="icon"><i class="fas fa-search" aria-hidden="true"></i></span>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <a class="navbar-item main" id='notes'>
+                    <span class="icon-text">
+                        <span class="icon"><i class="fas fa-note-sticky" aria-hidden="true"></i></span>
+                        <span>Notizen</span>
+                    </span>
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        <span class="icon is-left"><i class="fas fa-user" aria-hidden="true"></i></span>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        <!-- 1. Account Info -->
+                        <p class="navbar-item">
+                            <span id="navbar_user_email"></span>
+                        </p>
+                        <a class="navbar-item" id="subscription">
+                            <span class="icon-text is-flex-wrap-nowrap">
+                                <span class="icon"><i class="far fa-credit-card"></i></span>
+                                <span id="navbar_plan_name"></span>
+                            </span>
+                        </a>
+                        <hr class="navbar-divider">
+                        <!-- 2. Common Settings -->
+                        <a class="navbar-item" id="change_password">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-key"></i></span>
+                                <span>Passwort ändern</span>
+                            </span>
+                        </a>
+                        <!-- 3. Primary Session Action -->
+                        <a class="navbar-item" id="logout">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                                <span>Abmelden</span>
+                            </span>
+                        </a>
+                        <hr class="navbar-divider">
+                        <!-- 4. Danger Zone -->
+                        <a class="navbar-item has-text-danger" id="delete_account">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-trash"></i></span>
+                                <span>Konto löschen</span>
+                            </span>
+                        </a>
+                        <!-- 5. Metadata/Footer -->
+                        <p class="navbar-item has-text-grey is-size-7">
+                            Version: 0.9.0
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- APP TOOLBAR CONTAINER -->
+    <div id="app_toolbar">
+        <!--------------------------------------------------------------------------------------------------------------------->
+        <!-- BREADCRUMBS -->
+        <div id="app_breadcrumbs">
+            <svg id="app_breadcrumbs_draw"></svg>
+        </div>
+        <!--------------------------------------------------------------------------------------------------------------------->
+        <!-- SEARCH AND FILTER MENU -->
+        <div id="app_toolbar_control">
+            <!-- TEMPLATES BUTTON -->
+            <button class="button is-small is-pulled-right is-hidden" title="Vorlagen enthalten auch archivierte Projekte." id="templates_button">
+                <span class="icon"><i class="fas fa-folder-open" aria-hidden="true"></i></span>
+                <span>Vorlagen</span>
+            </button>
+            <!-- FILTER BAR -->
+            <div class="control has-icons-left has-icons-right is-hidden" id="filter_component">
+                <input class="input is-small has-text-info" type="text" placeholder="Filtern" value="" autocomplete="off">
+                <span class="icon is-left"><i class="fas fa-filter" aria-hidden="true"></i></span>
+                <span class="icon is-right is-invisible" style="cursor:pointer;pointer-events:auto"><i class="fas fa-xmark" aria-hidden="true"></i></span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <div id="app_content">
+
+        <!--------------------------------------------------------------------------------------------------------------------->
+        <!-- CALENDAR -->
+        <div class="app-page page-container is-hidden" id="calendar_page">
+            <svg id="calendar_draw"></svg>
+        </div>
+
+        <!--------------------------------------------------------------------------------------------------------------------->
+        <!-- SUBSCRIPTION -->
+        <div class="app-page page-container is-hidden" id="subscription_page">
+            <div class="app-frame">
+                <!-- HEADING -->
+                <p class="app-frame-header header-page">
+                    Plan und Abonnement
+                </p>
+                <!-- Account status notification -->
+                <div id="account_status_notification"></div>
+
+                <!-- TAB HANDLER -->
+                <div class="app-frame-fixed pad-loose-no-bottom tabs m-0" id="sub-tabs">
+                    <ul>
+                        <li class="sub-tab is-active" id="plan">
+                            <a>
+                                <span class="icon is-small">
+                                    <i class="fas fa-layer-group" aria-hidden="true"></i>
+                                </span>
+                                <span>Plan</span>
+                            </a>
+                        </li>
+                        <li class="sub-tab" id="billing">
+                            <a>
+                                <span class="icon is-small">
+                                    <i class="fas fa-wallet" aria-hidden="true"></i>
+                                </span>
+                                <span>Rechnungsdaten</span>
+                            </a>
+                        </li>
+                        <li class="sub-tab" id="subscription_status">
+                            <a>
+                                <span class="icon is-small">
+                                    <i class="fas fa-sync-alt" aria-hidden="true"></i>
+                                </span>
+                                <span>Abonnement</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="app-frame-scroll pad-loose">
+
+                    <!-- PLAN SELECTION GRID -->
+                    <div class="sub-tab-content" id="plan_content">
+
+                        <!-- SIZE HEADERS -->
+                        <div class="has-text-centered plan-header" data-size="0">
+                            <p class="title is-size-6 has-text-grey">Einzelbenutzer</p>
+                            <p class="subtitle is-size-6 has-text-grey">2 Benutzer · 15 Ressourcen</p>
+                        </div>
+
+                        <div class="has-text-centered plan-header" data-size="1">
+                            <p class="title is-size-6 has-text-grey">Kleines Team</p>
+                            <p class="subtitle is-size-6 has-text-grey">15 Benutzer · 15 Ressourcen</p>
+                        </div>
+
+                        <div></div>
+
+                        <!-- PLAN CARDS -->
+                        <div>
+                            <div class="box plan-card" data-tier="0" data-size="0">
+                                <p class="title is-5"></p>
+                                <p class="subtitle is-6"></p>
+
+                                <div class="price-container mb-3">
+                                    <span class="is-size-5 has-text-weight-bold price-text"></span>
+                                    <span class="is-size-7 has-text-grey">/Monat</span>
+                                </div>
+
+                                <p class="meta is-size-7 has-text-grey"></p>
+                                <button class="button is-small is-hidden">
+                                    <span class="icon"><i aria-hidden="true"></i></span>
+                                    <span class="text"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="box plan-card" data-tier="0" data-size="1">
+                                <p class="title is-5"></p>
+                                <p class="subtitle is-6"></p>
+
+                                <div class="price-container mb-3">
+                                    <span class="is-size-5 has-text-weight-bold price-text"></span>
+                                    <span class="is-size-7 has-text-grey">/Monat</span>
+                                </div>
+
+                                <p class="meta is-size-7 has-text-grey"></p>
+                                <button class="button is-small is-hidden">
+                                    <span class="icon"><i aria-hidden="true"></i></span>
+                                    <span class="text"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- TIER EXPLANATION -->
+                        <div>
+                            <div class="content is-small">
+                                <p class="heading is-size-6">Lichtturm Funktionsumfang</p>
+                                <p>
+                                    Voller Funktionsumfang für Planung, Ausführung und Prognose.
+                                </p>
+
+                                <ul>
+                                    <li>Moderner, deterministischer Prognose-Algorithmus</li>
+                                    <li>Benutzer-Rechte Management (Betrachter, Editor, Administrator)</li>
+                                    <li>Speichern, exportieren und importieren von Projekt-Entwürfen</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- BILLING -->
+                    <div class="sub-tab-content page-width-narrow is-hidden" id="billing_content">
+                        <form class="app-grid-1-1" id="billing_field_container" autocomplete="off" novalidate>
+                            <p class="is-size-7 has-text-grey-light mb-4">
+                                <span class="icon is-small"><i class="fas fa-circle-info"></i></span>
+                                <i>Firma oder Kontaktperson erforderlich</i>
+                            </p>
+
+                            <div></div>
+
+                            <!-- Billing details | Address -->
+
+                            <div>
+                                <label class="label is-size-7 has-text-grey-light">Firma</label>
+                                <div class="control has-icons-left">
+                                    <input class="input is-small" type="text" maxlength="100" id="billing_company_name" placeholder="Muster AG" autocomplete="organization">
+                                    <span class="icon is-small is-left"><i class="fas fa-building"></i></span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="label is-size-7 has-text-grey-light">Strasse / Nr.</label>
+                                <input class="input is-small" type="text" maxlength="100" id="billing_line_1" placeholder="Musterstrasse 12" autocomplete="address-line1">
+                            </div>
+
+                            <div>
+                                <label class="label is-size-7 has-text-grey-light">Kontaktperson</label>
+                                <div class="control has-icons-left">
+                                    <input class="input is-small" type="text" maxlength="70" id="billing_contact_name" placeholder="Hans Muster" autocomplete="name">
+                                    <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="label is-size-7 has-text-grey-light">Adresszusatz (optional)</label>
+                                <input class="input is-small" type="text" maxlength="100" id="billing_line_2" autocomplete="address-line2">
+                            </div>
+
+                            <div>
+                                <label class="label is-size-7 has-text-grey-light">E-Mail für Rechnungen</label>
+                                <div class="control has-icons-left">
+                                    <input class="input is-small" type="email" maxlength="130" id="billing_email" placeholder="payments@muster.ag" autocomplete="email">
+                                    <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="app-grid-1-2">
+                                <div>
+                                    <label class="label is-size-7 has-text-grey-light">PLZ</label>
+                                    <input class="input is-small" type="text" maxlength="10" id="billing_postal_code" placeholder="9666" autocomplete="postal-code">
+                                </div>
+                                <div>
+                                    <label class="label is-size-7 has-text-grey-light">Ort</label>
+                                    <input class="input is-small" type="text" maxlength="70" id="billing_city" placeholder="Musterhausen" autocomplete="address-level2">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="label is-size-7 has-text-grey-light">MwSt.-Nr. (optional)</label>
+                                <div class="control has-icons-left">
+                                    <input class="input is-small" type="text" maxlength="30" id="billing_tax_id" placeholder="CHE-123.456.789 MWST">
+                                    <span class="icon is-small is-left"><i class="fas fa-id-card"></i></span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="label is-size-7 has-text-grey-light">Kanton (optional)</label>
+                                <input class="input is-small" type="text" maxlength="40" id="billing_region" autocomplete="address-level1">
+                            </div>
+
+                            <div></div>
+
+                            <div>
+                                <label class="label is-size-7 has-text-grey-light">Land</label>
+                                <div class="control has-icons-left">
+                                    <div class="select is-small is-fullwidth">
+                                        <select id="billing_country_code" autocomplete="country">
+                                            <option value="CH">Schweiz</option>
+                                            <option value="DE">Deutschland</option>
+                                            <option value="AT">Österreich</option>
+                                            <option value="LI">Liechtenstein</option>
+                                        </select>
+                                    </div>
+                                    <span class="icon is-small is-left"><i class="fas fa-globe"></i></span>
+                                </div>
+                            </div>
+
+                        </form>
+                        
+                        <!-- Save billing changes -->
+                        <div class="mt-4">
+                            <button class="button is-small is-success is-invisible" id="billing_save_button">
+                                <span class="icon"><i class="fas fa-save" aria-hidden="true"></i></span>
+                                <span class="text">Speichern</span>
+                            </button>
+                            <button class="button is-small is-success is-light is-invisible" id="billing_revert_button">
+                                <span class="icon"><i class="fas fa-rotate-left" aria-hidden="true"></i></span>
+                                <span class="text">Zurücksetzen</span>
+                            </button>
+                            <!-- Error text -->
+                            <p id="billing_buttons_error" class="help is-danger">
+                                &nbsp; <!-- Placeholder to maintain line height -->
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SUBSCRIPTION -->
+                    <div class="sub-tab-content is-hidden" id="subscription_status_content">
+                        <!-- Subscription button-->
+                        <button class="button is-small" id="subscription_button">
+                            <span class="icon"><i aria-hidden="true"></i></span>
+                            <span class="text"></span>
+                        </button>
+                        <!-- Error text -->
+                        <p id="subscription_button_error" class="help is-danger">
+                            &nbsp; <!-- Placeholder to maintain line height -->
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--------------------------------------------------------------------------------------------------------------------->
+        <!-- RESOURCES -->
+        <div class="app-page page-container is-hidden" id="resources_page">
+
+            <!-- Resources List -->
+            <div class="app-frame">
+                <!-- Heading -->
+                <p class="app-frame-header header-page">
+                    Ressourcen
+                </p>
+                <!-- Content -->
+                <div class="pad">
+                    <button class="button is-primary is-light" id="resources_add_resource">
+                        <span class="icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                        <span>Neu</span>
+                    </button>
+                </div>
+                <div class="app-frame-scroll pad-no-top table-container">
+                    <div id="resources_table"></div>
+                </div>
+            </div>
+            
+
+            <!-- Work time configuration -->
+            <div class="app-frame">
+
+                <!-- Heading -->
+                <p class="app-frame-header header-panel">
+                    Arbeitsstunden
+                </p>
+
+                <!-- Content -->
+                <div class="pad app-grid-form">
+
+                    <!-- Work hours per week -->
+                    <label class="label is-small">Arbeitsstunden pro Woche</label>
+                    <input class="input is-small" type="number" min="0" max="100" id="resource_work_duration">
+
+                    <!-- Efficiency in percent -->
+                    <label class="label is-small">Effizienz [%]</label>
+                    <input class="input is-small" type="number" min="0" max="100" id="resource_efficiency">
+
+                    <!-- Multiplier -->
+                    <label class="label is-small">Multiplikator</label>
+                    <input class="input is-small type="number" min="0" max="100" id="resource_multiplier">
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--------------------------------------------------------------------------------------------------------------------->
+        <!-- CONFIGURATOR -->
+        <div class="app-page is-hidden" style="overflow:scroll" id="configurator_page">
+            <svg id="configurator_draw"></svg>
+        </div>
+
+        <!--------------------------------------------------------------------------------------------------------------------->
+        <!-- PREDICTOR -->
+        <div class="app-page is-hidden" id="predictor_page">
+
+            <!-- PREDICTOR ERROR LIST -->
+            <div class="page-container is-hidden" style="height: 100%;" id="error_list_content">
+                <div class="app-frame">
+                    <!-- Heading -->
+                    <p class="app-frame-header header-page">
+                        Fehler Liste
+                    </p>
+                    <!-- Content -->
+                    <div class="app-frame-scroll pad">
+                        <div id="error_list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="predictor_shell">
+
+                <!-- PREDICTOR CONTROL -->
+                <div class="is-flex is-flex-direction-column is-justify-content-space-between mx-1" style="overflow:hidden;">
+
+                    <!-- SCHEDULER STATUS -->
+                    <div class="is-flex is-align-items-center" style="height:48px;">
+                        <!-- Notification -->
+                        <div class="notification is-light is-size-7 py-1 px-2 mb-0 is-flex-grow-1 is-invisible" id="predictor_status_container">
+                            <span class="icon is-small"><i class="fas"></i></span>
+                            <span id="predictor_status_message"></span>
+                        </div>
+                        <!-- Info Icon -->
+                        <div class="has-text-grey-light ml-1" style="cursor: pointer;" title="Lerne wie der Planer arbeitet" id="predictor_info">
+                            <span class="icon"><i class="far fa-circle-question is-size-5"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- FILTER BAR -->
+                    <div class="field has-addons">
+                        <!-- Mode Toggle Button -->
+                        <div class="control">
+                            <button class="button is-small" id="predictor_filter_toggle" type="button" title="Nach Ressourcen filtern">
+                                <span class="icon is-small"><i class="fas fa-diagram-project"></i></span>
+                            </button>
+                        </div>
+                        <!-- Search Input -->
+                        <div class="control is-expanded has-icons-left has-icons-right" id="predictor_filter_component">
+                            <input class="input is-small has-text-info" type="text" value="" autocomplete="off">
+                            <span class="icon is-left"><i class="fas fa-filter" aria-hidden="true"></i></span>
+                            <span class="icon is-right is-invisible" style="cursor:pointer;pointer-events:auto"><i class="fas fa-xmark" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PREDICTOR COLUMN HEADER -->
+                <div style="overflow:hidden;" id="predictor_column_scroll">
+                    <svg id="predictor_column_header_draw"></svg>
+                </div>
+
+                <!-- PREDICTOR ROW HEADER -->
+                <div style="overflow:hidden;" id="predictor_row_scroll">
+                    <svg id="predictor_row_header_draw"></svg>
+                </div>
+
+                <!-- PREDICTOR CONTENT -->
+                <div style="overflow:scroll" id="predictor_draw_scroll">
+                    <svg id="predictor_draw"></svg>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--------------------------------------------------------------------------------------------------------------------->
+        <!-- EXECUTOR -->
+        <div class="app-page is-hidden" id="executor_page">
+            <svg id="executor_planner_draw" style="min-width:100%;height:100%"></svg>
+        </div>
+
+        <!--------------------------------------------------------------------------------------------------------------------->
+        <!-- RIGHT SIDE PANELS -->
+
+        <!-- Notes Panel -->
+        <div class="app-panel is-hidden" id="notes_panel">
+            <div class="app-frame">
+                <!-- Heading -->
+                <p class="app-frame-header header-panel">
+                    Notizen
+                    <button class="delete is-pulled-right" id="notes_panel_close"></button>
+                </p>
+                <!-- Content -->
+                <div class="pad">
+                    <button class="button is-small is-primary is-light" id="notes_add">
+                        <span class="icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                        <span>Neu</span>
+                    </button>
+                    <button class="button is-small has-text-danger is-pulled-right" id="notes_delete">
+                        <span class="icon"><i class="fas fa-trash" aria-hidden="true"></i></span>
+                        <span>Lösche alle Erledigten</span>
+                    </button>
+                </div>
+                <div class="app-frame-scroll">
+                    <ul style="user-select: none;" id="notes_list"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Note Panel -->
+        <div class="app-panel is-hidden" id="note_panel">
+            <div class="app-frame">
+                <!-- Heading -->
+                <p class="app-frame-header header-panel">
+                    Notiz
+                    <button class="button is-pulled-right" style="border-radius:50%;font-size:0.5rem" id="note_panel_close">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                    </button>
+                </p>
+                <!-- Content -->
+                <!-- Name -->
+                <div class="pad">
+                    <label class="label is-small">Name</label>
+                    <input class="input is-small" type="text" maxlength="70" autocomplete="off" id="note_name">
+                </div>
+                <!-- NOTE DESCRIPTION (info) -->
+                <div class="app-frame-expand editor pad-compact" id="note_info_content"></div>
+                <div class="pad-no-top">
+                    <!-- Done and delete -->
+                    <button class="button has-text-danger is-small" id="note_delete">
+                        <span class="icon"><i class="fas fa-flag-checkered" aria-hidden="true"></i></span>
+                        <span>Abschliessen (löscht die Notiz)</span>
+                    </button>
+                </div>
+
+                <!-- NOTE HELP MESSAGE -->
+                <article class="pad-no-top message is-info is-small" id="note_status_container">
+                    <div class="message-header">
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-info"></i></span>
+                            <span class="is-size-6">Notiz ist selektiert.</span>
+                        </span>
+                        <!--button class="delete" aria-label="delete"></button-->
+                    </div>
+                    <div class="message-body is-size-6 p-3">
+                        Kreiere eine Aufgabe oder eine Aktivität aus dieser Notiz. Klicke hierzu an den gwünschten Ort.
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Node Panel -->
+        <div class="app-panel is-hidden" id="node_panel">
+            <div class="app-frame">
+                
+                <!-- HEADING -->
+                <div class="app-frame-header header-panel" id="node_panel_heading">
+                    <div style="min-width: 0; width: 0;" class="is-flex-grow-1 mr-1">
+                        <p style="width:100%" id="node_panel_title"></p>
+                        <p style="width:100%" id="node_panel_subtitle"></p>
+                    </div>
+                    <button class="delete" id="node_panel_close"></button>
+                </div>
+                
+                <!-- TAB HANDLER --> 
+                <div class="app-frame-fixed pad-no-bottom tabs is-small is-boxed m-0" style="background-color: var(--theme-bg-surface)">
+                    <ul>
+                        <li class="node-tab is-active" id="properties">
+                            <a>
+                                <span class="icon is-small"><i class="fas fa-cog" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                        <li class="node-tab" id="info">
+                            <a>
+                                <span class="icon is-small"><i class="fas fa-info" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                        <li class="node-tab" id="progress">
+                            <a>
+                                <span class="icon is-small"><i class="fas fa-bars-progress" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- NODE PROGRESS -->
+                <div class="node-tab-content app-frame-expand is-hidden" id="progress_content">
+                    <div class="pad">
+                        <label class="label is-small" id="scheduled_duration_label"></label>
+                        <progress class="progress is-small is-progress-scheduled" value="0" max="100" id="scheduled_duration_progress"></progress>
+                    </div>
+                    <div class="pad">
+                        <label class="label is-small" id="used_duration_label"></label>
+                        <progress class="progress is-small is-progress-done" value="0" max="100" id="used_duration_progress"></progress>
+                    </div>
+                    <div class="pad">
+                        <button class="button is-small" id="node_finish">
+                            <span class="icon"><i class="fas fa-check" aria-hidden="true"></i></span>
+                            <span>Abschliessen</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- NODE DESCRIPTION (info) -->
+                <div class="node-tab-content app-frame-expand editor pad-compact is-hidden" id="info_content"></div>
+
+                <!-- NODE PROPERTIES -->
+                <div class="node-tab-content app-frame-expand" id="properties_content">
+                    <!-- Name -->
+                    <div class="pad">
+                        <label class="label is-small has-text-weight-bold" id="node_name_label"></label>
+                        <input class="input is-small" type="text" maxlength="70" autocomplete="off" id="node_name">
+                    </div>
+
+                    <div class="pad app-grid-form">
+
+                        <!-- Node State / Pause Control -->
+                        <label class="label is-small">Status</label>
+                        <button class="button is-small" id="node_pause_toggle">
+                            <span class="icon"><i aria-hidden="true"></i></span>
+                            <span class="text"></span>
+                        </button>
+
+                        <!-- Color picker -->
+                        <label class="label is-small">Farbe</label>
+                        <div class="field has-addons m-0">
+                            <div class="control">
+                                <button class="button is-small" id="node_is_inherit_color">
+                                    <span class="icon"><i class="fas fa-diagram-next" aria-hidden="true"></i></span>
+                                </button>
+                            </div>
+                            <div class="control is-expanded">
+                                <div class="select is-small is-fullwidth">
+                                    <select id="node_color"></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Node earliest start date -->
+                        <label class="label is-small">Frühester Start (optional)</label>
+                        <div class="field has-addons m-0">
+                            <div class="control">
+                                <button class="button is-small" id="node_is_inherit_start_timestamp">
+                                    <span class="icon"><i class="fas fa-diagram-next" aria-hidden="true"></i></span>
+                                </button>
+                            </div>
+                            <div class="control is-expanded">
+                                <input class="input is-small" type="date" id="node_start_timestamp">
+                            </div>
+                        </div>
+
+                        <!-- Node latest end date -->
+                        <label class="label is-small">Spätestes Ende (optional)</label>
+                        <div class="field has-addons m-0">
+                            <div class="control">
+                                <button class="button is-small" id="node_is_inherit_end_timestamp">
+                                    <span class="icon"><i class="fas fa-diagram-next" aria-hidden="true"></i></span>
+                                </button>
+                            </div>
+                            <div class="control is-expanded">
+                                <input class="input is-small" type="date" id="node_end_timestamp">
+                            </div>
+                        </div>
+
+                        <!-- Node planned time -->
+                        <label class="label is-small">Geplante Dauer [h]</label>
+                        <input class="input is-small" type="number" min="0" max="1000" step="0.25" id="node_planned_duration">
+
+                        <!-- Node task divider -->
+                        <label class="label is-small" id="node_task_divider_label">Aufgabenteilung</label>
+                        <input class="input is-small" type="number" min="1" max="10" id="node_task_divider">
+                    </div>
+
+                    <!-- RESOURCES -->
+                    <div class="pad">
+                        <p class="title is-6 mt-4">Benötigte Ressourcen</p>
+                        <!-- Node resources -->
+                        <div class="field is-grouped is-grouped-multiline">
+                            <div class="control">
+                                <button class="button is-small" id="node_is_inherit_resources">
+                                    <span class="icon"><i class="fas fa-diagram-next" aria-hidden="true"></i></span>
+                                </button>
+                            </div>
+                            <div class="control">
+                                <div class="tags" id="node_resources_list"></div>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <!-- Owner resource -->
+                    <div class="pad-no-top app-grid-form">
+                        <label class="label is-small">Verantwortlich</label>
+                        <div class="select is-small is-fullwidth">
+                            <select id="node_owner"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NODE HELP MESSAGE -->
+                <article class="pad-no-top message is-info is-small is-hidden" id="node_status_container">
+                    <div class="message-header">
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-info"></i></span>
+                            <span class="is-size-6">Aufgabe ist selektiert.</span>
+                        </span>
+                        <!--button class="delete" aria-label="delete"></button-->
+                    </div>
+                    <div class="message-body is-size-6 p-3" id="node_status_message">
+                        <p></p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Nodes Panel -->
+        <!--384+17 scrollbar-->
+        <div class="app-panel is-hidden" id="nodes_panel">
+            <svg id="nodes_draw"></svg>
+        </div>
+
+        <!-- Table Import Panel -->
+        <div class="app-panel is-hidden" id="table_import_panel">
+            <div class="app-frame">
+                
+                <!-- HEADING -->
+                <div class="app-frame-header header-panel">
+                    <div>
+                        <p class="has-text-weight-semibold">Tabellen-Import</p>
+                        <p class="is-size-7 has-text-grey">Datei auswählen, Spalten zuordnen und Daten importieren.</p>
+                    </div>
+                    <button class="delete" id="table_import_panel_close"></button>
+                </div>
+
+                <!-- CONTENT -->
+                <!-- 1. File Picker -->
+                <div class="pad">
+                    <p class="title is-6">1. Datei auswählen</p>
+                    <p class="is-size-7 has-text-grey mb-2">Die erste Zeile der Tabelle muss die Spaltennamen enthalten.</p>
+                    <div class="file is-small has-name is-fullwidth is-info">
+                        <label class="file-label">
+                            <input class="file-input" type="file" id="table_file_input" accept=".xlsx, .csv, .tsv">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                            </span>
+                            <span class="file-name" id="table_file_name">
+                                Keine Datei ausgewählt
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pad">
+                    <!-- Divider / Section Title -->
+                    <p class="title is-6 mt-5">2. Spalten zuordnen</p>
+                    <p class="is-size-7 has-text-grey">Ordne die Spalten aus deiner Datei den Projektfeldern zu.<br>Nicht zugeordnete Felder werden ignoriert.</p>
+                </div>
+
+                <!-- Mapping: Node name -->
+                <div class="pad">
+                    <label class="label is-small">Titel</label>
+                    <div class="select is-small is-fullwidth">
+                        <select id="table_column_name">
+                            <option value="" disabled selected>Spalte wählen...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Mapping: Node info -->
+                <div class="pad">
+                    <label class="label is-small">Beschreibung</label>
+                    <div class="select is-small is-fullwidth">
+                        <select id="table_column_info">
+                            <option value="" disabled selected>Keine Zuordnung</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Mapping: Planned Duration -->
+                <div class="pad">
+                    <label class="label is-small">Aufwand in Stunden</label>
+                    <div class="select is-small is-fullwidth">
+                        <select id="table_column_planned_duration">
+                            <option value="" disabled selected>Keine Zuordnung</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Mapping: Depth name -->
+                <div class="pad">
+                    <label class="label is-small">Hierarchienummer (z. B. 1, 1.1, 1.1.1)</label>
+                    <div class="select is-small is-fullwidth">
+                        <select id="table_column_depth">
+                            <option value="" disabled selected>Keine Zuordnung</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="pad">
+                    <button class="button is-small is-primary is-fullwidth" id="table_import_button" disabled>
+                        <span class="icon"><i class="fas fa-file-import" aria-hidden="true"></i></span>
+                        <span></span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Templates Panel -->
+        <div class="app-panel is-hidden" id="templates_panel">
+            <div class="app-frame">
+                <!-- Heading -->
+                <p class="app-frame-header header-panel">
+                    Vorlagen
+                    <button class="delete is-pulled-right" id="templates_panel_close"></button>
+                </p>
+                <!-- Content -->
+                <div class="app-frame-scroll">
+                    <ul id="templates_list"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Archived NodeActivity Panel -->
+        <div class="app-panel is-hidden" id="archived_activity_panel">
+            <div class="app-frame">
+                <!-- Heading -->
+                <p class="app-frame-header header-panel">
+                    Archivierte Aufgaben-Aktivität
+                    <button class="delete is-pulled-right" id="archived_activity_panel_close"></button>
+                </p>
+                <!-- Content -->
+                <!-- Created at -->
+                <div class="pad content m-0">
+                    <small class="has-text-grey" id="archived_activity_created"></small>
+                </div>
+
+                <!-- Project ID -->
+                <div class="pad">
+                    <label class="label is-small">Projekt ID</label>
+                    <input class="input is-small" type="text" id="archived_activity_project_id" readonly>
+                </div>
+
+                <!-- Name -->
+                <div class="pad">
+                    <label class="label is-small">Name</label>
+                    <input class="input is-small" type="text" id="archived_activity_name" readonly>
+                </div>
+                
+                <!-- Path -->
+                <div class="pad">
+                    <label class="label is-small">Pfad</label>
+                </div>
+                <div class="app-frame-expand pad-no-top">
+                    <textarea class="textarea is-small has-fixed-size" style="min-height:100%;" id="archived_activity_path" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Panel -->
+        <div class="app-panel is-hidden" id="event_panel">
+            <div class="app-frame">
+                <!-- Heading -->
+                <p class="app-frame-header header-panel">
+                    Event
+                    <button class="delete is-pulled-right" id="event_panel_close"></button>
+                </p>
+                <!-- Content -->
+                <!-- Name -->
+                <div class="pad">
+                    <label class="label is-small">Name</label>
+                    <input class="input is-small" type="text" maxlength="70" autocomplete="off" id="event_name">
+                </div>
+
+                <!-- Private event -->
+                <div class="pad">
+                    <label class="checkbox">
+                        <input type="checkbox" id="event_is_private"/>
+                        Privat
+                    </label>
+                </div>
+                <!-- EVENT DESCRIPTION (info) -->
+                <div class="app-frame-expand editor pad-compact" id="event_info_content"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- NODE CONTEXT MENU -->
+
+<div class="dropdown-menu context-menu p-0" id="node_menu">
+    <div class="dropdown-content">
+        <button class="dropdown-item" id="template_save">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-file-circle-plus" aria-hidden="true"></i></span>
+                <span>Als Vorlage speichern</span>
+            </span>
+        </button>
+        <button class="dropdown-item" id="template_export">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-file-export" aria-hidden="true"></i></span>
+                <span>Als CSV-Vorlage exportieren</span>
+            </span>
+        </button>
+        <hr class="dropdown-divider">
+        <button class="dropdown-item" id="node_link">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-right-long" aria-hidden="true"></i></span>
+                <span>Verbinden</span>
+            </span>
+        </button>
+        <button class="dropdown-item" id="node_cut">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-cut" aria-hidden="true"></i></span>
+                <span>Ausschneiden</span>
+            </span>
+        </button>
+        <button class="dropdown-item" id="node_copy">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-copy" aria-hidden="true"></i></span>
+                <span>Kopieren</span>
+            </span>
+        </button>
+        <hr class="dropdown-divider">
+        <button class="dropdown-item has-text-danger" id="project_archive">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-box-archive" aria-hidden="true"></i></span>
+                <span></span>
+            </span>
+        </button>
+        <button class="dropdown-item has-text-danger" id="node_delete">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-trash" aria-hidden="true"></i></span>
+                <span></span>
+            </span>
+        </button>
+    </div>
+</div>
+
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- TEMPLATES MENU -->
+
+<div class="dropdown-menu context-menu p-0" id="templates_menu">
+    <div class="dropdown-content">
+        <button class="dropdown-item" id="open_templates">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-folder-open" aria-hidden="true"></i></span>
+                <span>Vorlagen öffnen</span>
+            </span>
+        </button>
+        <button class="dropdown-item" id="template_import">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-file-import" aria-hidden="true"></i></span>
+                <span>Aus CSV-Vorlage importieren</span>
+            </span>
+        </button>
+        <hr class="dropdown-divider">
+        <button class="dropdown-item" id="table_import">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-table" aria-hidden="true"></i></span>
+                <span>Aus beliebiger Tabelle importieren</span>
+            </span>
+        </button>
+        <hr class="dropdown-divider">
+        <button class="dropdown-item" id="template_demo">
+            <span class="icon-text is-block">
+                <span class="icon">
+                    <i class="fas fa-cube" aria-hidden="true"></i>
+                </span>
+                <span>Demo-Projekt laden</span>
+            </span>
+        </button>
+    </div>
+</div>
+
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- RESOURCES SELECTION MENU -->
+
+<div class="dropdown-menu context-menu p-0" id="resources_menu">
+    <div class="dropdown-content" id="resources_menu_content"></div>
+</div>
+
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- ACTIVITY CONTEXT MENU -->
+
+<div class="dropdown-menu context-menu p-0" id="activity_menu">
+    <div class="dropdown-content">
+        <!-- Activity duration info -->
+        <div class="dropdown-item" id="activity_menu_info"></div>
+        <hr class="dropdown-divider">
+        <button class="dropdown-item" id="activity_check">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-check" aria-hidden="true"></i></span>
+                <span>Erledigen</span>
+            </span>
+        </button>
+        <button class="dropdown-item" id="activity_uncheck">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-rotate-left" aria-hidden="true"></i></span>
+                <span>Erledigt rückgängig</span>
+            </span>
+        </button>
+        <hr class="dropdown-divider">
+        <button class="dropdown-item has-text-danger" id="activity_delete">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-trash" aria-hidden="true"></i></span>
+                <span>Löschen</span>
+            </span>
+        </button>
+    </div>
+</div>
+
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- ACTIVITIES CONTEXT MENU -->
+
+<div class="dropdown-menu context-menu" id="activities_menu">
+    <div class="dropdown-content">
+        <button class="dropdown-item" id="activities_day_summary">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-table-list" aria-hidden="true"></i></span>
+                <span>Tages-Zusammenfassung</span>
+            </span>
+        </button>
+        <!--hr class="dropdown-divider"-->
+        <!--button class="dropdown-item" id="activities_shift_backwards">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-angles-left" aria-hidden="true"></i></span>
+                <span>Verschiebe Aktivitäten ab diesem Tag um einen Tag rückwärts</span>
+            </span>
+        </button-->
+        <!--button class="dropdown-item" id="activities_shift_forward">
+            <span class="icon-text is-block">
+                <span class="icon"><i class="fas fa-angles-right" aria-hidden="true"></i></span>
+                <span>Verschiebe Aktivitäten ab diesem Tag um einen Tag vorwärts</span>
+            </span>
+        </button-->
+    </div>
+</div>
+
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- EXECUTOR SETTINGS MENU -->
+
+<div class="dropdown-menu context-menu" style="top:80px" id="executor_settings_menu">
+    <div class="dropdown-content">
+        <div class="app-grid-form-2-1-1 pad">
+            <!-- Shown time range -->
+            <label class="label is-small">Gezeigter Zeitbereich</label>
+            <input class="input is-small" type="number" step="1" min="0" max="23" id="start_hour">
+            <input class="input is-small" type="number" step="1" min="1" max="24" id="end_hour">
+            <!-- Shown break -->
+            <label class="label is-small">Gezeigter Pausenbereich</label>
+            <input class="input is-small" type="time" id="break_start_hour">
+            <input class="input is-small" type="time" id="break_end_hour">
+        </div>
+    </div>
+</div>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- INFO BUBBLE -->
+<div class="dropdown-menu context-menu box has-shadow p-1" id="info_bubble"></div>
+
+<!-- PREDICTOR INFO BUBBLE -->
+<div class="dropdown-menu context-menu box has-shadow p-1" id="predictor_info_bubble"></div>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- ERROR BUBBLE -->
+<div class="notification is-danger is-light is-hidden" id="error_bubble">
+    <span class="icon is-small mr-1">
+        <i class="fas fa-exclamation-triangle"></i>
+    </span>
+    <span id="error_bubble_message"></span>
+    <button class="delete"></button>
+</div>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- INFO MODAL (DAY SUMMARY) -->
+<div class="modal" id="info_modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title" id="info_modal_title"></p>
+        </header>
+        <section class="modal-card-body">
+            <div class="content">
+                <p id="info_modal_details"></p>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button" id="info_modal_cancel">Abbrechen</button>
+        </footer>
+    </div>
+</div>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- CONFIRM MODAL -->
+<div class="modal" id="confirm_modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title" id="confirm_modal_title"></p>
+        </header>
+        <section class="modal-card-body">
+            <div class="content">
+                <p class="subtitle is-5" id="confirm_modal_details"></p>
+
+                <!-- Error message -->
+                <div class="notification is-danger is-light is-invisible mb-1" id="confirm_modal_error"
+                    style="height: 2.2rem; display: flex; align-items: center;">
+                    <button class="delete" type="button" onclick="this.parentElement.classList.add('is-invisible')"></button>
+                    <p class="is-size-7" id="confirm_modal_error_message">
+                        &nbsp; <!-- Placeholder to maintain line height -->
+                    </p>
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-success" id="confirm_modal_submit">OK</button>
+            <button class="button" id="confirm_modal_cancel">Abbrechen</button>
+        </footer>
+    </div>
+</div>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- CONNECTION LOST MODAL -->
+<div class="modal" id="disconnected_modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title" id="disconnected_modal_title"></p>
+        </header>
+        <section class="modal-card-body">
+            <div class="content">
+                <p id="disconnected_modal_message"></p>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-primary" onclick="window.location.reload()">
+                Seite neu laden
+            </button>
+        </footer>
+    </div>
+</div>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- CHANGE PASSWORD MODAL -->
+<div class="modal" id="change_password_modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Passwort ändern</p>
+        </header>
+        <section class="modal-card-body">
+            <div class="content">
+                <p class="subtitle is-5" id="change_password_modal_details"></p>
+                
+                <!-- Error message -->
+                <div class="notification is-danger is-light is-invisible mb-1" id="change_password_modal_error"
+                    style="height: 2.2rem; display: flex; align-items: center;">
+                    <button class="delete" type="button" onclick="this.parentElement.classList.add('is-invisible')"></button>
+                    <p class="is-size-7" id="change_password_modal_error_message">
+                        &nbsp; <!-- Placeholder to maintain line height -->
+                    </p>
+                </div>
+
+                <!-- Current password -->
+                <div class="field">
+                    <label class="label is-small">Aktuelles Passwort</label>
+                    <input class="input" type="password" autocomplete="current-password" maxlength="130" id="change_password_modal_current">
+                </div>
+
+                <!-- New password -->
+                <div class="field">
+                    <label class="label is-small">Neues Passwort</label>
+                    <input class="input" type="password" autocomplete="new-password" maxlength="130" id="change_password_modal_new">
+                </div>
+
+                <!-- Confirm new password -->
+                <div class="field">
+                    <label class="label is-small">Neues Passwort bestätigen</label>
+                    <input class="input" type="password" autocomplete="new-password" maxlength="130" id="change_password_modal_repeat">
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-primary" id="change_password_modal_submit">Ändern</button>
+            <button class="button" id="change_password_modal_cancel">Abbrechen</button>
+        </footer>
+    </div>
+</div>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- DELETE ACCOUNT MODAL -->
+<div class="modal" id="delete_account_modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title has-text-danger" id="delete_account_modal_title"></p>
+        </header>
+        <section class="modal-card-body">
+            <div class="content">
+                <p class="subtitle is-5" id="delete_account_modal_details"></p>
+                
+                <!-- Error message -->
+                <div class="notification is-danger is-light is-invisible mb-1" id="delete_account_modal_error"
+                    style="height: 2.2rem; display: flex; align-items: center;">
+                    <button class="delete" type="button" onclick="this.parentElement.classList.add('is-invisible')"></button>
+                    <p class="is-size-7" id="delete_account_modal_error_message">
+                        &nbsp; <!-- Placeholder to maintain line height -->
+                    </p>
+                </div>
+
+                <div class="field" id="delete_account_modal_password_field">
+                    <label class="label is-small">Passwort</label>
+                    <input class="input" type="password" autocomplete="current-password" maxlength="130" id="delete_account_modal_password">
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-danger" id="delete_account_modal_submit"></button>
+            <button class="button" id="delete_account_modal_cancel">Abbrechen</button>
+        </footer>
+    </div>
+</div>
+
+</body>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+<!-- Main client application -->
+<script type="module" src="js/main.js"></script>
+
+</html>

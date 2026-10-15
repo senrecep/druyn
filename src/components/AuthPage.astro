@@ -1,0 +1,73 @@
+---
+import Field from "@/components/Field.astro";
+import FormSheet from "@/components/FormSheet.astro";
+import Stamp from "@/components/Stamp.astro";
+import Base from "@/layouts/Base.astro";
+import { appUrl, localePath, t, type Locale } from "@/i18n";
+
+/**
+ * The three public auth screens of app.druyn.com, rebuilt in the drawing world.
+ * The forms post to the app with the field names the app already uses.
+ */
+interface Props {
+  locale: Locale;
+  kind: "login" | "signup" | "forgot";
+}
+const { locale, kind } = Astro.props;
+const dict = t(locale);
+const a = dict.auth;
+const path = { login: "/login", signup: "/signup", forgot: "/forgot-password" }[kind];
+const copy = a[kind];
+const action = `${appUrl}${path}`;
+const lp = (p: string) => localePath(locale, p);
+---
+
+<Base locale={locale} path={path} title={copy.metaTitle} description={copy.description} noindex>
+  <FormSheet locale={locale} path={path} sheetName={copy.sheet} title={copy.title}>
+    {kind === "signup" && (
+      <>
+        <p class="mt-5 max-w-[48ch] text-[1.0625rem] leading-relaxed text-ink-soft">{a.signup.lead}</p>
+        <p class="mt-4 max-w-[48ch] font-mono text-sm leading-relaxed">
+          <strong>{a.signup.notYet}</strong> {a.signup.notYetText}
+        </p>
+      </>
+    )}
+    {kind === "forgot" && <p class="mt-5 max-w-[48ch] text-[1.0625rem] leading-relaxed text-ink-soft">{a.forgot.lead}</p>}
+
+    <form method="post" action={action} class="mt-8 flex flex-col gap-6" novalidate={false}>
+      <p role="alert" class="hidden border border-dimension px-3 py-2 font-mono text-sm text-dimension" data-error>
+        {a.login.error}
+      </p>
+      <Field id="user_email" name="user_email" label={a.email} type="email" autocomplete="username" />
+      {kind === "login" && (
+        <Field
+          id="user_password"
+          name="user_password"
+          label={a.password}
+          type="password"
+          autocomplete="current-password"
+          aside={{ href: lp("/forgot-password"), label: a.forgotLink }}
+        />
+      )}
+      <Stamp href="#" type="submit" class="w-full">{copy.submit}</Stamp>
+    </form>
+
+    <p class="mt-6 font-mono text-sm">
+      {kind === "login" && (
+        <>
+          {a.login.newHere} <a href={lp("/signup")} class="text-chalk">{a.login.create}</a>
+        </>
+      )}
+      {kind === "signup" && (
+        <>
+          {a.signup.already} <a href={lp("/login")} class="text-chalk">{a.signup.login}</a>
+        </>
+      )}
+      {kind === "forgot" && <a href={lp("/login")} class="text-chalk">← {a.forgot.back}</a>}
+    </p>
+
+    <Fragment slot="note">
+      {a.previewNote} <a href={action} class="text-white underline">{a.appHost}</a>
+    </Fragment>
+  </FormSheet>
+</Base>

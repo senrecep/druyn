@@ -1,0 +1,262 @@
+---
+import executing from "@/assets/executing.png";
+import planning from "@/assets/planning.png";
+import predicting from "@/assets/predicting.png";
+import Detail from "@/components/Detail.astro";
+import DimensionChain from "@/components/DimensionChain.astro";
+import LoopDrawing from "@/components/LoopDrawing.astro";
+import LoopRing from "@/components/LoopRing.astro";
+import Nav from "@/components/Nav.astro";
+import Plankopf from "@/components/Plankopf.astro";
+import ProblemDrawing from "@/components/ProblemDrawing.astro";
+import Sheet from "@/components/Sheet.astro";
+import Stamp from "@/components/Stamp.astro";
+import { appUrl, localePath, mailto, t, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const dict = t(locale);
+const images = { planning, execution: executing, forecast: predicting } as const;
+const ctaHref = mailto(dict.hero.ctaSubject);
+const year = new Date().getFullYear();
+const legalPath = (p: string) => localePath(locale, p);
+---
+
+<main id="main">
+  <!-- Blatt 1: blueprint cover -->
+  <Sheet number={1} name={dict.sheets.cover} tone="blue" id="top" class="flex min-h-[calc(100svh-2*var(--frame))] flex-col">
+    <Nav locale={locale} path="/" tone="blue" />
+
+    <div class="mt-8 grid flex-1 grid-cols-1 gap-x-12 gap-y-12 lg:mt-10 lg:grid-cols-[minmax(0,11fr)_minmax(0,9fr)] xl:gap-x-16">
+      <div class="flex flex-col lg:pb-6">
+        <h1 class="display text-[clamp(2.125rem,6vw,5.25rem)] [hyphens:auto]">{dict.hero.headline}</h1>
+        <DimensionChain label={dict.hero.chain} tone="white" class="mt-5 max-w-[40rem]" />
+        <p class="mt-6 max-w-[34rem] text-[1.125rem] leading-[1.5] text-white-ink-soft md:text-[1.25rem]">{dict.hero.lead}</p>
+        <p class="label mt-4 text-white/80">{dict.hero.access}</p>
+        <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-5">
+          <Stamp href={ctaHref}>{dict.hero.cta}</Stamp>
+          <a href="#details" class="label border-b border-white pb-1 text-white no-underline hover:text-white-ink-soft">
+            {dict.hero.secondary} ↓
+          </a>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-8 lg:items-end">
+        <LoopDrawing locale={locale} class="w-full max-w-[30rem] lg:max-w-[23rem] min-[1400px]:max-w-[30rem]" />
+        <Plankopf locale={locale} variant="block" sheet={1} tone="blue" class="mt-auto lg:max-w-[34rem]" />
+      </div>
+    </div>
+  </Sheet>
+
+  <!-- Blatt 2: plan and reality -->
+  <Sheet number={2} name={dict.sheets.problem} id="problem">
+    <div class="grid grid-cols-1 gap-x-16 gap-y-10 lg:grid-cols-2 lg:items-center">
+      <div>
+        <h2 class="display text-[clamp(2.25rem,4.4vw,3.75rem)]">{dict.problem.headline}</h2>
+        <p class="mt-7 max-w-[60ch] text-[1.125rem] leading-relaxed text-ink-soft">{dict.problem.p1}</p>
+        <p class="mt-4 max-w-[60ch] text-[1.125rem] leading-relaxed text-ink-soft">{dict.problem.p2}</p>
+      </div>
+      <ProblemDrawing locale={locale} class="w-full max-w-[34rem] lg:justify-self-end" />
+    </div>
+
+    <DimensionChain label={dict.sheets.problem} class="my-16 md:my-24" />
+
+    <div class="grid grid-cols-1 gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-start">
+      <div>
+        <h2 class="display text-[clamp(2.25rem,4.4vw,3.75rem)]">{dict.problem.solutionHeadline}</h2>
+        <p class="mt-7 max-w-[60ch] text-[1.125rem] leading-relaxed text-ink-soft">{dict.problem.s1}</p>
+        <p class="mt-4 max-w-[60ch] text-[1.125rem] leading-relaxed text-ink-soft">{dict.problem.s2}</p>
+
+        <aside class="mt-10 max-w-[44rem] border border-ink">
+          <p class="label border-b border-ink px-4 py-2.5">{dict.problem.notesLabel}</p>
+          <ol class="divide-y divide-ink/30 font-mono text-[0.9375rem] leading-relaxed">
+            <li class="flex gap-4 px-4 py-3"><span class="opacity-50">1</span><span class="font-bold">{dict.problem.honest1}</span></li>
+            <li class="flex gap-4 px-4 py-3"><span class="opacity-50">2</span><span class="font-bold">{dict.problem.honest2}</span></li>
+            <li class="flex gap-4 px-4 py-3"><span class="opacity-50">3</span><span>{dict.problem.honest3}</span></li>
+          </ol>
+        </aside>
+      </div>
+      <LoopRing locale={locale} class="w-full max-w-[26rem] lg:justify-self-end" />
+    </div>
+  </Sheet>
+
+  <!-- Blatt 3: details A–C -->
+  <Sheet number={3} name={dict.sheets.details} id="details">
+    <h2 class="display text-[clamp(2.25rem,4.4vw,3.75rem)]">{dict.how.headline}</h2>
+    <DimensionChain label={`${dict.how.detailLabel} A – C`} class="mt-6 max-w-[28rem]" />
+
+    <div class="mt-12 grid grid-cols-1 gap-x-10 gap-y-14 lg:mt-16">
+      {
+        dict.how.steps.map((s, i) => (
+          <Detail
+            id={`detail-${s.letter.toLowerCase()}`}
+            letter={s.letter}
+            title={s.title}
+            note={s.note}
+            text={s.text}
+            image={images[s.key]}
+            alt={s.alt}
+            detailLabel={dict.how.detailLabel}
+            layout={i === 1 ? "side" : "stack"}
+          />
+        ))
+      }
+    </div>
+  </Sheet>
+
+  <!-- Blatt 4: application -->
+  <Sheet number={4} name={dict.sheets.audience} id="anwendung">
+    <div class="grid grid-cols-1 gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+      <div>
+        <h2 class="display text-[clamp(2.25rem,4.4vw,3.75rem)]">{dict.audience.headline}</h2>
+        <p class="mt-6 max-w-[40ch] text-[1.125rem] leading-relaxed text-ink-soft">{dict.audience.lead}</p>
+      </div>
+      <ol class="divide-y divide-ink border-y border-ink">
+        {
+          dict.audience.groups.map((g, i) => (
+            <li class="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-x-4 py-5 md:grid-cols-[2.5rem_minmax(0,14rem)_minmax(0,1fr)]">
+              <span class="figure pt-1 text-sm opacity-50">{i + 1}</span>
+              <h3 class="display-wide text-[1.375rem]">{g.title}</h3>
+              <p class="col-start-2 mt-1 text-[1.0625rem] leading-relaxed text-ink-soft md:col-start-3 md:mt-0">{g.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <figure class="mt-16 max-w-[56rem] md:mt-24">
+      <blockquote class="display-wide text-[clamp(1.5rem,3vw,2.375rem)] leading-[1.15]">
+        «{dict.audience.quote}»
+      </blockquote>
+      <figcaption class="mt-5 flex items-center gap-4">
+        <span class="h-px w-10 bg-ink"></span>
+        <span class="font-mono text-sm"><strong>{dict.audience.quoteName}</strong>, {dict.audience.quoteRole}</span>
+      </figcaption>
+    </figure>
+
+    <DimensionChain label={dict.audience.featuresHeadline} class="mt-16 md:mt-24" />
+
+    <h2 class="sr-only">{dict.audience.featuresHeadline}</h2>
+    <ol class="mt-8 grid grid-cols-1 border border-ink md:grid-cols-2">
+      {
+        dict.audience.features.map((f, i) => (
+          <li
+            class:list={[
+              "border-ink p-6 md:p-8",
+              i % 2 === 0 ? "md:border-r" : "",
+              i < dict.audience.features.length - 2 ? "border-b" : i === dict.audience.features.length - 2 ? "border-b md:border-b-0" : "",
+            ]}
+          >
+            <p class="label mb-4 opacity-60">
+              {dict.audience.revisionLabel} {String.fromCharCode(65 + i)}
+            </p>
+            <h3 class="display-wide text-[1.5rem] md:text-[1.75rem]">{f.title}</h3>
+            <p class="mt-3 max-w-[48ch] text-[1.0625rem] leading-relaxed text-ink-soft">{f.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <h2 class="display mt-16 text-[clamp(1.75rem,3vw,2.5rem)] md:mt-24">{dict.audience.faqHeadline}</h2>
+    <dl class="mt-6 max-w-[56rem] divide-y divide-ink border-y border-ink">
+      {
+        dict.audience.faq.map((f) => (
+          <details class="faq group">
+            <summary class="flex cursor-pointer list-none items-baseline justify-between gap-6 py-5 [&::-webkit-details-marker]:hidden">
+              <dt class="display-wide text-[1.25rem] md:text-[1.375rem]">{f.q}</dt>
+              <span aria-hidden="true" class="figure shrink-0 text-xl transition-transform group-open:rotate-45">+</span>
+            </summary>
+            <dd class="max-w-[62ch] pb-6 text-[1.0625rem] leading-relaxed text-ink-soft">{f.a}</dd>
+          </details>
+        ))
+      }
+    </dl>
+  </Sheet>
+
+  <!-- Blatt 5: parts list (pricing) -->
+  <Sheet number={5} name={dict.sheets.pricing} tone="blue" id="preise">
+    <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-end">
+      <h2 class="display text-[clamp(2.25rem,4.4vw,3.75rem)]">{dict.pricing.headline}</h2>
+      <p class="max-w-[52ch] text-[1.125rem] leading-relaxed text-white-ink-soft">{dict.pricing.lead}</p>
+    </div>
+
+    <table class="mt-12 w-full border-collapse border-t-2 border-white text-left md:mt-16">
+      <thead>
+        <tr class="label border-b border-white/60 text-white/80">
+          <th scope="col" class="w-12 py-3 pr-4 font-normal">{dict.pricing.posLabel}</th>
+          <th scope="col" class="py-3 pr-4 font-normal">{dict.pricing.itemLabel}</th>
+          <th scope="col" class="hidden py-3 pr-4 font-normal md:table-cell">{dict.pricing.qtyLabel}</th>
+          <th scope="col" class="py-3 text-right font-normal">{dict.pricing.priceLabel} ({dict.pricing.currency})</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-white/60">
+        {
+          dict.pricing.plans.map((plan, i) => (
+            <tr class="align-top">
+              <td class="figure py-6 pr-4 text-sm opacity-70 md:py-8">{i + 1}</td>
+              <td class="py-6 pr-4 md:py-8">
+                <h3 class="display-wide text-[1.5rem] md:text-[1.875rem]">{plan.name}</h3>
+                <p class="mt-2 max-w-[48ch] text-[1.0625rem] leading-relaxed text-white-ink-soft">{plan.text}</p>
+                <p class="label mt-3 text-white/80 md:hidden">{plan.qty}</p>
+              </td>
+              <td class="label hidden py-6 pr-4 pt-8 whitespace-nowrap md:table-cell md:py-8 md:pt-10">{plan.qty}</td>
+              <td class="py-6 text-right whitespace-nowrap md:py-8">
+                <span class="figure text-[clamp(2.5rem,5vw,4.5rem)] leading-none font-bold">{plan.price}</span>
+                {plan.unit && <span class="label mt-2 block text-white/80">{plan.unit}</span>}
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+
+    <div class="mt-12 flex flex-wrap items-center gap-x-8 gap-y-5">
+      <Stamp href={ctaHref}>{dict.pricing.cta}</Stamp>
+      <a href={`${appUrl}/signup`} class="label border-b border-white pb-1 text-white no-underline hover:text-white-ink-soft">{dict.nav.signup}</a>
+    </div>
+  </Sheet>
+
+  <!-- Blatt 6: approval / close -->
+  <Sheet number={6} name={dict.sheets.close} tone="blue" id="kontakt" class="flex min-h-[70svh] flex-col">
+    <div class="flex flex-1 flex-col justify-center py-10">
+      <h2 class="display max-w-[16ch] text-[clamp(2.5rem,5.6vw,5rem)]">{dict.close.headline}</h2>
+      <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
+        <Stamp href={ctaHref}>{dict.close.cta}</Stamp>
+        <a href={`${appUrl}/login`} class="label border-b border-white pb-1 text-white no-underline hover:text-white-ink-soft">{dict.close.login}</a>
+      </div>
+      <p class="mt-10 max-w-[52ch] font-mono text-sm text-white-ink-soft">
+        {dict.close.english}
+        <a href={mailto(dict.close.englishSubject)} class="text-white">{dict.close.englishCta} →</a>
+      </p>
+    </div>
+
+    <footer class="mt-10 grid grid-cols-1 gap-x-10 gap-y-8 border-t-2 border-white pt-8 font-mono text-sm md:grid-cols-4">
+      <div>
+        <p class="font-bold tracking-[0.08em] uppercase">{dict.footer.company}</p>
+        <address class="mt-2 text-white-ink-soft not-italic">
+          {dict.footer.address.map((line) => <span class="block">{line}</span>)}
+        </address>
+      </div>
+      <div>
+        <p class="label text-white/70">{dict.footer.contact}</p>
+        <a href={`mailto:${dict.footer.email}`} class="mt-2 block text-white">{dict.footer.email}</a>
+      </div>
+      <div class="flex flex-col gap-2">
+        <a href={legalPath("/impressum")} class="text-white">{dict.footer.imprint}</a>
+        <a href={legalPath("/datenschutz")} class="text-white">{dict.footer.privacy}</a>
+        <a href={localePath(locale === "de" ? "en" : "de", "/")} hreflang={locale === "de" ? "en" : "de"} class="text-white">{dict.nav.languageSwitch}</a>
+      </div>
+      <p class="text-white-ink-soft md:text-right">© {year} Druyn. {dict.footer.rights}</p>
+    </footer>
+  </Sheet>
+</main>
+
+<Plankopf locale={locale} variant="strip" sheet={1} />
+
+<style>
+  .faq summary::marker {
+    content: "";
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+/** A detail callout: lettered bubble, leader line, framed product screenshot, caption. */
+interface Props {
+  id: string;
+  letter: string;
+  title: string;
+  note: string;
+  text: string;
+  image: ImageMetadata;
+  alt: string;
+  detailLabel: string;
+  /** "stack": image full width under the heading. "side": text left, image right (desktop). */
+  layout?: "stack" | "side";
+  class?: string;
+}
+const { id, letter, title, note, text, image, alt, detailLabel, layout = "stack", class: className = "" } = Astro.props;
+const side = layout === "side";
+const sizes = side ? "(min-width: 1024px) 58vw, 100vw" : "(min-width: 1280px) 1200px, 100vw";
+const widths = side ? [480, 768, 1000, 1400] : [480, 768, 1200, 1600];
+---
+
+<article
+  id={id}
+  class:list={["detail scroll-mt-24", side ? "lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start lg:gap-x-10" : "", className]}
+>
+  <div>
+    <header class="mb-4 flex items-center gap-4">
+      <span
+        aria-hidden="true"
+        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-ink font-mono text-lg font-bold"
+        >{letter}</span
+      >
+      <span aria-hidden="true" class="h-px w-10 shrink-0 bg-ink"></span>
+      <h3 class="display-wide text-[1.75rem] leading-none md:text-[2.25rem]">{title}</h3>
+    </header>
+    {
+      side && (
+        <>
+          <p class="label mt-6 opacity-60">
+            {detailLabel} {letter} · {note}
+          </p>
+          <p class="mt-3 max-w-[48ch] text-[1.0625rem] leading-relaxed text-ink-soft">{text}</p>
+        </>
+      )
+    }
+  </div>
+  <div class:list={[side ? "mt-6 lg:mt-0" : ""]}>
+    <div class="border border-ink bg-[#E4E1DE] p-1.5 md:p-2">
+      <Image src={image} alt={alt} widths={widths} sizes={sizes} format="webp" quality={82} class="block h-auto w-full" loading="lazy" />
+    </div>
+    {
+      !side && (
+        <>
+          <p class="label mt-3 opacity-60">
+            {detailLabel} {letter} · {note}
+          </p>
+          <p class="mt-3 max-w-[62ch] text-[1.0625rem] leading-relaxed text-ink-soft">{text}</p>
+        </>
+      )
+    }
+  </div>
+</article>

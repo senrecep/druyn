@@ -1,0 +1,51 @@
+---
+import { t, type Locale } from "@/i18n";
+
+/** The closed loop: Planung → Ausführung → Prognose, drawn as a circuit with arrows. */
+interface Props {
+  locale: Locale;
+  class?: string;
+}
+const { locale, class: className = "" } = Astro.props;
+const dict = t(locale);
+const [a, b, c] = dict.problem.loop;
+---
+
+<figure class={className}>
+  <svg
+    data-draw
+    viewBox="0 0 420 380"
+    role="img"
+    aria-label={`${a} → ${b} → ${c} → ${a}`}
+    class="h-auto w-full"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="square"
+    font-family="var(--font-mono)"
+  >
+    <!-- nodes -->
+    <rect class="draw" x="130" y="20" width="160" height="56" />
+    <rect class="draw" x="20" y="260" width="160" height="56" />
+    <rect class="draw" x="240" y="260" width="160" height="56" />
+    <text class="fill-in" x="210" y="54" font-size="14" font-weight="700" fill="currentColor" stroke="none" text-anchor="middle">{a}</text>
+    <text class="fill-in" x="100" y="294" font-size="14" font-weight="700" fill="currentColor" stroke="none" text-anchor="middle">{b}</text>
+    <text class="fill-in" x="320" y="294" font-size="14" font-weight="700" fill="currentColor" stroke="none" text-anchor="middle">{c}</text>
+
+    <!-- circuit -->
+    <path class="draw" d="M170 76 L100 260" />
+    <path class="draw" d="M180 288 H240" />
+    <path class="draw" d="M320 260 L250 76" />
+    <!-- arrow heads -->
+    <path class="draw" d="M98 248 l2 12 l10 -7" />
+    <path class="draw" d="M232 283 l8 5 l-8 5" />
+    <path class="draw" d="M252 88 l-2 -12 l-10 7" />
+
+    <!-- centre: deterministic, the same inputs give the same forecast -->
+    <circle class="draw" cx="210" cy="190" r="28" />
+    <path class="draw" d="M198 190 l8 8 l16 -16" stroke-width="2" />
+    <text class="fill-in" x="210" y="350" font-size="10" fill="currentColor" stroke="none" text-anchor="middle" opacity="0.7">
+      {dict.problem.formula}
+    </text>
+  </svg>
+</figure>

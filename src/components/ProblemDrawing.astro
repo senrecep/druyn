@@ -1,0 +1,54 @@
+---
+import { t, type Locale } from "@/i18n";
+
+/**
+ * Plan versus reality: the planned line runs straight, reality drifts,
+ * and the deviation grows as a red dimension. Ink on the white sheet.
+ */
+interface Props {
+  locale: Locale;
+  class?: string;
+}
+const { locale, class: className = "" } = Astro.props;
+const dict = t(locale);
+---
+
+<figure class={className}>
+  <svg
+    data-draw
+    viewBox="0 0 520 300"
+    role="img"
+    aria-label={`${dict.problem.planLabel} / ${dict.problem.realityLabel} / ${dict.problem.gapLabel}`}
+    class="h-auto w-full"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="square"
+    font-family="var(--font-mono)"
+  >
+    <!-- week grid -->
+    <g opacity="0.25" stroke-width="1">
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => <path class="draw" d={`M${40 + i * 44} 30 V250`} />)}
+    </g>
+    <path class="draw" d="M40 250 H500" />
+    <text class="fill-in" x="40" y="272" font-size="10" fill="currentColor" stroke="none">KW 30</text>
+    <text class="fill-in" x="480" y="272" font-size="10" fill="currentColor" stroke="none" text-anchor="end">KW 41</text>
+
+    <!-- plan: straight dashed line -->
+    <path class="draw" d="M40 90 H480" stroke-dasharray="8 6" />
+    <text class="fill-in" x="44" y="80" font-size="11" fill="currentColor" stroke="none" font-weight="700">{dict.problem.planLabel}</text>
+
+    <!-- reality: drifts away -->
+    <path class="draw" d="M40 90 C140 92 180 120 260 150 S400 200 480 222" stroke-width="2" />
+    <text class="fill-in" x="300" y="200" font-size="11" fill="currentColor" stroke="none" font-weight="700">{dict.problem.realityLabel}</text>
+
+    <!-- deviation dimension in red -->
+    <g stroke="#d7261e">
+      <path class="draw" d="M460 90 H496 M460 222 H496 M488 90 V222" />
+      <path class="draw" d="M484 96 l4 -6 l4 6 M484 216 l4 6 l4 -6" />
+      <text class="fill-in" transform="translate(508 156) rotate(90)" font-size="10" fill="#d7261e" stroke="none" text-anchor="middle">
+        {dict.problem.gapLabel}
+      </text>
+    </g>
+  </svg>
+</figure>

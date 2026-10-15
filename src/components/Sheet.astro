@@ -1,0 +1,46 @@
+---
+/**
+ * One sheet of the drawing set: a bordered frame with zone marks on the edges.
+ * Sheets stack on the blueprint-blue ground with a frame gap between them.
+ */
+interface Props {
+  id?: string;
+  number: number;
+  name: string;
+  tone?: "blue" | "white";
+  class?: string;
+  /** Labelled region for assistive tech. */
+  label?: string;
+}
+
+const { id, number, name, tone = "white", class: className = "", label } = Astro.props;
+const rows = ["A", "B", "C", "D"];
+const cols = ["1", "2", "3", "4", "5", "6"];
+const blue = tone === "blue";
+---
+
+<section
+  id={id}
+  data-sheet={number}
+  data-sheet-name={name}
+  aria-label={label ?? name}
+  class:list={[
+    "sheet relative m-[var(--frame)] border-2",
+    blue ? "sheet-blue border-white bg-blueprint text-white" : "border-ink bg-sheet text-ink",
+    className,
+  ]}
+>
+  <div
+    aria-hidden="true"
+    class:list={["pointer-events-none absolute inset-2 border", blue ? "border-white/50" : "border-ink/40"]}
+  ></div>
+  <ol aria-hidden="true" class="pointer-events-none absolute top-0 bottom-0 left-0 hidden w-5 md:block">
+    {rows.map((r) => <li class="label flex h-1/4 items-center justify-center opacity-70">{r}</li>)}
+  </ol>
+  <ol aria-hidden="true" class="pointer-events-none absolute top-0 right-0 left-0 hidden h-5 md:flex">
+    {cols.map((c) => <li class="label flex w-1/6 items-center justify-center opacity-70">{c}</li>)}
+  </ol>
+  <div class="relative px-[var(--sheet-pad)] py-[var(--sheet-pad)] md:px-[calc(var(--sheet-pad)+0.75rem)] md:pt-[calc(var(--sheet-pad)+0.5rem)]">
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,53 @@
+---
+import FormSheet from "@/components/FormSheet.astro";
+import Base from "@/layouts/Base.astro";
+import { t, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+  kind: "imprint" | "privacy";
+}
+const { locale, kind } = Astro.props;
+const dict = t(locale);
+const path = kind === "imprint" ? "/impressum" : "/datenschutz";
+const copy = dict.legal[kind];
+---
+
+<Base locale={locale} path={path} title={copy.metaTitle} description={copy.description}>
+  <FormSheet locale={locale} path={path} sheetName={copy.sheet} title={copy.title} width="max-w-[44rem]">
+    {
+      kind === "imprint" ? (
+        <div class="mt-8 grid grid-cols-1 gap-8 font-mono text-[0.9375rem] leading-relaxed sm:grid-cols-2">
+          <div>
+            <p class="label mb-2 opacity-60">{dict.legal.imprint.responsible}</p>
+            <p class="font-bold">{dict.footer.company}</p>
+            <address class="not-italic">{dict.footer.address.map((l) => <span class="block">{l}</span>)}</address>
+          </div>
+          <div>
+            <p class="label mb-2 opacity-60">{dict.legal.imprint.contactLabel}</p>
+            <a href={`mailto:${dict.footer.email}`} class="text-chalk">{dict.footer.email}</a>
+          </div>
+          <p class="border border-dimension px-4 py-3 text-sm text-dimension sm:col-span-2">{dict.legal.imprint.placeholder}</p>
+        </div>
+      ) : (
+        <div class="mt-8 max-w-[62ch]">
+          <p class="text-[1.0625rem] leading-relaxed text-ink-soft">{dict.legal.privacy.intro}</p>
+          {dict.legal.privacy.sections.map((s) => (
+            <section class="mt-8">
+              <h2 class="display-wide text-[1.375rem]">{s.title}</h2>
+              <p class="mt-2 text-[1.0625rem] leading-relaxed text-ink-soft">{s.text}</p>
+            </section>
+          ))}
+          <section class="mt-8">
+            <h2 class="display-wide text-[1.375rem]">{dict.legal.imprint.contactLabel}</h2>
+            <p class="mt-2 font-mono text-[0.9375rem]">
+              {dict.footer.company}, {dict.footer.address.join(", ")} ·{" "}
+              <a href={`mailto:${dict.footer.email}`} class="text-chalk">{dict.footer.email}</a>
+            </p>
+          </section>
+          <p class="mt-8 border border-dimension px-4 py-3 font-mono text-sm text-dimension">{dict.legal.privacy.placeholder}</p>
+        </div>
+      )
+    }
+  </FormSheet>
+</Base>

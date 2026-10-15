@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: "Archivo Variable";
+        font-weight: 100 900;
+        font-stretch: 62% 125%;
+        src: url("../../node_modules/@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2") format("woff2-variations");
+      }
+      @font-face {
+        font-family: "B612 Mono";
+        font-weight: 400;
+        src: url("../../node_modules/@fontsource/b612-mono/files/b612-mono-latin-400-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "B612 Mono";
+        font-weight: 700;
+        src: url("../../node_modules/@fontsource/b612-mono/files/b612-mono-latin-700-normal.woff2") format("woff2");
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #1d3e8c;
+        color: #fff;
+        font-family: "Archivo Variable", sans-serif;
+      }
+      .frame {
+        position: absolute;
+        inset: 20px;
+        border: 2px solid #fff;
+      }
+      .frame::after {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      .brand {
+        position: absolute;
+        top: 60px;
+        left: 72px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: "B612 Mono", monospace;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .brand img {
+        width: 36px;
+        height: 36px;
+      }
+      .brand span span {
+        opacity: 0.6;
+      }
+      h1 {
+        position: absolute;
+        left: 72px;
+        top: 150px;
+        margin: 0;
+        width: 980px;
+        font-size: 84px;
+        line-height: 0.95;
+        font-weight: 700;
+        font-stretch: 78%;
+        letter-spacing: -0.02em;
+      }
+      .chain {
+        position: absolute;
+        left: 72px;
+        top: 470px;
+        width: 560px;
+        display: flex;
+        align-items: center;
+        font-family: "B612 Mono", monospace;
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .chain::before,
+      .chain::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #fff;
+      }
+      .chain span {
+        padding: 0 12px;
+      }
+      .plankopf {
+        position: absolute;
+        right: 72px;
+        bottom: 60px;
+        width: 420px;
+        border: 1.5px solid #fff;
+        font-family: "B612 Mono", monospace;
+        font-size: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .plankopf div {
+        padding: 10px 12px;
+        border: 0.5px solid rgba(255, 255, 255, 0.6);
+      }
+      .plankopf .wide {
+        grid-column: span 2;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .plankopf small {
+        display: block;
+        opacity: 0.6;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 10px;
+        margin-bottom: 4px;
+      }
+      .stamp {
+        position: absolute;
+        left: 72px;
+        bottom: 60px;
+        padding: 18px 28px;
+        background: #d7261e;
+        font-family: "B612 Mono", monospace;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        outline: 1px solid rgba(255, 255, 255, 0.55);
+        outline-offset: -5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame"></div>
+    <div class="brand"><img src="../../public/favicon.svg" alt="" /><span>Druyn <span>· Werkplan</span></span></div>
+    <h1 data-h1>Projektplanung muss keine Raketenwissenschaft sein.</h1>
+    <div class="chain"><span data-chain>Planung → Ausführung → Prognose</span></div>
+    <div class="stamp" data-stamp>Interesse anmelden</div>
+    <div class="plankopf">
+      <div class="wide">Druyn</div>
+      <div><small data-l1>Projekt</small>9257 Holzfussbrücke</div>
+      <div><small data-l2>Prognose</small>deterministisch</div>
+      <div><small data-l3>Phase</small>Leuchtturm</div>
+      <div><small data-l4>Freigabe</small>3 Monate · 0 CHF</div>
+    </div>
+    <script>
+      // ?lang=en swaps the copy; the German file is the source.
+      if (new URLSearchParams(location.search).get("lang") === "en") {
+        document.documentElement.lang = "en";
+        document.querySelector("[data-h1]").textContent = "Project planning should not be rocket science.";
+        document.querySelector("[data-chain]").textContent = "Plan → Execute → Forecast";
+        document.querySelector("[data-stamp]").textContent = "Request access";
+        document.querySelector("[data-l1]").textContent = "Project";
+        document.querySelector("[data-l2]").textContent = "Forecast";
+        document.querySelector("[data-l2]").nextSibling.textContent = "deterministic";
+        document.querySelector("[data-l3]").textContent = "Phase";
+        document.querySelector("[data-l3]").nextSibling.textContent = "Lighthouse";
+        document.querySelector("[data-l4]").textContent = "Release";
+        document.querySelector("[data-l4]").nextSibling.textContent = "3 months · CHF 0";
+      }
+    </script>
+  </body>
+</html>

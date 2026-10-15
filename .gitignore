@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.env
+.env.*
+.DS_Store
+.omc/
+.impeccable/live/
+.impeccable/review/
+.impeccable/build/

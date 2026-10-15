@@ -1,0 +1,97 @@
+---
+import "@/styles/global.css";
+import { alternates, localePath, t, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+  /** Route path without locale prefix, e.g. "/" or "/login". */
+  path: string;
+  title: string;
+  description: string;
+  /** Extra JSON-LD objects for this page. */
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+  bodyClass?: string;
+}
+
+const { locale, path, title, description, jsonLd = [], noindex = false, bodyClass = "" } = Astro.props;
+const dict = t(locale);
+const site = Astro.site ?? new URL("https://druyn.com");
+const canonical = new URL(localePath(locale, path), site);
+const alt = alternates(path);
+const ogImage = new URL(`/og-${locale}.png`, site);
+
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": new URL("/#organization", site).href,
+  name: "Druyn",
+  url: site.href,
+  logo: new URL("/favicon.svg", site).href,
+  email: dict.footer.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Murmattstrasse 9",
+    postalCode: "6372",
+    addressLocality: "Ennetmoos",
+    addressCountry: "CH",
+  },
+};
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": new URL("/#website", site).href,
+  url: site.href,
+  name: "Druyn",
+  inLanguage: [dict.htmlLang],
+  publisher: { "@id": organization["@id"] },
+};
+const ld = [organization, website, ...jsonLd];
+---
+
+<!doctype html>
+<html lang={dict.htmlLang} dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    <link rel="alternate" hreflang="de-CH" href={new URL(alt.de, site).href} />
+    <link rel="alternate" hreflang="de" href={new URL(alt.de, site).href} />
+    <link rel="alternate" hreflang="en" href={new URL(alt.en, site).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(alt.de, site).href} />
+    {noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow, max-image-preview:large" />}
+    <meta name="theme-color" content="#1d3e8c" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Druyn" />
+    <meta property="og:locale" content={locale === "de" ? "de_CH" : "en_US"} />
+    <meta property="og:locale:alternate" content={locale === "de" ? "en_US" : "de_CH"} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={ogImage.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={dict.site.ogTitle} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage.href} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  </head>
+  <body class={bodyClass}>
+    <a
+      href="#main"
+      class="label fixed top-2 left-2 z-50 -translate-y-20 bg-dimension px-3 py-2 text-white transition-transform focus:translate-y-0"
+      >{dict.nav.skip}</a
+    >
+    <slot />
+    <script src="@/scripts/sheets.ts"></script>
+  </body>
+</html>

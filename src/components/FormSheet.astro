@@ -1,0 +1,41 @@
+---
+import Nav from "@/components/Nav.astro";
+import Plankopf from "@/components/Plankopf.astro";
+import Sheet from "@/components/Sheet.astro";
+import { t, type Locale } from "@/i18n";
+
+/**
+ * A single white sheet for the auth and legal pages: navigation on top,
+ * the form or text in the drawing field, the title block in the corner.
+ */
+interface Props {
+  locale: Locale;
+  path: string;
+  sheetName: string;
+  title: string;
+  /** Width class for the content column. */
+  width?: string;
+}
+const { locale, path, sheetName, title, width = "max-w-[28rem]" } = Astro.props;
+const dict = t(locale);
+---
+
+<main id="main">
+  <Sheet number={1} name={sheetName} tone="white" class="flex min-h-[calc(100svh-2*var(--frame))] flex-col">
+    <Nav locale={locale} path={path} tone="white" />
+    <div class="flex flex-1 flex-col items-center justify-center py-12 md:py-16">
+      <div class:list={["w-full", width]}>
+        <img src="/favicon.svg" alt="" width="56" height="56" class="h-14 w-14" />
+        <h1 class="display mt-6 text-[clamp(2rem,4vw,3rem)]">{title}</h1>
+        <slot />
+      </div>
+    </div>
+    <div class="mt-10 flex justify-end">
+      <Plankopf locale={locale} variant="block" sheet={1} total={1} name={sheetName} tone="white" class="lg:max-w-[36rem]" />
+    </div>
+  </Sheet>
+  <p class="label px-[var(--frame)] pb-[var(--frame)] text-center text-white/70">
+    <slot name="note" />
+    <span class="sr-only">{dict.site.name}</span>
+  </p>
+</main>

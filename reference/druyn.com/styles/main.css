@@ -1,0 +1,52 @@
+
+:root {
+    --druyn-accent: #8dd35f;
+}
+
+.custom-background{
+    background-color:#E4E1DE;
+}
+
+.brand-text{
+    font-weight:600;
+    font-size:1.1rem;
+}
+
+.brand-tagline{
+    font-size:0.8rem;
+    opacity:0.7;
+    margin-left:8px;
+}
+
+.header-image {
+    background-image: url("/images/hero.svg");
+    background-size: cover;
+    background-position: center;
+}
+
+.surface {
+    background-color: transparent;
+    border: 1px solid #C2BEB9;
+    border-radius: 12px;
+    padding: 2rem;
+    height: 100%;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.surface-highlight {
+    border: 2px solid var(--druyn-accent);
+    background-color: rgba(207, 232, 180, 0.08);
+}
+
+/* Mobile: remove Bulma's large line under the tabs */
+@media screen and (max-width: 768px) {
+    .tabs ul {
+        border-bottom: none !important;
+    }
+    .tabs {
+        border-bottom: 1px solid var(--bulma-border) !important;
+    }
+}

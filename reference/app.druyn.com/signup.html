@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <!-- make responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Druyn</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+    <!-- Bulma overrides -->
+    <style>
+        /* Warm up all of default greys */
+        :root {
+            --bulma-scheme-h: 35;
+            --bulma-scheme-s: 10%;
+        }
+
+        /* Get hyper link underline back */
+        a {
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Make titles semibold */
+        .title {
+            --bulma-title-weight: 600;
+        }
+    </style>
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/images/icon.svg">
+    <!--link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png"-->
+</head>
+<body>
+
+    <div class="hero is-fullheight is-dark">
+        <div class="hero-body">
+
+            
+    <div class="container">
+        <div class="columns is-centered">
+            <!-- LEFT SIDE -->
+            <div class="column is-5 is-4-desktop">
+
+                <!-- Heading -->
+                <h1 class="title is-3 is-spaced has-text-white">Druyn Konto erstellen</h1>
+                <p class="subtitle is-5 has-text-grey-light">
+                    Druyn ist nur für freigeschaltete Organisationen und autorisierte Nutzer zugänglich.
+                    Falls du eingeladen wurdest, kannst du hier deinen persönlichen Registrierungslink anfordern.
+                </p>
+                <p class="is-size-6 has-text-grey">
+                    Noch nicht freigeschaltet?
+                    Bitte wende dich an deinen Organisations-Administrator
+                    oder direkt an das Druyn-Team.
+                </p>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="column is-5 is-4-desktop">
+
+                <div class="notification is-danger is-light is-invisible" 
+    style="height: 2.2rem; display: flex; align-items: center;">
+    <button class="delete" type="button" onclick="this.parentElement.classList.add('is-invisible')"></button>
+    <p class="is-size-7">
+        &amp;nbsp;
+    </p>
+</div>
+
+                <!-- Input form -->
+                <div class="box has-text-left">
+                    <form action="" method="post">
+                        
+                        <div class="field">
+    <label class="label is-small">E-Mail-Adresse</label>
+    <div class="control">
+        <input class="input" type="email" autocomplete="username" 
+               name="user_email" value="" 
+               maxlength="130" required>
+    </div>
+</div>
+
+                        <div class="field">
+                            <button class="button is-primary is-fullwidth">Registrierungslink senden</button>
+                        </div>
+                        <p class="has-text-centered">
+                            Bereits ein Konto erstellt?
+                            <a class="has-text-link" href="/login">Anmelden</a>
+                        </p>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+            
+        </div>
+    </div>
+
+</body>
+</html>

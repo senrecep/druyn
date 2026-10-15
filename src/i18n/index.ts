@@ -26,6 +26,8 @@ export function alternates(path: string): Record<Locale, string> {
 export const appUrl = "https://app.druyn.com";
 export const contactEmail = "druynapp@gmail.com";
 
-export function mailto(subject: string): string {
-  return `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}`;
+export function mailto(subject: string, body?: string): string {
+  const params = new URLSearchParams({ subject });
+  if (body) params.set("body", body);
+  return `mailto:${contactEmail}?${params.toString().replace(/\+/g, "%20")}`;
 }

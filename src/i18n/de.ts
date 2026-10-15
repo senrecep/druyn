@@ -56,6 +56,7 @@ export const de = {
     access: "Exklusiver Zugang während der Leuchtturmphase.",
     cta: "Interesse anmelden",
     ctaSubject: "Interesse an Leuchtturmphase",
+    ctaBody: "Hallo Druyn-Team\n\nIch interessiere mich für die Leuchtturmphase.\n\nFirma / Organisation:\nTeamgrösse:\nArt der Projekte:\n\nFreundliche Grüsse",
     secondary: "So funktioniert Druyn",
     drawingTitle: "Projektierung & Architektur",
     drawingCaption: "Ausschnitt aus einem echten Druyn-Plan: gebuchte Stunden, Abhängigkeiten und Fristen als Masse.",

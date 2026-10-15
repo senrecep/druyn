@@ -55,5 +55,13 @@ function trackSheets(): void {
   sheets.forEach((sheet) => observer.observe(sheet));
 }
 
+function closeMenuOnChoice(): void {
+  const menu = document.querySelector<HTMLDetailsElement>("details[data-menu]");
+  menu?.addEventListener("click", (event) => {
+    if ((event.target as HTMLElement).closest("a")) menu.removeAttribute("open");
+  });
+}
+
 prepareDrawings();
 trackSheets();
+closeMenuOnChoice();

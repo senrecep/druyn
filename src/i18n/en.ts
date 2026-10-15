@@ -56,6 +56,7 @@ export const en = {
     access: "Exclusive access during the lighthouse phase.",
     cta: "Request access",
     ctaSubject: "Interest in the lighthouse phase",
+    ctaBody: "Hello Druyn team\n\nI am interested in the lighthouse phase.\n\nCompany / organisation:\nTeam size:\nKind of projects:\n\nKind regards",
     secondary: "How Druyn works",
     drawingTitle: "Design & architecture",
     drawingCaption: "Excerpt from a real Druyn plan: booked hours, dependencies and deadlines as dimensions.",

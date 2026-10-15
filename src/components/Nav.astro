@@ -33,7 +33,7 @@ const linkClass = blue
     </span>
   </a>
 
-  <nav aria-label="Hauptnavigation" class="hidden items-center gap-7 lg:flex">
+  <nav aria-label={dict.nav.menu} class="hidden items-center gap-7 lg:flex">
     {links.map((l) => <a href={l.href} class={linkClass}>{l.label}</a>)}
     <a href={switchHref} hreflang={other} lang={other} class={linkClass} title={dict.nav.languageSwitch}>
       {dict.nav.languageSwitchShort}
@@ -47,12 +47,12 @@ const linkClass = blue
     >
   </nav>
 
-  <details class="group relative lg:hidden">
+  <details class="group relative lg:hidden" data-menu>
     <summary class:list={["label cursor-pointer list-none border px-4 py-3", blue ? "border-white/70" : "border-ink"]}>
       {dict.nav.menu}
     </summary>
     <nav
-      aria-label="Hauptnavigation"
+      aria-label={dict.nav.menu}
       class:list={[
         "absolute top-full right-0 z-30 mt-2 flex w-64 flex-col border-2 p-5",
         blue ? "border-white bg-blueprint text-white" : "border-ink bg-sheet text-ink",

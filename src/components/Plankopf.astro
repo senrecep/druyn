@@ -26,41 +26,43 @@ const cell = blue ? "border-white/60" : "border-ink/50";
 
 {
   variant === "block" ? (
-    <dl
-      class:list={["plankopf grid w-full grid-cols-2 border-[1.5px] font-mono text-[0.6875rem] leading-tight [overflow-wrap:anywhere] sm:grid-cols-3", blue ? "border-white" : "border-ink", className]}
+    <div
+      class:list={["plankopf w-full border-[1.5px] font-mono text-[0.6875rem] leading-tight [overflow-wrap:anywhere]", blue ? "border-white" : "border-ink", className]}
       aria-label="Plankopf"
     >
-      <div class:list={["col-span-2 flex flex-wrap items-baseline justify-between gap-x-4 border-b px-3 py-2.5 sm:col-span-3", cell]}>
+      <p class:list={["flex flex-wrap items-baseline justify-between gap-x-4 border-b px-3 py-2.5", cell]}>
         <span class="text-[0.9375rem] font-bold tracking-[0.08em] uppercase">Druyn</span>
         <span class="tracking-[0.08em] opacity-85">{dict.site.tagline}</span>
-      </div>
+      </p>
+      <dl class="grid grid-cols-2 sm:grid-cols-3">
       <div class:list={["border-r border-b px-3 py-2", cell]}>
-        <dt class="label mb-1 opacity-60">{p.project}</dt>
+        <dt class="label mb-1 opacity-75">{p.project}</dt>
         <dd>{p.projectValue}</dd>
       </div>
       <div class:list={["border-r border-b px-3 py-2", cell]}>
-        <dt class="label mb-1 opacity-60">{p.sheet}</dt>
+        <dt class="label mb-1 opacity-75">{p.sheet}</dt>
         <dd class="figure">
           {sheet} / {total} · {sheetName}
         </dd>
       </div>
       <div class:list={["border-r border-b px-3 py-2 sm:border-r-0", cell]}>
-        <dt class="label mb-1 opacity-60">{p.scale}</dt>
+        <dt class="label mb-1 opacity-75">{p.scale}</dt>
         <dd class="figure">{p.scaleValue}</dd>
       </div>
       <div class:list={["border-b px-3 py-2 sm:border-r sm:border-b-0", cell]}>
-        <dt class="label mb-1 opacity-60">{p.phase}</dt>
+        <dt class="label mb-1 opacity-75">{p.phase}</dt>
         <dd>{p.phaseValue}</dd>
       </div>
       <div class:list={["border-r border-b px-3 py-2 sm:border-b-0", cell]}>
-        <dt class="label mb-1 opacity-60">{p.release}</dt>
+        <dt class="label mb-1 opacity-75">{p.release}</dt>
         <dd class="figure">{p.releaseValue}</dd>
       </div>
       <div class="px-3 py-2">
-        <dt class="label mb-1 opacity-60">{p.revision}</dt>
+        <dt class="label mb-1 opacity-75">{p.revision}</dt>
         <dd class="figure">{p.revisionValue}</dd>
       </div>
-    </dl>
+      </dl>
+    </div>
   ) : (
     <div
       data-plankopf-strip

@@ -19,7 +19,7 @@ interface Props {
 const { locale } = Astro.props;
 const dict = t(locale);
 const images = { planning, execution: executing, forecast: predicting } as const;
-const ctaHref = mailto(dict.hero.ctaSubject);
+const ctaHref = mailto(dict.hero.ctaSubject, dict.hero.ctaBody);
 const year = new Date().getFullYear();
 const legalPath = (p: string) => localePath(locale, p);
 ---
@@ -34,7 +34,7 @@ const legalPath = (p: string) => localePath(locale, p);
         <h1 class="display text-[clamp(2.125rem,6vw,5.25rem)] [hyphens:auto]">{dict.hero.headline}</h1>
         <DimensionChain label={dict.hero.chain} tone="white" class="mt-5 max-w-[40rem]" />
         <p class="mt-6 max-w-[34rem] text-[1.125rem] leading-[1.5] text-white-ink-soft md:text-[1.25rem]">{dict.hero.lead}</p>
-        <p class="label mt-4 text-white/80">{dict.hero.access}</p>
+        <p class="label mt-4 text-white/85">{dict.hero.access}</p>
         <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-5">
           <Stamp href={ctaHref}>{dict.hero.cta}</Stamp>
           <a href="#details" class="label border-b border-white pb-1 text-white no-underline hover:text-white-ink-soft">
@@ -190,7 +190,7 @@ const legalPath = (p: string) => localePath(locale, p);
 
     <table class="mt-12 w-full border-collapse border-t-2 border-white text-left md:mt-16">
       <thead>
-        <tr class="label border-b border-white/60 text-white/80">
+        <tr class="label border-b border-white/60 text-white/85">
           <th scope="col" class="w-12 py-3 pr-4 font-normal">{dict.pricing.posLabel}</th>
           <th scope="col" class="py-3 pr-4 font-normal">{dict.pricing.itemLabel}</th>
           <th scope="col" class="hidden py-3 pr-4 font-normal md:table-cell">{dict.pricing.qtyLabel}</th>
@@ -205,12 +205,12 @@ const legalPath = (p: string) => localePath(locale, p);
               <td class="py-6 pr-4 md:py-8">
                 <h3 class="display-wide text-[1.5rem] md:text-[1.875rem]">{plan.name}</h3>
                 <p class="mt-2 max-w-[48ch] text-[1.0625rem] leading-relaxed text-white-ink-soft">{plan.text}</p>
-                <p class="label mt-3 text-white/80 md:hidden">{plan.qty}</p>
+                <p class="label mt-3 text-white/85 md:hidden">{plan.qty}</p>
               </td>
               <td class="label hidden py-6 pr-4 pt-8 whitespace-nowrap md:table-cell md:py-8 md:pt-10">{plan.qty}</td>
               <td class="py-6 text-right whitespace-nowrap md:py-8">
                 <span class="figure text-[clamp(2.5rem,5vw,4.5rem)] leading-none font-bold">{plan.price}</span>
-                {plan.unit && <span class="label mt-2 block text-white/80">{plan.unit}</span>}
+                {plan.unit && <span class="label mt-2 block text-white/85">{plan.unit}</span>}
               </td>
             </tr>
           ))
@@ -246,7 +246,7 @@ const legalPath = (p: string) => localePath(locale, p);
         </address>
       </div>
       <div>
-        <p class="label text-white/70">{dict.footer.contact}</p>
+        <p class="label text-white/85">{dict.footer.contact}</p>
         <a href={`mailto:${dict.footer.email}`} class="mt-2 block text-white">{dict.footer.email}</a>
       </div>
       <div class="flex flex-col gap-2">

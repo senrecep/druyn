@@ -18,6 +18,8 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: { defaultLocale: "de", locales: { de: "de-CH", en: "en" } },
+      // Auth screens are noindex design previews for app.druyn.com.
+      filter: (page) => !/\/(login|signup|forgot-password)$/.test(page),
     }),
   ],
   vite: { plugins: [tailwindcss()] },

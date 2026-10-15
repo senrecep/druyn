@@ -1,6 +1,6 @@
 # druyn.com agent instructions
 
-Static marketing site for Druyn (project planning with a deterministic forecast). Astro 7 + Tailwind 4 + TypeScript, Bun, Cloudflare Pages. Read `README.md` for commands and layout, `PRODUCT.md` for product truth, and `DESIGN.md` for the visual system before changing UI.
+Static marketing site for Druyn (project planning with a deterministic forecast). Astro 7 + Tailwind 4 + TypeScript, Bun. Deploys to Cloudflare Pages (Git integration) or GitHub Pages (workflow in `.github/workflows`); the output must stay plain static files that work on both. Read `README.md` for commands and layout, `PRODUCT.md` for product truth, and `DESIGN.md` for the visual system before changing UI.
 
 ## Rules
 
@@ -18,7 +18,7 @@ bun install
 bun run dev
 bun run build && bun run preview
 bun run check
-bun run deploy            # Cloudflare Pages production
+bun run deploy            # Cloudflare Pages direct upload (Git integration deploys on push)
 bun scripts/screenshot.ts <url> <out.png> [w] [h] [--viewport]
 sh scripts/generate-og.sh
 ```

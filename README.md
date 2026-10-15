@@ -1,6 +1,6 @@
 # druyn.com
 
-Marketing site for [Druyn](https://druyn.com), the project-planning app with a deterministic time forecast. Static site, German first (`/`), English at `/en`, deployed to Cloudflare Pages.
+Marketing site for [Druyn](https://druyn.com), the project-planning app with a deterministic time forecast. Static site, German first (`/`), English at `/en`. It deploys to Cloudflare Pages or GitHub Pages; both are set up below.
 
 ## Stack
 
@@ -78,6 +78,21 @@ The site is deployed by Cloudflare Pages from this GitHub repository. Every push
 ### Manual deploy without Git (alternative)
 
 `bunx wrangler login`, then `bun run deploy` uploads `dist/` directly to a Pages project named `druyn`. A project created this way cannot be switched to Git integration later, so prefer the Git setup above.
+
+## Deploying to GitHub Pages
+
+The repository ships a workflow (`.github/workflows/github-pages.yml`) that builds with Bun and publishes `dist/` to GitHub Pages on every push to `main`. It is switched off until you opt in, so it never fails builds on a repository that uses Cloudflare.
+
+1. Repository Settings, Pages: set "Source" to "GitHub Actions".
+2. Repository Settings, Secrets and variables, Actions, Variables: add `GITHUB_PAGES` = `true`. Add `SITE_URL` = `https://druyn.com` (the public origin) so canonical URLs, hreflang, the sitemap and robots.txt point at the right host.
+3. Push to `main` or run the "GitHub Pages" workflow by hand. The deployment URL appears in the workflow summary.
+4. Custom domain: Settings, Pages, "Custom domain", enter `druyn.com`; GitHub tells you which DNS records to create (A records for the apex, a CNAME for `www`). Keep "Enforce HTTPS" on.
+
+Differences from Cloudflare Pages:
+
+- The site must be served from a domain root (`https://druyn.com`), not from a sub-path such as `username.github.io/druyn`. Links, the manifest and the service worker use root-relative URLs.
+- `public/_headers` and `public/_redirects` are Cloudflare features. On GitHub Pages there is no Content-Security-Policy header and no legacy-path redirects; everything else (404 page, PWA, sitemap, icons) works the same.
+- Builds run on GitHub's runners, so the Node version pin and the Cloudflare environment variables are not used; the workflow installs Bun itself.
 
 ## Progressive web app
 

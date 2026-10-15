@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Astro 7 + Tailwind CSS 4 (latest at build time), TypeScript, Bun, static output. Deployed to Cloudflare Pages; the repo must ship the deploy scripts and commands so the Druyn team can set it up themselves. Preview domain for now: druyn.senrecep.com; production domain: druyn.com (www redirects to apex). Must also stay deployable on GitHub Pages (pure static output, no server runtime).
+Astro 7 + Tailwind CSS 4 (latest at build time), TypeScript, Bun, static output. Deploys to Cloudflare Pages through the Git integration or to GitHub Pages through the shipped workflow; the repo carries the setup steps so the Druyn team can run it themselves. Production domain: druyn.com (www redirects to apex); a preview host is set through the SITE_URL build variable. No server runtime.
 
 ## Users
 

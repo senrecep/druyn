@@ -142,7 +142,7 @@
   </head>
   <body>
     <div class="frame"></div>
-    <div class="brand"><img src="../../public/favicon.svg" alt="" /><span>Druyn <span>· Werkplan</span></span></div>
+    <div class="brand"><img src="../../public/favicon.svg" alt="" /><span>Druyn <span data-suffix>· Werkplan</span></span></div>
     <h1 data-h1>Projektplanung muss keine Raketenwissenschaft sein.</h1>
     <div class="chain"><span data-chain>Planung → Ausführung → Prognose</span></div>
     <div class="stamp" data-stamp>Interesse anmelden</div>
@@ -158,6 +158,7 @@
       if (new URLSearchParams(location.search).get("lang") === "en") {
         document.documentElement.lang = "en";
         document.querySelector("[data-h1]").textContent = "Project planning should not be rocket science.";
+        document.querySelector("[data-suffix]").textContent = "· Shop drawing";
         document.querySelector("[data-chain]").textContent = "Plan → Execute → Forecast";
         document.querySelector("[data-stamp]").textContent = "Request access";
         document.querySelector("[data-l1]").textContent = "Project";

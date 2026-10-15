@@ -1,0 +1,32 @@
+{
+  "id": "/",
+  "name": "Druyn",
+  "short_name": "Druyn",
+  "description": "Projektplanung mit automatischer Zeitprognose. Planung → Ausführung → Prognose.",
+  "lang": "de-CH",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "browser"],
+  "orientation": "any",
+  "background_color": "#1d3e8c",
+  "theme_color": "#1d3e8c",
+  "categories": ["business", "productivity"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "screenshots": [
+    { "src": "/og-de.png", "sizes": "1200x630", "type": "image/png", "form_factor": "wide", "label": "Druyn: Projektplanung muss keine Raketenwissenschaft sein." }
+  ],
+  "shortcuts": [
+    { "name": "Anmelden", "short_name": "Login", "url": "https://app.druyn.com/login", "description": "Bei Druyn anmelden" },
+    { "name": "Preise", "short_name": "Preise", "url": "/#preise", "description": "Druyn Preise" }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

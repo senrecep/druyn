@@ -1,0 +1,30 @@
+---
+import Plankopf from "@/components/Plankopf.astro";
+import Sheet from "@/components/Sheet.astro";
+import Base from "@/layouts/Base.astro";
+import { t } from "@/i18n";
+
+// Shown by the service worker when a page cannot be fetched. Bilingual on purpose.
+const dict = t("de");
+---
+
+<Base locale="de" path="/offline" title="Offline | Druyn" description="Diese Seite ist offline nicht verfügbar." noindex>
+  <main id="main">
+    <Sheet number={1} name="Offline" tone="blue" class="flex min-h-[calc(100svh-2*var(--frame))] flex-col">
+      <div class="flex flex-1 flex-col justify-center py-10">
+        <p class="label text-white/85">Druyn · {dict.nav.drawing}</p>
+        <h1 class="display mt-6 max-w-[18ch] text-[clamp(2.25rem,5.6vw,4.5rem)]">Keine Verbindung.</h1>
+        <p class="mt-6 max-w-[48ch] text-[1.125rem] leading-relaxed text-white-ink-soft">
+          Diese Seite wurde noch nicht geladen und du bist offline. Sobald die Verbindung zurück ist, lädt sie neu.
+        </p>
+        <p class="mt-3 max-w-[48ch] font-mono text-sm text-white-ink-soft" lang="en">
+          This page has not been loaded yet and you are offline. It reloads as soon as the connection is back.
+        </p>
+        <a href="/" class="label mt-8 inline-block border-b border-white pb-1 text-white no-underline">← druyn.com</a>
+      </div>
+      <div class="mt-10 flex justify-end">
+        <Plankopf locale="de" variant="block" sheet={1} total={1} name="Offline" tone="blue" class="lg:max-w-[36rem]" />
+      </div>
+    </Sheet>
+  </main>
+</Base>

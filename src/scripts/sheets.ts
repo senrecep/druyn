@@ -62,6 +62,16 @@ function closeMenuOnChoice(): void {
   });
 }
 
+function registerServiceWorker(): void {
+  if (!("serviceWorker" in navigator)) return;
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js").catch(() => {
+      /* offline support is optional; the site works without it */
+    });
+  });
+}
+
 prepareDrawings();
 trackSheets();
 closeMenuOnChoice();
+registerServiceWorker();

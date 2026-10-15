@@ -86,6 +86,10 @@ const ld = [organization, website, webpage, ...jsonLd];
     <link rel="alternate" hreflang="x-default" href={new URL(alt.de, site).href} />
     {noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />}
     <meta name="theme-color" content="#1d3e8c" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Druyn" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="preload" href={archivoWdth} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={b612Mono} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

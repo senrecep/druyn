@@ -69,6 +69,10 @@ Git integration (current setup): the GitHub repository is connected in Cloudflar
 
 The output is plain static files, so `dist/` can also be published with GitHub Pages (upload `dist/` with `actions/upload-pages-artifact`). Headers and redirects from `public/_headers` and `public/_redirects` are Cloudflare-only.
 
+## Progressive web app
+
+`public/manifest.webmanifest` (icons in `public/icons/`, generated from `public/favicon.svg`) and `public/sw.js` make the site installable and give it an offline fallback (`/offline`). Hashed assets are cached first, pages network-first. Bump `VERSION` in `sw.js` when the offline page or the precache list changes.
+
 ## Regenerating assets
 
 ```sh

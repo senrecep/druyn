@@ -17,8 +17,6 @@ colors:
   dimension: "#d2042d"
   dimension-on-slate: "#ff6b7a"
   chalk: "#2563eb"
-  sage: "#a3c4a5"
-  sage-soft: "#d5ddd3"
   task-rose: "#e2a6af"
   done-green: "#3cb371"
   white-ink: "#ffffff"
@@ -181,7 +179,7 @@ components:
 
 The site is a numbered drawing set built from the Druyn app's own materials. Every section is still a numbered sheet with zone letters down the edge and zone numbers across the top, and a title block (the Plankopf) sits in the corner of the cover. The product's loop, Planung, Ausführung, Prognose, is drawn as the engineering drawing it is, with real demo hours and calendar weeks set as dimensions. What changed in the second revision is the material: every colour, radius and shadow now comes from the app's own theme, so druyn.com and the app read as one product.
 
-Three grounds carry the world. A warm neutral canvas shows in the gaps between sheets. Off-white sheets float on it like app panels, with white elevated panels (title block, tables, notes, fields) set inside them. One dark slate surface, the app's login ground, opens the set, holds the pricing parts list, and closes it. The single action on any sheet is the app's teal button with dark text. Red appears only where a draughtsperson would ink it: measured figures, deviation chains and errors. Sage is declared for progress and capacity. Density is high but calm: mono caps labels at eleven pixels, hairline rules, tables instead of cards, revision rows instead of feature tiles.
+Three grounds carry the world. A warm neutral canvas shows in the gaps between sheets. Off-white sheets float on it like app panels, with white elevated panels (title block, tables, notes, fields) set inside them. One dark slate surface, the app's login ground, opens the set, holds the pricing parts list, and closes it. The single action on any sheet is the app's teal button with dark text. Red appears only where a draughtsperson would ink it: measured figures, deviation chains and errors. Density is high but calm: mono caps labels at eleven pixels, hairline rules, tables instead of cards, revision rows instead of feature tiles.
 
 Motion is the act of drawing. Line work draws itself once on reveal, labels ink in afterwards, and the pinned title block counts sheets as the reader scrolls. Nothing fades, slides or bounces. Under reduced motion the whole set is simply already drawn.
 
@@ -207,7 +205,6 @@ The app's palette, used with the app's restraint: warm neutrals for ground and s
 
 ### Tertiary
 - **Chalk Blue** (`{colors.chalk}`): everything interactive that is not a button: text selection and the caret, the global focus ring on off-white sheets, the field focus border and ring, and text links on auth and legal pages. It is the app's selected and link blue. Never a fill.
-- **Sage / Sage Soft** (`{colors.sage}`, `{colors.sage-soft}`): declared from the app for progress and capacity fills. No shipped surface consumes them yet; see the drawing colours below.
 
 ### Neutral
 - **Canvas** (`{colors.canvas}`): the page body. It shows only in the 24px gaps between sheets, so sheets read as panels floating on the app's base canvas.

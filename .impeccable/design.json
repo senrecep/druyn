@@ -4,61 +4,414 @@
   "title": "Design System: Druyn Werkplan",
   "extensions": {
     "colorMeta": {
-      "action": { "role": "primary", "displayName": "Action Teal", "canonical": "#00d1b2", "tonalRamp": ["oklch(18% 0.05 180)", "oklch(30% 0.08 180)", "oklch(42% 0.11 180)", "oklch(55% 0.13 180)", "oklch(68% 0.14 180)", "oklch(78% 0.13 180)", "oklch(88% 0.08 180)", "oklch(96% 0.03 180)"] },
-      "action-pressed": { "role": "primary", "displayName": "Action Pressed", "canonical": "#00cdac", "tonalRamp": ["oklch(17% 0.05 178)", "oklch(29% 0.08 178)", "oklch(41% 0.11 178)", "oklch(54% 0.13 178)", "oklch(67% 0.14 178)", "oklch(77% 0.13 178)", "oklch(87% 0.08 178)", "oklch(96% 0.03 178)"] },
-      "dimension": { "role": "secondary", "displayName": "Dimension Red", "canonical": "#d2042d", "tonalRamp": ["oklch(18% 0.08 20)", "oklch(30% 0.14 20)", "oklch(42% 0.19 20)", "oklch(53% 0.22 20)", "oklch(63% 0.2 20)", "oklch(74% 0.14 20)", "oklch(86% 0.07 20)", "oklch(95% 0.03 20)"] },
-      "dimension-on-slate": { "role": "secondary", "displayName": "Dimension on Slate", "canonical": "#ff6b7a", "tonalRamp": ["oklch(18% 0.07 18)", "oklch(30% 0.12 18)", "oklch(42% 0.16 18)", "oklch(55% 0.19 18)", "oklch(68% 0.17 18)", "oklch(78% 0.12 18)", "oklch(88% 0.06 18)", "oklch(96% 0.02 18)"] },
-      "chalk": { "role": "tertiary", "displayName": "Chalk Blue", "canonical": "#2563eb", "tonalRamp": ["oklch(18% 0.1 262)", "oklch(30% 0.15 262)", "oklch(42% 0.19 262)", "oklch(54% 0.21 262)", "oklch(64% 0.17 262)", "oklch(74% 0.12 262)", "oklch(86% 0.07 262)", "oklch(95% 0.02 262)"] },
-      "sage": { "role": "tertiary", "displayName": "Sage", "canonical": "#a3c4a5", "tonalRamp": ["oklch(18% 0.03 150)", "oklch(30% 0.05 150)", "oklch(42% 0.07 150)", "oklch(55% 0.08 150)", "oklch(68% 0.08 150)", "oklch(78% 0.06 150)", "oklch(88% 0.04 150)", "oklch(96% 0.02 150)"] },
-      "sage-soft": { "role": "tertiary", "displayName": "Sage Soft", "canonical": "#d5ddd3", "tonalRamp": ["oklch(18% 0.02 150)", "oklch(30% 0.03 150)", "oklch(42% 0.04 150)", "oklch(55% 0.04 150)", "oklch(68% 0.04 150)", "oklch(78% 0.03 150)", "oklch(89% 0.02 150)", "oklch(96% 0.01 150)"] },
-      "canvas": { "role": "neutral", "displayName": "Canvas", "canonical": "#d4d0cc", "tonalRamp": ["oklch(18% 0.005 60)", "oklch(30% 0.005 60)", "oklch(45% 0.006 60)", "oklch(60% 0.006 60)", "oklch(72% 0.006 60)", "oklch(85% 0.006 60)", "oklch(92% 0.005 60)", "oklch(97% 0.003 60)"] },
-      "sheet": { "role": "neutral", "displayName": "Sheet", "canonical": "#f5f7f5", "tonalRamp": ["oklch(18% 0.003 150)", "oklch(30% 0.003 150)", "oklch(45% 0.003 150)", "oklch(60% 0.003 150)", "oklch(72% 0.003 150)", "oklch(84% 0.003 150)", "oklch(92% 0.003 150)", "oklch(97% 0.003 150)"] },
-      "elevated": { "role": "neutral", "displayName": "Elevated", "canonical": "#ffffff", "tonalRamp": ["oklch(15% 0 0)", "oklch(30% 0 0)", "oklch(45% 0 0)", "oklch(60% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(93% 0 0)", "oklch(100% 0 0)"] },
-      "product-ground": { "role": "neutral", "displayName": "Product Ground", "canonical": "#e4e1de", "tonalRamp": ["oklch(18% 0.005 70)", "oklch(30% 0.005 70)", "oklch(45% 0.005 70)", "oklch(60% 0.005 70)", "oklch(72% 0.005 70)", "oklch(84% 0.005 70)", "oklch(91% 0.005 70)", "oklch(96% 0.004 70)"] },
-      "blueprint": { "role": "neutral", "displayName": "Slate", "canonical": "#2e333d", "tonalRamp": ["oklch(18% 0.015 265)", "oklch(27% 0.02 265)", "oklch(38% 0.02 265)", "oklch(50% 0.02 265)", "oklch(62% 0.02 265)", "oklch(75% 0.015 265)", "oklch(87% 0.01 265)", "oklch(95% 0.005 265)"] },
-      "blueprint-deep": { "role": "neutral", "displayName": "Slate Deep", "canonical": "#272c37", "tonalRamp": ["oklch(16% 0.015 265)", "oklch(25% 0.02 265)", "oklch(36% 0.02 265)", "oklch(48% 0.02 265)", "oklch(60% 0.02 265)", "oklch(73% 0.015 265)", "oklch(86% 0.01 265)", "oklch(95% 0.005 265)"] },
-      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1c1a19", "tonalRamp": ["oklch(16% 0.004 50)", "oklch(25% 0.004 50)", "oklch(38% 0.004 50)", "oklch(50% 0.004 50)", "oklch(64% 0.004 50)", "oklch(77% 0.004 50)", "oklch(88% 0.004 50)", "oklch(95% 0.004 50)"] },
-      "ink-soft": { "role": "neutral", "displayName": "Ink Soft", "canonical": "#595450", "tonalRamp": ["oklch(16% 0.006 50)", "oklch(28% 0.006 50)", "oklch(42% 0.006 50)", "oklch(54% 0.006 50)", "oklch(66% 0.006 50)", "oklch(78% 0.006 50)", "oklch(88% 0.006 50)", "oklch(95% 0.004 50)"] },
-      "line": { "role": "neutral", "displayName": "Line", "canonical": "#c2beb9", "tonalRamp": ["oklch(18% 0.005 60)", "oklch(30% 0.005 60)", "oklch(45% 0.006 60)", "oklch(60% 0.006 60)", "oklch(72% 0.006 60)", "oklch(80% 0.006 60)", "oklch(88% 0.005 60)", "oklch(96% 0.003 60)"] },
-      "line-soft": { "role": "neutral", "displayName": "Line Soft", "canonical": "#e4e1de", "tonalRamp": ["oklch(18% 0.005 70)", "oklch(30% 0.005 70)", "oklch(45% 0.005 70)", "oklch(60% 0.005 70)", "oklch(72% 0.005 70)", "oklch(84% 0.005 70)", "oklch(91% 0.005 70)", "oklch(96% 0.004 70)"] },
-      "white-ink": { "role": "neutral", "displayName": "White Ink", "canonical": "#ffffff", "tonalRamp": ["oklch(15% 0 0)", "oklch(30% 0 0)", "oklch(45% 0 0)", "oklch(60% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(93% 0 0)", "oklch(100% 0 0)"] },
-      "white-ink-soft": { "role": "neutral", "displayName": "White Ink Soft", "canonical": "#b7bfc9", "tonalRamp": ["oklch(18% 0.01 250)", "oklch(30% 0.015 250)", "oklch(44% 0.015 250)", "oklch(58% 0.015 250)", "oklch(70% 0.015 250)", "oklch(80% 0.012 250)", "oklch(88% 0.008 250)", "oklch(95% 0.004 250)"] },
-      "task-rose": { "role": "neutral", "displayName": "Task Rose", "canonical": "#e2a6af", "tonalRamp": ["oklch(18% 0.04 10)", "oklch(30% 0.07 10)", "oklch(42% 0.1 10)", "oklch(55% 0.11 10)", "oklch(68% 0.1 10)", "oklch(78% 0.08 10)", "oklch(88% 0.05 10)", "oklch(96% 0.02 10)"] },
-      "done-green": { "role": "neutral", "displayName": "Done Green", "canonical": "#3cb371", "tonalRamp": ["oklch(18% 0.05 155)", "oklch(30% 0.08 155)", "oklch(42% 0.11 155)", "oklch(55% 0.14 155)", "oklch(68% 0.15 155)", "oklch(78% 0.12 155)", "oklch(88% 0.07 155)", "oklch(96% 0.03 155)"] }
+      "action": {
+        "role": "primary",
+        "displayName": "Action Teal",
+        "canonical": "#00d1b2",
+        "tonalRamp": [
+          "oklch(18% 0.05 180)",
+          "oklch(30% 0.08 180)",
+          "oklch(42% 0.11 180)",
+          "oklch(55% 0.13 180)",
+          "oklch(68% 0.14 180)",
+          "oklch(78% 0.13 180)",
+          "oklch(88% 0.08 180)",
+          "oklch(96% 0.03 180)"
+        ]
+      },
+      "action-pressed": {
+        "role": "primary",
+        "displayName": "Action Pressed",
+        "canonical": "#00cdac",
+        "tonalRamp": [
+          "oklch(17% 0.05 178)",
+          "oklch(29% 0.08 178)",
+          "oklch(41% 0.11 178)",
+          "oklch(54% 0.13 178)",
+          "oklch(67% 0.14 178)",
+          "oklch(77% 0.13 178)",
+          "oklch(87% 0.08 178)",
+          "oklch(96% 0.03 178)"
+        ]
+      },
+      "dimension": {
+        "role": "secondary",
+        "displayName": "Dimension Red",
+        "canonical": "#d2042d",
+        "tonalRamp": [
+          "oklch(18% 0.08 20)",
+          "oklch(30% 0.14 20)",
+          "oklch(42% 0.19 20)",
+          "oklch(53% 0.22 20)",
+          "oklch(63% 0.2 20)",
+          "oklch(74% 0.14 20)",
+          "oklch(86% 0.07 20)",
+          "oklch(95% 0.03 20)"
+        ]
+      },
+      "dimension-on-slate": {
+        "role": "secondary",
+        "displayName": "Dimension on Slate",
+        "canonical": "#ff6b7a",
+        "tonalRamp": [
+          "oklch(18% 0.07 18)",
+          "oklch(30% 0.12 18)",
+          "oklch(42% 0.16 18)",
+          "oklch(55% 0.19 18)",
+          "oklch(68% 0.17 18)",
+          "oklch(78% 0.12 18)",
+          "oklch(88% 0.06 18)",
+          "oklch(96% 0.02 18)"
+        ]
+      },
+      "chalk": {
+        "role": "tertiary",
+        "displayName": "Chalk Blue",
+        "canonical": "#2563eb",
+        "tonalRamp": [
+          "oklch(18% 0.1 262)",
+          "oklch(30% 0.15 262)",
+          "oklch(42% 0.19 262)",
+          "oklch(54% 0.21 262)",
+          "oklch(64% 0.17 262)",
+          "oklch(74% 0.12 262)",
+          "oklch(86% 0.07 262)",
+          "oklch(95% 0.02 262)"
+        ]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Canvas",
+        "canonical": "#d4d0cc",
+        "tonalRamp": [
+          "oklch(18% 0.005 60)",
+          "oklch(30% 0.005 60)",
+          "oklch(45% 0.006 60)",
+          "oklch(60% 0.006 60)",
+          "oklch(72% 0.006 60)",
+          "oklch(85% 0.006 60)",
+          "oklch(92% 0.005 60)",
+          "oklch(97% 0.003 60)"
+        ]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Sheet",
+        "canonical": "#f5f7f5",
+        "tonalRamp": [
+          "oklch(18% 0.003 150)",
+          "oklch(30% 0.003 150)",
+          "oklch(45% 0.003 150)",
+          "oklch(60% 0.003 150)",
+          "oklch(72% 0.003 150)",
+          "oklch(84% 0.003 150)",
+          "oklch(92% 0.003 150)",
+          "oklch(97% 0.003 150)"
+        ]
+      },
+      "elevated": {
+        "role": "neutral",
+        "displayName": "Elevated",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(30% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(60% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(84% 0 0)",
+          "oklch(93% 0 0)",
+          "oklch(100% 0 0)"
+        ]
+      },
+      "product-ground": {
+        "role": "neutral",
+        "displayName": "Product Ground",
+        "canonical": "#e4e1de",
+        "tonalRamp": [
+          "oklch(18% 0.005 70)",
+          "oklch(30% 0.005 70)",
+          "oklch(45% 0.005 70)",
+          "oklch(60% 0.005 70)",
+          "oklch(72% 0.005 70)",
+          "oklch(84% 0.005 70)",
+          "oklch(91% 0.005 70)",
+          "oklch(96% 0.004 70)"
+        ]
+      },
+      "blueprint": {
+        "role": "neutral",
+        "displayName": "Slate",
+        "canonical": "#2e333d",
+        "tonalRamp": [
+          "oklch(18% 0.015 265)",
+          "oklch(27% 0.02 265)",
+          "oklch(38% 0.02 265)",
+          "oklch(50% 0.02 265)",
+          "oklch(62% 0.02 265)",
+          "oklch(75% 0.015 265)",
+          "oklch(87% 0.01 265)",
+          "oklch(95% 0.005 265)"
+        ]
+      },
+      "blueprint-deep": {
+        "role": "neutral",
+        "displayName": "Slate Deep",
+        "canonical": "#272c37",
+        "tonalRamp": [
+          "oklch(16% 0.015 265)",
+          "oklch(25% 0.02 265)",
+          "oklch(36% 0.02 265)",
+          "oklch(48% 0.02 265)",
+          "oklch(60% 0.02 265)",
+          "oklch(73% 0.015 265)",
+          "oklch(86% 0.01 265)",
+          "oklch(95% 0.005 265)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1c1a19",
+        "tonalRamp": [
+          "oklch(16% 0.004 50)",
+          "oklch(25% 0.004 50)",
+          "oklch(38% 0.004 50)",
+          "oklch(50% 0.004 50)",
+          "oklch(64% 0.004 50)",
+          "oklch(77% 0.004 50)",
+          "oklch(88% 0.004 50)",
+          "oklch(95% 0.004 50)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "#595450",
+        "tonalRamp": [
+          "oklch(16% 0.006 50)",
+          "oklch(28% 0.006 50)",
+          "oklch(42% 0.006 50)",
+          "oklch(54% 0.006 50)",
+          "oklch(66% 0.006 50)",
+          "oklch(78% 0.006 50)",
+          "oklch(88% 0.006 50)",
+          "oklch(95% 0.004 50)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "canonical": "#c2beb9",
+        "tonalRamp": [
+          "oklch(18% 0.005 60)",
+          "oklch(30% 0.005 60)",
+          "oklch(45% 0.006 60)",
+          "oklch(60% 0.006 60)",
+          "oklch(72% 0.006 60)",
+          "oklch(80% 0.006 60)",
+          "oklch(88% 0.005 60)",
+          "oklch(96% 0.003 60)"
+        ]
+      },
+      "line-soft": {
+        "role": "neutral",
+        "displayName": "Line Soft",
+        "canonical": "#e4e1de",
+        "tonalRamp": [
+          "oklch(18% 0.005 70)",
+          "oklch(30% 0.005 70)",
+          "oklch(45% 0.005 70)",
+          "oklch(60% 0.005 70)",
+          "oklch(72% 0.005 70)",
+          "oklch(84% 0.005 70)",
+          "oklch(91% 0.005 70)",
+          "oklch(96% 0.004 70)"
+        ]
+      },
+      "white-ink": {
+        "role": "neutral",
+        "displayName": "White Ink",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(30% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(60% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(84% 0 0)",
+          "oklch(93% 0 0)",
+          "oklch(100% 0 0)"
+        ]
+      },
+      "white-ink-soft": {
+        "role": "neutral",
+        "displayName": "White Ink Soft",
+        "canonical": "#b7bfc9",
+        "tonalRamp": [
+          "oklch(18% 0.01 250)",
+          "oklch(30% 0.015 250)",
+          "oklch(44% 0.015 250)",
+          "oklch(58% 0.015 250)",
+          "oklch(70% 0.015 250)",
+          "oklch(80% 0.012 250)",
+          "oklch(88% 0.008 250)",
+          "oklch(95% 0.004 250)"
+        ]
+      },
+      "task-rose": {
+        "role": "neutral",
+        "displayName": "Task Rose",
+        "canonical": "#e2a6af",
+        "tonalRamp": [
+          "oklch(18% 0.04 10)",
+          "oklch(30% 0.07 10)",
+          "oklch(42% 0.1 10)",
+          "oklch(55% 0.11 10)",
+          "oklch(68% 0.1 10)",
+          "oklch(78% 0.08 10)",
+          "oklch(88% 0.05 10)",
+          "oklch(96% 0.02 10)"
+        ]
+      },
+      "done-green": {
+        "role": "neutral",
+        "displayName": "Done Green",
+        "canonical": "#3cb371",
+        "tonalRamp": [
+          "oklch(18% 0.05 155)",
+          "oklch(30% 0.08 155)",
+          "oklch(42% 0.11 155)",
+          "oklch(55% 0.14 155)",
+          "oklch(68% 0.15 155)",
+          "oklch(78% 0.12 155)",
+          "oklch(88% 0.07 155)",
+          "oklch(96% 0.03 155)"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Cover headline only; Archivo width 78, balanced, hyphenated." },
-      "headline": { "displayName": "Headline", "purpose": "Sheet headings on content, pricing and closing sheets." },
-      "title": { "displayName": "Title", "purpose": "Row titles in revision tables, lists, FAQ questions, detail titles, legal subheadings; Archivo width 100 at 650." },
-      "lead": { "displayName": "Lead", "purpose": "First paragraph under a sheet heading in the system sans, capped at 52ch to 60ch." },
-      "body": { "displayName": "Body", "purpose": "Reading copy in the system sans and soft ink, 48ch to 62ch." },
-      "label": { "displayName": "Label", "purpose": "B612 Mono caps: zone marks, title-block keys, table headers, nav, dimension captions, detail captions." },
-      "figure": { "displayName": "Figure", "purpose": "B612 Mono tabular numbers in text, title-block values, revision letters, field text, the notes box." },
-      "figure-display": { "displayName": "Figure Display", "purpose": "The pricing figure only." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "Cover headline only; Archivo width 78, balanced, hyphenated."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Sheet headings on content, pricing and closing sheets."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Row titles in revision tables, lists, FAQ questions, detail titles, legal subheadings; Archivo width 100 at 650."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "First paragraph under a sheet heading in the system sans, capped at 52ch to 60ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading copy in the system sans and soft ink, 48ch to 62ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "B612 Mono caps: zone marks, title-block keys, table headers, nav, dimension captions, detail captions."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "B612 Mono tabular numbers in text, title-block values, revision letters, field text, the notes box."
+      },
+      "figure-display": {
+        "displayName": "Figure Display",
+        "purpose": "The pricing figure only."
+      }
     },
     "shadows": [
-      { "name": "panel", "value": "0 1px 4px rgba(0,0,0,0.08)", "purpose": "Every sheet and the title block; the app's card shadow." },
-      { "name": "lifted", "value": "0 4px 12px rgba(0,0,0,0.15)", "purpose": "The pinned strip and the open mobile menu, the two surfaces that float over a sheet." },
-      { "name": "button", "value": "0 2px 5px rgba(0,0,0,0.1)", "purpose": "The teal fill stamp only." },
-      { "name": "focus-ring", "value": "0 0 0 2px rgba(37,99,235,0.25)", "purpose": "The field under focus, with the chalk border." }
+      {
+        "name": "panel",
+        "value": "0 1px 4px rgba(0,0,0,0.08)",
+        "purpose": "Every sheet and the title block; the app's card shadow."
+      },
+      {
+        "name": "lifted",
+        "value": "0 4px 12px rgba(0,0,0,0.15)",
+        "purpose": "The pinned strip and the open mobile menu, the two surfaces that float over a sheet."
+      },
+      {
+        "name": "button",
+        "value": "0 2px 5px rgba(0,0,0,0.1)",
+        "purpose": "The teal fill stamp only."
+      },
+      {
+        "name": "focus-ring",
+        "value": "0 0 0 2px rgba(37,99,235,0.25)",
+        "purpose": "The field under focus, with the chalk border."
+      }
     ],
     "motion": [
-      { "name": "ease-draw", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Exponential ease-out for all drawing and strip motion." },
-      { "name": "draw-stroke", "value": "stroke-dashoffset 1100ms var(--ease-draw), stagger 60ms per path", "purpose": "Line work draws itself once when its SVG is 25% in view." },
-      { "name": "draw-fill", "value": "opacity 500ms var(--ease-draw), delay path-delay + 700ms", "purpose": "Text and fills ink in after their path has drawn." },
-      { "name": "strip-reveal", "value": "transform 420ms var(--ease-draw), opacity 320ms ease-out", "purpose": "The pinned strip slides up from translateY(120%) as sheet 2 enters; hidden on the cover." },
-      { "name": "stamp-lift", "value": "transform, box-shadow, background-color 200ms ease-out; hover translateY(-2px)", "purpose": "Stamp hover under motion-safe; active returns to rest." },
-      { "name": "faq-plus", "value": "transform (rotate 45deg) default transition", "purpose": "The figure plus turns into a cross when a FAQ row opens." },
-      { "name": "reduced-motion", "value": "all drawings fully visible, strip transition none, scroll-behavior auto", "purpose": "Under prefers-reduced-motion the set is already drawn." }
+      {
+        "name": "ease-draw",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Exponential ease-out for all drawing and strip motion."
+      },
+      {
+        "name": "draw-stroke",
+        "value": "stroke-dashoffset 1100ms var(--ease-draw), stagger 60ms per path",
+        "purpose": "Line work draws itself once when its SVG is 25% in view."
+      },
+      {
+        "name": "draw-fill",
+        "value": "opacity 500ms var(--ease-draw), delay path-delay + 700ms",
+        "purpose": "Text and fills ink in after their path has drawn."
+      },
+      {
+        "name": "strip-reveal",
+        "value": "transform 420ms var(--ease-draw), opacity 320ms ease-out",
+        "purpose": "The pinned strip slides up from translateY(120%) as sheet 2 enters; hidden on the cover."
+      },
+      {
+        "name": "stamp-lift",
+        "value": "transform, box-shadow, background-color 200ms ease-out; hover translateY(-2px)",
+        "purpose": "Stamp hover under motion-safe; active returns to rest."
+      },
+      {
+        "name": "faq-plus",
+        "value": "transform (rotate 45deg) default transition",
+        "purpose": "The figure plus turns into a cross when a FAQ row opens."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all drawings fully visible, strip transition none, scroll-behavior auto",
+        "purpose": "Under prefers-reduced-motion the set is already drawn."
+      }
     ],
     "breakpoints": [
-      { "name": "sm", "value": "640px" },
-      { "name": "md", "value": "768px" },
-      { "name": "lg", "value": "1024px" },
-      { "name": "xl", "value": "1280px" },
-      { "name": "2xl", "value": "1400px" },
-      { "name": "3xl", "value": "1800px" },
-      { "name": "4xl", "value": "2300px" }
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "2xl",
+        "value": "1400px"
+      },
+      {
+        "name": "3xl",
+        "value": "1800px"
+      },
+      {
+        "name": "4xl",
+        "value": "2300px"
+      }
     ]
   },
   "components": [
@@ -153,7 +506,7 @@
   ],
   "narrative": {
     "northStar": "The Werkplan",
-    "overview": "The site is a numbered drawing set built from the Druyn app's own materials. Every section is still a numbered sheet with zone letters down the edge and zone numbers across the top, and a title block (the Plankopf) sits in the corner of the cover. The product's loop, Planung, Ausführung, Prognose, is drawn as the engineering drawing it is, with real demo hours and calendar weeks set as dimensions. What changed in the second revision is the material: every colour, radius and shadow now comes from the app's own theme, so druyn.com and the app read as one product.\n\nThree grounds carry the world. A warm neutral canvas shows in the gaps between sheets. Off-white sheets float on it like app panels, with white elevated panels (title block, tables, notes, fields) set inside them. One dark slate surface, the app's login ground, opens the set, holds the pricing parts list, and closes it. The single action on any sheet is the app's teal button with dark text. Red appears only where a draughtsperson would ink it: measured figures, deviation chains and errors. Sage is declared for progress and capacity. Density is high but calm: mono caps labels at eleven pixels, hairline rules, tables instead of cards, revision rows instead of feature tiles.\n\nMotion is the act of drawing. Line work draws itself once on reveal, labels ink in afterwards, and the pinned title block counts sheets as the reader scrolls. Nothing fades, slides or bounces. Under reduced motion the whole set is simply already drawn.",
+    "overview": "The site is a numbered drawing set built from the Druyn app's own materials. Every section is still a numbered sheet with zone letters down the edge and zone numbers across the top, and a title block (the Plankopf) sits in the corner of the cover. The product's loop, Planung, Ausführung, Prognose, is drawn as the engineering drawing it is, with real demo hours and calendar weeks set as dimensions. What changed in the second revision is the material: every colour, radius and shadow now comes from the app's own theme, so druyn.com and the app read as one product.\n\nThree grounds carry the world. A warm neutral canvas shows in the gaps between sheets. Off-white sheets float on it like app panels, with white elevated panels (title block, tables, notes, fields) set inside them. One dark slate surface, the app's login ground, opens the set, holds the pricing parts list, and closes it. The single action on any sheet is the app's teal button with dark text. Red appears only where a draughtsperson would ink it: measured figures, deviation chains and errors.Density is high but calm: mono caps labels at eleven pixels, hairline rules, tables instead of cards, revision rows instead of feature tiles.\n\nMotion is the act of drawing. Line work draws itself once on reveal, labels ink in afterwards, and the pinned title block counts sheets as the reader scrolls. Nothing fades, slides or bounces. Under reduced motion the whole set is simply already drawn.",
     "keyCharacteristics": [
       "Numbered sheets with zone marks (A to D, 1 to 6) on every section, drawn as app panels: hairline border, 6px radius, one soft shadow",
       "Three grounds: warm canvas between sheets, off-white sheets with white panels inside, and one slate surface for cover, pricing and close",
@@ -163,15 +516,51 @@
       "Lists are tables, revision rows and dimension chains, never cards"
     ],
     "rules": [
-      { "name": "The Three Grounds Rule", "body": "A surface is canvas, off-white sheet, white panel, or slate. Panels sit on sheets and sheets sit on canvas; there is no tint, no gradient, and no panel of any other colour.", "section": "colors" },
-      { "name": "The One Stamp Rule", "body": "Each sheet carries at most one teal-filled stamp. Every other action on that sheet is an outline stamp, a bordered mono link, or an underlined mono label.", "section": "colors" },
-      { "name": "The Red Is Measured Rule", "body": "Red marks a measured figure, a deviation, or an error. It is never an action, an emphasis, a heading or decoration; the action is teal, the interactive state is chalk blue.", "section": "colors" },
-      { "name": "The Opacity Not Grey Rule", "body": "Secondary text on a sheet is the sheet's own ink at reduced opacity, or Ink Soft for reading copy. No further greys.", "section": "colors" },
-      { "name": "The Mono Is Metadata Rule", "body": "Anything a draughtsperson would letter by hand on a plan, labels, dimensions, sheet numbers, revision letters, the title block, the navigation, is set in B612 Mono. Reading copy is never mono; mono is never used for a paragraph longer than a note.", "section": "typography" },
-      { "name": "The Width Axis Rule", "body": "Headlines use Archivo's width axis at 78, titles at 100. Weight does not substitute for width; a heading is condensed, not simply heavier.", "section": "typography" },
-      { "name": "The System Body Rule", "body": "Reading copy is the system sans, never Archivo. Archivo appears only in display and title grammar, so the site keeps a voice while the paragraphs match the app.", "section": "typography" },
-      { "name": "The App Shadow Rule", "body": "A shadow is one of the four above, taken from the app. Nothing invents a fifth, and nothing uses a hard offset or a coloured bloom.", "section": "elevation" },
-      { "name": "The Border Plus Shadow Rule", "body": "A panel is never shadow alone: it has a 1px Line border first, and the panel shadow second.", "section": "elevation" }
+      {
+        "name": "The Three Grounds Rule",
+        "body": "A surface is canvas, off-white sheet, white panel, or slate. Panels sit on sheets and sheets sit on canvas; there is no tint, no gradient, and no panel of any other colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Stamp Rule",
+        "body": "Each sheet carries at most one teal-filled stamp. Every other action on that sheet is an outline stamp, a bordered mono link, or an underlined mono label.",
+        "section": "colors"
+      },
+      {
+        "name": "The Red Is Measured Rule",
+        "body": "Red marks a measured figure, a deviation, or an error. It is never an action, an emphasis, a heading or decoration; the action is teal, the interactive state is chalk blue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Opacity Not Grey Rule",
+        "body": "Secondary text on a sheet is the sheet's own ink at reduced opacity, or Ink Soft for reading copy. No further greys.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mono Is Metadata Rule",
+        "body": "Anything a draughtsperson would letter by hand on a plan, labels, dimensions, sheet numbers, revision letters, the title block, the navigation, is set in B612 Mono. Reading copy is never mono; mono is never used for a paragraph longer than a note.",
+        "section": "typography"
+      },
+      {
+        "name": "The Width Axis Rule",
+        "body": "Headlines use Archivo's width axis at 78, titles at 100. Weight does not substitute for width; a heading is condensed, not simply heavier.",
+        "section": "typography"
+      },
+      {
+        "name": "The System Body Rule",
+        "body": "Reading copy is the system sans, never Archivo. Archivo appears only in display and title grammar, so the site keeps a voice while the paragraphs match the app.",
+        "section": "typography"
+      },
+      {
+        "name": "The App Shadow Rule",
+        "body": "A shadow is one of the four above, taken from the app. Nothing invents a fifth, and nothing uses a hard offset or a coloured bloom.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Border Plus Shadow Rule",
+        "body": "A panel is never shadow alone: it has a 1px Line border first, and the panel shadow second.",
+        "section": "elevation"
+      }
     ],
     "dos": [
       "Do put every new section inside a Sheet with its zone marks and give it a number and a name so the pinned strip can count it.",

@@ -40,25 +40,30 @@ const sumPlanned = tasks.reduce((s, t) => s + t.planned, 0);
   >
 
     {
-      boxes.map((b) => (
+      boxes.map((b, i) => (
         <g>
-          <rect class="draw" x={b.x} y={b.y} width={W} height={H} />
-          <text class="fill-in" x={b.x + 10} y={b.y + 24} font-size="12" fill="currentColor" stroke="none" font-weight="700">
+          <clipPath id={`card-${i}`}>
+            <rect x={b.x} y={b.y} width={W} height={H} rx="5" />
+          </clipPath>
+          <rect class="fill-in" x={b.x} y={b.y} width={W} height={H} rx="5" fill="#ffffff" stroke="none" />
+          <rect class="fill-in" x={b.x} y={b.y} width={W} height="30" fill="#e2a6af" stroke="none" clip-path={`url(#card-${i})`} />
+          <rect class="draw" x={b.x} y={b.y} width={W} height={H} rx="5" stroke="#c2beb9" />
+          <text class="fill-in" x={b.x + 10} y={b.y + 20} font-size="12" fill="#1c1a19" stroke="none" font-weight="700">
             {b.name.length > 30 ? `${b.name.slice(0, 29)}…` : b.name}
           </text>
-          <text class="fill-in" x={b.x + 10} y={b.y + 46} font-size="10.5" fill="currentColor" stroke="none" opacity="0.75">
+          <text class="fill-in" x={b.x + 10} y={b.y + 48} font-size="10.5" fill="#595450" stroke="none">
             {dict.plankopf.projectValue}
           </text>
-          <rect class="draw" x={b.x + 10} y={b.y + 64} width={barW} height="18" />
-          <rect class="fill-in" x={b.x + 10} y={b.y + 64} width={(b.booked / b.planned) * barW} height="18" fill="currentColor" opacity="0.9" />
-          <text class="fill-in" x={b.x + 16} y={b.y + 77} font-size="10" fill="currentColor" stroke="none" style={b.booked / b.planned > 0.3 ? "mix-blend-mode:difference" : ""}>
+          <rect class="draw" x={b.x + 10} y={b.y + 64} width={barW} height="18" rx="3" stroke="#c2beb9" />
+          <rect class="fill-in" x={b.x + 10} y={b.y + 64} width={(b.booked / b.planned) * barW} height="18" rx="3" fill="#e2a6af" />
+          <text class="fill-in" x={b.x + 16} y={b.y + 77} font-size="10" fill="#1c1a19" stroke="none">
             {b.role}
           </text>
-          <text class="fill-in figure" x={b.x + W - 10} y={b.y + 77} font-size="12" fill="currentColor" stroke="none" text-anchor="end">
+          <text class="fill-in figure" x={b.x + W - 10} y={b.y + 77} font-size="12" fill="#1c1a19" stroke="none" text-anchor="end">
             {fmt(b.booked)}/{b.planned} {dict.demo.hours}
           </text>
           {b.booked >= b.planned && (
-            <path class="draw" d={`M${b.x + W - 26} ${b.y + 40} l5 5 l10 -10`} stroke-width="2" />
+            <path class="draw" d={`M${b.x + W - 26} ${b.y + 43} l5 5 l10 -10`} stroke="#3cb371" stroke-width="2" />
           )}
         </g>
       ))
@@ -75,18 +80,18 @@ const sumPlanned = tasks.reduce((s, t) => s + t.planned, 0);
     <path class="draw" d={`M348 ${306 + H / 2 - 5} l8 5 l-8 5`} />
 
     <!-- dimension chains in red: total hours across the first column, calendar weeks down the right -->
-    <g class="text-dimension" stroke="#d7261e">
+    <g class="text-[#ff6b7a]" stroke="currentColor">
       <path class="draw" d="M20 28 V18 M264 28 V18 M20 23 H264" />
-      <text class="fill-in" x="142" y="14" font-size="12" fill="#d7261e" stroke="none" text-anchor="middle">
+      <text class="fill-in" x="142" y="14" font-size="12" fill="currentColor" stroke="none" text-anchor="middle">
         {fmt(sumBooked)}/{sumPlanned} {dict.demo.hours} {dict.demo.booked}
       </text>
       <path class="draw" d="M608 126 H620 M608 410 H620 M614 126 V410" />
-      <text class="fill-in" transform="translate(632 268) rotate(90)" font-size="12" fill="#d7261e" stroke="none" text-anchor="middle">
+      <text class="fill-in" transform="translate(632 268) rotate(90)" font-size="12" fill="currentColor" stroke="none" text-anchor="middle">
         {dict.demo.weeks}
       </text>
       <!-- today flag on the bus -->
       <path class="draw" d="M310 470 V525 M310 470 h26 l-6 8 l6 8 h-26" />
-      <text class="fill-in" x="342" y="483" font-size="12" fill="#d7261e" stroke="none">{dict.demo.today}</text>
+      <text class="fill-in" x="342" y="483" font-size="12" fill="currentColor" stroke="none">{dict.demo.today}</text>
     </g>
   </svg>
   <figcaption class="label mt-3 max-w-[30rem] opacity-85">{dict.hero.drawingTitle} · {dict.hero.drawingCaption}</figcaption>

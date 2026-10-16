@@ -30,7 +30,7 @@ const widths = side ? [480, 768, 1000, 1400] : [480, 768, 1200, 1600];
     <header class="mb-4 flex items-center gap-4">
       <span
         aria-hidden="true"
-        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-ink font-mono text-lg font-bold"
+        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-ink-soft bg-elevated font-mono text-lg font-bold"
         >{letter}</span
       >
       <span aria-hidden="true" class="h-px w-10 shrink-0 bg-ink"></span>
@@ -49,7 +49,7 @@ const widths = side ? [480, 768, 1000, 1400] : [480, 768, 1200, 1600];
   </div>
   <div class:list={[side ? "mt-6 lg:mt-0" : "relative"]}>
     {!side && <span aria-hidden="true" class="absolute -top-4 left-6 h-4 w-px bg-ink"></span>}
-    <div class="border border-ink bg-[#E4E1DE] p-1.5 md:p-2">
+    <div class="rounded border border-line bg-product-ground p-1.5 md:p-2">
       <Image src={image} alt={alt} widths={widths} sizes={sizes} format="webp" quality={82} class="block h-auto w-full" loading="lazy" />
     </div>
     {

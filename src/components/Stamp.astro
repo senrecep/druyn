@@ -9,11 +9,11 @@ interface Props {
 }
 const { href, class: className = "", variant = "fill", type = "link" } = Astro.props;
 const base =
-  "stamp inline-flex min-h-14 items-center justify-center px-7 font-mono text-[0.8125rem] font-bold tracking-[0.12em] uppercase transition-[transform,box-shadow,background-color] duration-200 ease-out motion-safe:hover:-translate-y-0.5 active:translate-y-0";
+  "stamp inline-flex min-h-14 items-center justify-center rounded px-7 font-mono text-[0.8125rem] font-bold tracking-[0.12em] uppercase transition-[transform,box-shadow,background-color] duration-200 ease-out motion-safe:hover:-translate-y-0.5 active:translate-y-0";
 const styles = {
-  fill: "bg-dimension text-white shadow-[0_8px_24px_-12px_rgba(215,38,30,0.9)] hover:bg-[#c21f17]",
-  outline: "border-2 border-ink text-ink hover:bg-ink hover:text-white",
-  "outline-white": "border-2 border-white text-white hover:bg-white hover:text-blueprint",
+  fill: "bg-action text-ink shadow-[0_2px_5px_rgba(0,0,0,0.1)] hover:bg-action-pressed",
+  outline: "border border-ink-soft text-ink hover:bg-ink hover:text-white",
+  "outline-white": "border border-white/70 text-white hover:bg-white hover:text-blueprint",
 }[variant];
 ---
 
@@ -29,18 +29,3 @@ const styles = {
   )
 }
 
-<style>
-  /* Stamp outline: a second hairline inside the block, like an inked rubber stamp. */
-  .stamp {
-    position: relative;
-    isolation: isolate;
-  }
-  .stamp::after {
-    content: "";
-    position: absolute;
-    inset: 4px;
-    border: 1px solid currentColor;
-    opacity: 0.55;
-    pointer-events: none;
-  }
-</style>

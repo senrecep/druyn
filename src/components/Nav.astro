@@ -41,21 +41,21 @@ const linkClass = blue
     <a
       href={`${appUrl}/login`}
       class:list={[
-        "label border px-4 py-3 no-underline transition-colors",
-        blue ? "border-white/70 text-white hover:bg-white hover:text-blueprint" : "border-ink text-ink hover:bg-ink hover:text-white",
+        "label rounded px-4 py-3 no-underline transition-colors",
+        blue ? "bg-action text-ink hover:bg-action-pressed" : "border border-ink-soft text-ink hover:bg-ink hover:text-white",
       ]}>{dict.nav.login}</a
     >
   </nav>
 
   <details class="group relative lg:hidden" data-menu>
-    <summary class:list={["label cursor-pointer list-none border px-4 py-3", blue ? "border-white/70" : "border-ink"]}>
+    <summary class:list={["label cursor-pointer list-none rounded border px-4 py-3", blue ? "border-white/70" : "border-ink-soft"]}>
       {dict.nav.menu}
     </summary>
     <nav
       aria-label={dict.nav.menu}
       class:list={[
-        "absolute top-full right-0 z-30 mt-2 flex w-64 flex-col border-2 p-5",
-        blue ? "border-white bg-blueprint text-white" : "border-ink bg-sheet text-ink",
+        "absolute top-full right-0 z-30 mt-2 flex w-64 flex-col rounded-md border p-5 shadow-[0_4px_12px_rgba(0,0,0,0.15)]",
+        blue ? "border-white/30 bg-blueprint text-white" : "border-line bg-elevated text-ink",
       ]}
     >
       {links.map((l) => <a href={l.href} class={linkClass}>{l.label}</a>)}

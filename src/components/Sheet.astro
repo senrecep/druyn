@@ -27,15 +27,11 @@ const blue = tone === "blue";
   data-sheet-name={name}
   aria-label={label ?? name}
   class:list={[
-    "sheet relative m-[var(--frame)] border-2",
-    blue ? "sheet-blue border-white bg-blueprint text-white" : "border-ink bg-sheet text-ink",
+    "sheet relative m-[var(--frame)] rounded-md border shadow-[0_1px_4px_rgba(0,0,0,0.08)]",
+    blue ? "sheet-blue border-blueprint-deep bg-blueprint text-white" : "border-line bg-sheet text-ink",
     className,
   ]}
 >
-  <div
-    aria-hidden="true"
-    class:list={["pointer-events-none absolute inset-2 border", blue ? "border-white/50" : "border-ink/40"]}
-  ></div>
   <ol aria-hidden="true" class="pointer-events-none absolute top-0 bottom-0 left-0 hidden w-5 md:block">
     {rows.map((r) => <li class="label flex h-1/4 items-center justify-center opacity-70">{r}</li>)}
   </ol>
